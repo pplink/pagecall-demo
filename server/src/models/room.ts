@@ -2,6 +2,8 @@
  * Room Model
  */
 
+import { PCA } from '../helpers';
+
 // Mock DB
 const MockDB: Room[] = [];
 
@@ -35,8 +37,30 @@ export class Room {
         return room;
     }
 
-    static getRooms(): Room[] {
+    static getAllRooms(): Room[] {
         return MockDB;
+    }
+
+    static async getLiveRooms(): Promise<Room[]> {
+        const rooms = await Promise.all(
+            MockDB.filter((room) => room.end === null).map(async (room) => {
+                const participant = (await PCA.getSessions(room.pcaRoomId, 0, 1000)).length;
+
+                return { ...room, participant } as Room;
+            }),
+        );
+
+        rooms.sort((a, b) => (a.start >= b.start ? -1 : 1));
+
+        return rooms;
+    }
+
+    static getClosedRooms(): Room[] {
+        const rooms = MockDB.filter((room) => room.end !== null);
+
+        rooms.sort((a, b) => (a.end >= b.end ? -1 : 1));
+
+        return rooms;
     }
 
     insert() {

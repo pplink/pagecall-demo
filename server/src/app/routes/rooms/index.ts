@@ -10,18 +10,9 @@ const router: Router = Router({ mergeParams: true });
 // 미팅 목록
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const rooms = Room.getRooms();
+        const liveRooms = await Room.getLiveRooms();
 
-        const liveRooms = rooms.filter((room) => room.end === null);
-        liveRooms.sort((a, b) => (a.start >= b.start ? -1 : 1));
-        await Promise.all(
-            liveRooms.map(async (room) => {
-                room.participant = (await PCA.getSessions(room.pcaRoomId, 0, 1000)).length;
-            }),
-        );
-
-        const closedRooms = rooms.filter((room) => room.end !== null);
-        closedRooms.sort((a, b) => (a.end >= b.end ? -1 : 1));
+        const closedRooms = Room.getClosedRooms();
 
         res.status(200);
         res.json({ liveRooms, closedRooms });
@@ -97,11 +88,21 @@ router.put('/:roomId', async (req: Request, res: Response, next: NextFunction) =
             throwError('Not Found', 404);
         }
 
+        if (room.end !== null) {
+            res.status(200);
+            res.json({ room });
+            res.end();
+            return;
+        }
+
         const { room: pcaRoom } = await PCA.updateRoom(room.pcaRoomId, true);
         const members = await PCA.getMembers(pcaRoom.id, 0, 1000);
 
-        room.end = new Date();
+        const now = new Date();
+
+        room.end = now;
         room.participant = members.length;
+        room.updatedAt = now;
 
         room.update();
 
