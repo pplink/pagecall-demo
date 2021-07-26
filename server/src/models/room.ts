@@ -69,6 +69,7 @@ export class Room {
     }
 
     update() {
+        this.updatedAt = new Date();
         return;
     }
 }
