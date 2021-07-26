@@ -16,6 +16,7 @@ module.exports = {
         ],
         "@typescript-eslint/explicit-module-boundary-types": 0,
         'no-console': ['error', { allow: ['warn', 'error'] }],
+        '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
     },
     settings: {
         'import/resolver': {
