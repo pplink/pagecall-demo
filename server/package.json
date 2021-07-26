@@ -5,7 +5,9 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc",
-        "start": "nodemon",
+        "test": "nodemon",
+        "start": "tsc && pm2 startOrReload pm2.config.js",
+        "stop": "pm2 stop all && pm2 kill",
         "lint": "eslint src/**/*.ts",
         "lint:fix": "eslint --fix src/**/*.ts"
     },
