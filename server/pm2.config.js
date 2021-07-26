@@ -11,6 +11,9 @@ module.exports = {
             listen_timeout: 50000, // ready를 기다리는 시간
             kill_timeout: 5000, // SIGINT 수신 후, 일정 시간 동안 기존 작업들이 끝나기를 기다린다.
             merge_logs: true,
+            env: {
+                "NODE_ENV": "production",
+            }
         },
     ],
 };
