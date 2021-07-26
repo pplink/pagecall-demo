@@ -15,8 +15,10 @@
 		54A1B2FA26AE8D87004C9EED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B2F826AE8D87004C9EED /* LaunchScreen.storyboard */; };
 		54A1B30526AE8D87004C9EED /* PageCallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B30426AE8D87004C9EED /* PageCallTests.swift */; };
 		54A1B31026AE8D87004C9EED /* PageCallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B30F26AE8D87004C9EED /* PageCallUITests.swift */; };
-		54A1B32026AE8DF0004C9EED /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */; };
-		54A1B32126AE8DF0004C9EED /* PageCallSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */; };
+		54A1B32226AE9E20004C9EED /* PageCallSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */; };
+		54A1B32326AE9E20004C9EED /* PageCallSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		54A1B32526AE9E21004C9EED /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */; };
+		54A1B32626AE9E21004C9EED /* WebRTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,21 @@
 			remoteInfo = PageCall;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		54A1B32426AE9E20004C9EED /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				54A1B32626AE9E21004C9EED /* WebRTC.xcframework in Embed Frameworks */,
+				54A1B32326AE9E20004C9EED /* PageCallSDK.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		54A1B2EA26AE8D86004C9EED /* PageCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PageCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,8 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54A1B32026AE8DF0004C9EED /* WebRTC.xcframework in Frameworks */,
-				54A1B32126AE8DF0004C9EED /* PageCallSDK.xcframework in Frameworks */,
+				54A1B32526AE9E21004C9EED /* WebRTC.xcframework in Frameworks */,
+				54A1B32226AE9E20004C9EED /* PageCallSDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +171,7 @@
 				54A1B2E626AE8D86004C9EED /* Sources */,
 				54A1B2E726AE8D86004C9EED /* Frameworks */,
 				54A1B2E826AE8D86004C9EED /* Resources */,
+				54A1B32426AE9E20004C9EED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
