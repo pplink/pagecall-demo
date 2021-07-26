@@ -7,7 +7,7 @@ import { checkData, createRandomString, PCA, throwError } from '../../../helpers
 
 const router: Router = Router({ mergeParams: true });
 
-// 미팅 목록
+// 룸 목록
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const liveRooms = await Room.getLiveRooms();
@@ -22,7 +22,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-// 미팅 생성
+// 룸 생성
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { name }: { name: string } = req.body;
@@ -47,7 +47,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-// 미팅 입장
+// 룸 입장
 router.post('/:roomId', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { roomId } = req.params;
@@ -77,13 +77,14 @@ router.post('/:roomId', async (req: Request, res: Response, next: NextFunction) 
     }
 });
 
-// 미팅 종료
+// 룸 종료
 router.put('/:roomId', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { roomId } = req.params;
 
         const room = Room.getRoomByID(roomId);
 
+        // 이미 종료된 룸
         if (!checkData(room)) {
             throwError('Not Found', 404);
         }
