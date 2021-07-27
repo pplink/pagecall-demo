@@ -31,7 +31,7 @@ export class Room {
         this.updatedAt = now;
     }
 
-    static getRoomByID(id: string): Room {
+    static getRoomById(id: string): Room {
         const room: Room = MockDB.find((room) => room.id === id);
 
         return room;
