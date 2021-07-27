@@ -19,6 +19,9 @@
 		54A1B32326AE9E20004C9EED /* PageCallSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54A1B32526AE9E21004C9EED /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */; };
 		54A1B32626AE9E21004C9EED /* WebRTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		54E4908426B011D50048919E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908326B011D50048919E /* Room.swift */; };
+		54E4908626B015890048919E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908526B015890048919E /* Service.swift */; };
+		54E4908826B019800048919E /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908726B019800048919E /* ErrorMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,9 @@
 		54A1B31126AE8D87004C9EED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WebRTC.xcframework; sourceTree = "<group>"; };
 		54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PageCallSDK.xcframework; sourceTree = "<group>"; };
+		54E4908326B011D50048919E /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		54E4908526B015890048919E /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		54E4908726B019800048919E /* ErrorMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 		54A1B2E126AE8D86004C9EED = {
 			isa = PBXGroup;
 			children = (
+				54E4908026B00E1B0048919E /* Model */,
 				54A1B31D26AE8DF0004C9EED /* Frameworks */,
 				54A1B2EC26AE8D86004C9EED /* PageCall */,
 				54A1B30326AE8D87004C9EED /* PageCallTests */,
@@ -123,6 +130,8 @@
 		54A1B2EC26AE8D86004C9EED /* PageCall */ = {
 			isa = PBXGroup;
 			children = (
+				54E4908726B019800048919E /* ErrorMessage.swift */,
+				54E4908526B015890048919E /* Service.swift */,
 				54A1B2ED26AE8D86004C9EED /* AppDelegate.swift */,
 				54A1B2EF26AE8D86004C9EED /* SceneDelegate.swift */,
 				54A1B2F126AE8D86004C9EED /* ViewController.swift */,
@@ -159,6 +168,14 @@
 				54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		54E4908026B00E1B0048919E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				54E4908326B011D50048919E /* Room.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +311,9 @@
 			files = (
 				54A1B2F226AE8D86004C9EED /* ViewController.swift in Sources */,
 				54A1B2EE26AE8D86004C9EED /* AppDelegate.swift in Sources */,
+				54E4908626B015890048919E /* Service.swift in Sources */,
+				54E4908426B011D50048919E /* Room.swift in Sources */,
+				54E4908826B019800048919E /* ErrorMessage.swift in Sources */,
 				54A1B2F026AE8D86004C9EED /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
