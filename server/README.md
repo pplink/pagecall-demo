@@ -15,6 +15,7 @@ PageCall 데모 앱을 위한 API 서버 코드 입니다. 본 예제는 고객�
 - Node.js ([설치 링크](https://nodejs.org/ko/download/))
   
 ## 사용법
+***.env 파일에 사용하실 PageCall API key와 PageCall Layaout ID를 넣어주세요***
 - 의존성 설치: ```npm install``` 또는 ```yarn```
 - 로컬 실행: ```npm start``` 또는 ```yarn start```
 - 배포판 실행: ```npm run start:prod``` 또는 ```yarn start:prod```
