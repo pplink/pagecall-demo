@@ -14,10 +14,10 @@ import routes from './routes';
 
 const app: Express = express();
 const corsOptions: cors.CorsOptions = {
-    origin: true,
-    credentials: true,
-    optionsSuccessStatus: 200,
-    methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
+  origin: true,
+  credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
 };
 
 app.set('trust proxy', true);
@@ -28,10 +28,10 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.raw({ limit: '20mb' }));
 app.use(express.text({ limit: '10mb' }));
 app.use(
-    express.urlencoded({
-        extended: true,
-        limit: '100kb',
-    }),
+  express.urlencoded({
+    extended: true,
+    limit: '100kb',
+  }),
 );
 app.use(cookieParser('secret'));
 app.use(useragent.express());
@@ -45,22 +45,22 @@ app.use('/', routes);
  * Catch 404 and forward to error handler
  */
 app.use((req: Request, res: Response, next: NextFunction) => {
-    const err = new Error('Not Found') as Err;
-    err.status = 404;
-    next(err);
+  const err = new Error('Not Found') as Err;
+  err.status = 404;
+  next(err);
 });
 
 /**
  * Error Handler
  */
 app.use(async (err: Err, req: Request, res: Response, next: NextFunction) => {
-    if (err.status === undefined || err.status >= 500) {
-        // Status가 없거나 5XX 에러인 경우만 로그를 찍는다.
-        console.error(err);
-    }
+  if (err.status === undefined || err.status >= 500) {
+    // Status가 없거나 5XX 에러인 경우만 로그를 찍는다.
+    console.error(err);
+  }
 
-    res.status(err.status ?? 500);
-    res.end();
+  res.status(err.status ?? 500);
+  res.end();
 });
 
 export default app;

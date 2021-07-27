@@ -1,3 +1,3 @@
 export interface Err extends Error {
-    status?: number;
+  status?: number;
 }
