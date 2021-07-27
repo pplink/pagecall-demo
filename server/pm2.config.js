@@ -3,7 +3,7 @@ module.exports = {
         {
             name: 'pagecall-demo',
             script: 'dist/index.js',
-            instances: 1, // CPU 코어 수 만큼 프로세스 운영
+            instances: 1, // 지정 갯수 만큼 프로세스 운영, 0: 코어 갯수 만큼 운영
             watch: false, // 코드 변경시 자동 재실행
             exec_mode: 'cluster', // fork || cluster
             max_restarts: 10, // 에러 발생시, 최대 재실행 횟수
