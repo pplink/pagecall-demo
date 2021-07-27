@@ -57,7 +57,7 @@ router.post('/:roomId', async (req: Request, res: Response, next: NextFunction) 
             throwError('Bad Request', 400);
         }
 
-        const room = Room.getRoomByID(roomId);
+        const room = Room.getRoomById(roomId);
 
         if (!checkData(room)) {
             throwError('Not Found', 404);
@@ -82,7 +82,7 @@ router.put('/:roomId', async (req: Request, res: Response, next: NextFunction) =
     try {
         const { roomId } = req.params;
 
-        const room = Room.getRoomByID(roomId);
+        const room = Room.getRoomById(roomId);
 
         // 이미 종료된 룸
         if (!checkData(room)) {
