@@ -4,6 +4,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { Room } from '../../../models';
 import { checkData, createRandomString, PCA, throwError } from '../../../helpers';
+import env from '../../../env';
 
 const router: Router = Router({ mergeParams: true });
 
@@ -34,7 +35,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
         const id = createRandomString(16);
         const start = new Date();
 
-        const pcaRoom = await PCA.createRoom('private', name, '6010ddd3e1ed810009878b55');
+        const pcaRoom = await PCA.createRoom('private', name, env.PAGECALL_LAYOUT_ID);
 
         const room = new Room(id, name, pcaRoom.id, start);
         room.insert();
