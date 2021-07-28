@@ -1,6 +1,6 @@
-# PageCall 데모 어플리케이션 API 서버
+# PageCall 데모 애플리케이션 API 서버
 
-PageCall 데모 앱을 위한 API 서버 코드 입니다. 본 예제는 고객사의 PageCall 서버 연동에 대한 이해를 돕고자 만들어졌습니다.
+PageCall 데모 애플리케이션을 위한 API 서버 입니다. 본 예제는 고객사의 PageCall 서버 연동에 대한 이해를 돕고자 만들어졌습니다.
 
 ## 안내
 
@@ -17,7 +17,7 @@ PageCall 데모 앱을 위한 API 서버 코드 입니다. 본 예제는 고객�
 
 ## 사전 요구사항
 
-- PageCall Console 에서 API 키 발급 ([PageCall 콘솔 링크](https://console.pagecall.net/))
+- PageCall 개발자 콘솔 에서 API 키 발급 ([PageCall 개발자 콘솔 링크](https://console.pagecall.net/))
 - Node.js ([설치 링크](https://nodejs.org/ko/download/))
   
 ## 사용법
