@@ -1,6 +1,6 @@
 # PageCall 데모 모바일 애플리케이션
 
-본 데모 애플리케이션은 고객사의 모바일 PageCall 사용 체험 및 PageCall Mobile SDK 도입을 돕기 위해 만들어졌습니다.
+본 데모 애플리케이션은 고객사의 모바일 환경 PageCall 체험 및 PageCall Mobile SDK 도입을 돕기 위해 만들어졌습니다.
 
 ## 개요
 
