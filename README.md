@@ -13,6 +13,10 @@
 - [iOS 데모](./ios) : PageCall iOS SDK를 활용한 iOS 클라이언트
 - [Node.js 서버 데모](./server) : PageCall 서버와 통신하는 API 서버
 
+## 사용 순서
+1. [Node.js 서버 데모](./server) 안내를 따라 API 서버를 실행합니다.
+2. [iOS 데모](./ios) 안내를 따라 iOS 클라이언트를 실행하고 서버를 연동합니다.
+
 ## 안내
 
 - [PageCall 소개 및 도입 문의](https://pagecall.net/)
