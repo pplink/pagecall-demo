@@ -18,7 +18,7 @@ PageCall 데모 애플리케이션을 위한 API 서버 입니다. 본 예제는
 
 ## 사전 요구사항
 
-- PageCall 개발자 콘솔 에서 API 키 발급 ([PageCall 개발자 콘솔 링크](https://console.pagecall.net/))
+- PageCall 개발자 콘솔 에서 API 키 발급 및 Layout ID 복사 ([PageCall 개발자 콘솔 링크](https://console.pagecall.net/))
 - Node.js ([설치 링크](https://nodejs.org/ko/download/))
   
 ## 사용법
@@ -27,3 +27,11 @@ PageCall 데모 애플리케이션을 위한 API 서버 입니다. 본 예제는
 - 로컬 실행: ```npm start``` 또는 ```yarn start```
 - 배포판 실행: ```npm run start:prod``` 또는 ```yarn start:prod```
 - 배포판 종료: ```npm stop``` 또는 ```yarn stop```
+
+## 구조
+
+- src/app: Express.js 의 라우터와 컨트롤러가 구현되어 있습니다.
+- src/env: 서버 실행 시, 환경변수를 불러와 변수로 저장합니다.
+- src/helpers: 서버에서 사용하는 함수들이 구현되어 있습니다.
+- src/models: 데이터 모델들이 구현되어 있습니다.
+- src/types: 서버에서 사용하는 타입들이 선언되어 있습니다.
