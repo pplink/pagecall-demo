@@ -120,7 +120,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: start pagecall
+        // TODO: 강의실 입장
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -143,23 +143,6 @@ extension ViewController: PageCallDelegate {
 
     func pageCallDidReceive(_ message: WKScriptMessage) {
         print("pageCallDidReceive message")
-        
-        /* sample JS
-        var message = {
-            command: 'finishedLoading',
-            interval: 1
-        };
-        window.webkit.messageHandlers.pageCallSDK.postMessage(message);
-        */
-        
-        if message.name == "pageCallSDK" {
-            guard let dict = message.body as? [String: AnyObject],
-                  let command = dict["command"] as? String,
-                  let interval = dict["interval"] as? Int else {
-                    return
-            }
-            print("pageCallDidReceiveScriptMessage command: \(command), interval: \(interval)")
-        }
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {

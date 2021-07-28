@@ -11,8 +11,7 @@ struct Room: Codable {
     var updatedAt: String?
 }
 
-struct Rooms: Codable
-{
+struct Rooms: Codable {
     var liveRooms: [Room]
     var closedRooms: [Room]
 }
