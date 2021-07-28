@@ -8,7 +8,7 @@
 
 ## 안내
 
-- [PageCall 소개 및 도입 문의]([https://](https://pagecall.net/))
+- [PageCall 소개 및 도입 문의](https://pagecall.net/)
 - [pageCall 개발자 콘솔](https://console.pagecall.net/)
 
 ## 라이선스
