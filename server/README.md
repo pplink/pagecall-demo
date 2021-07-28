@@ -33,5 +33,6 @@ PageCall 데모 애플리케이션을 위한 API 서버 입니다. 본 예제는
 - src/app: Express.js 의 라우터와 컨트롤러가 구현되어 있습니다.
 - src/env: 서버 실행 시, 환경변수를 불러와 변수로 저장합니다.
 - src/helpers: 서버에서 사용하는 함수들이 구현되어 있습니다.
+- src/helpers/pagecall.ts: PageCall 서버와의 REST API 통신이 구현되어 있습니다.
 - src/models: 데이터 모델들이 구현되어 있습니다.
 - src/types: 서버에서 사용하는 타입들이 선언되어 있습니다.
