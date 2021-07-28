@@ -3,15 +3,20 @@
 
 ## 개요
 
-- [iOS 데모](./ios) : PageCall iOS SDK 활용한 데모 애플리케이션
-- [Node.js 서버 데모](./server) : PageCall 데모 애플리케이션을 위한 API 서버
+- 강의실을 생성, 삭제, 입장 할 수 있는 교육용 데모 애플리케이션입니다.
+- 아이패드를 기준으로 만들어졌습니다.
+- 이 데모 애플리케이션의 구조를 파악하고 나서, 로그인, 유저-강의실 배정 등의 기능만 추가하면 간단한 교육용 서비스를 런칭할 수 있습니다.
+ 
+## 구성
+
+- [iOS 데모](./ios) : PageCall iOS SDK를 활용한 iOS 클라이언트
+- [Node.js 서버 데모](./server) : PageCall 서버와 통신하는 API 서버
 
 ## 안내
 
 - [PageCall 소개 및 도입 문의](https://pagecall.net/)
 - [pageCall 개발자 콘솔](https://console.pagecall.net/)
 - [PageCall iOS SDK 도입](https://github.com/pplink/pagecall-ios-example)
-- [PageCall React Native SDK 도입](https://github.com/pplink/react-native-pagecall)
 
 ## 라이선스
 [MIT](./LICENSE)

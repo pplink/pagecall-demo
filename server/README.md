@@ -6,7 +6,8 @@ PageCall 데모 애플리케이션을 위한 API 서버 입니다. 본 예제는
 
 - 본 예제는 Typescript와 Express.js를 사용하여 구현되어 있습니다.
 - 고객사의 간편한 실행 테스트를 위해 실제 DB를 연동하지 않고 ([src/models/room.ts](./src/models/room.ts)) 안에 Mock DB용 배열을 만들어서 사용하고 있습니다.
-- 이해를 돕기 위해 .env를 사용하고 있습니다. 실제 프로덕션에는 보안을 위해 .env를 사용을 지양해 주시길 바랍니다.
+- 이해를 돕기 위해 .env를 사용하고 있습니다. 실제 프로덕션에는 보안을 위해 .env의 사용을 지양해 주시길 바랍니다.
+- PageCall 서버와 REST API로 통신합니다.
 
 ## 기능 목록 ([API 문서](API.md))
 
