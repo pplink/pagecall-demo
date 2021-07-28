@@ -16,7 +16,7 @@
 
 - [PageCall 소개 및 도입 문의](https://pagecall.net/)
 - [pageCall 개발자 콘솔](https://console.pagecall.net/)
-- [PageCall iOS SDK 도입](https://github.com/pplink/pagecall-ios-example)
+- [PageCall iOS SDK 도입](https://github.com/pplink/pagecall-ios-example)
 
 ## 라이선스
 [MIT](./LICENSE)
