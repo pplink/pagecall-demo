@@ -24,7 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.title = "Room List"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(createRoom))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(onCreateRoom))
             
         setupTableView()
         setupSearchBar()
@@ -35,7 +35,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidAppear(animated)
     }
     
-    @objc func createRoom() {
+    // MARK: PageCall
+    func loadPageCall(strUrl: String) {
+        DispatchQueue.main.async {
+            let pageCall = PageCall.sharedInstance()
+            pageCall.delegate = self
+                
+            #if DEBUG
+            #else
+            // pagecall log
+            pageCall.redirectLogToDocuments(withTimeInterval: 4)
+            #endif
+            
+            // PageCall MainViewController present
+            pageCall.mainViewController!.modalPresentationStyle = .overFullScreen
+            self.present(pageCall.mainViewController!, animated: true, completion: {
+                pageCall.webViewLoadRequest(withURLString: strUrl)
+            })
+        }
+    }
+    
+    // MARK: Button Action
+    @objc func onCreateRoom() {
         DispatchQueue.main.async {
             let alertPopUp = UIAlertController(title: "New Room", message: nil, preferredStyle: .alert)
             
@@ -64,6 +85,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //                    }
                     else{
                         print("Create button success block called do stuff here....")
+                        self.createRoom(name: userInput)
                     }
                 }
             })
@@ -83,6 +105,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             
             self.present(alertPopUp, animated: true)
+        }
+    }
+    
+    // MARK: Room Func
+    func createRoom(name:String) {
+        Service.shared.createRoom(name: name) { [weak self] result in
+            switch result {
+            case .success(let room):
+                print("createRoom success=\(room)");
+                DispatchQueue.main.async {
+                    self?.loadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
+                    alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
+                    self?.present(alertPopUp, animated: true)
+                }
+            }
+        }
+    }
+    
+    func goRoom(index:Int) {
+        Service.shared.requestRoomUrl(room: rooms[index], nickname: user.nickName) { [weak self] result in
+            switch result {
+            case .success(let url):
+                DispatchQueue.main.async {
+                    self?.loadPageCall(strUrl: url)
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
+                    alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
+                    self?.present(alertPopUp, animated: true)
+                }
+            }
         }
     }
     
@@ -154,26 +213,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
     }
     
-    // MARK: PageCall
-    func loadPageCall(strUrl: String) {
-        DispatchQueue.main.async {
-            let pageCall = PageCall.sharedInstance()
-            pageCall.delegate = self
-                
-            #if DEBUG
-            #else
-            // pagecall log
-            pageCall.redirectLogToDocuments(withTimeInterval: 4)
-            #endif
-            
-            // PageCall MainViewController present
-            pageCall.mainViewController!.modalPresentationStyle = .overFullScreen
-            self.present(pageCall.mainViewController!, animated: true, completion: {
-                pageCall.webViewLoadRequest(withURLString: strUrl)
-            })
-        }
-    }
-    
     // MARK: UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rooms.count
@@ -181,21 +220,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 강의실 입장
-        Service.shared.requestRoomUrl(room: rooms[indexPath.row], nickname: user.nickName) { [weak self] result in
-            switch result {
-            case .success(let url):
-                DispatchQueue.main.async {
-                    self?.loadPageCall(strUrl: url)
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
-                    alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
-                    self?.present(alertPopUp, animated: true)
-                }
-            }
-        }
+        goRoom(index: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
