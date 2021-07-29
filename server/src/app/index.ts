@@ -42,7 +42,7 @@ app.options('*', cors(corsOptions));
 app.use('/', routes);
 
 /**
- * Catch 404 and forward to error handler
+ * 존재하지 않는 경로로의 요청에 대한 404 에러 처리
  */
 app.use((req: Request, res: Response, next: NextFunction) => {
   const err = new Error('Not Found') as Err;
@@ -51,7 +51,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 /**
- * Error Handler
+ * Error 처리
  */
 app.use(async (err: Err, req: Request, res: Response, next: NextFunction) => {
   if (err.status === undefined || err.status >= 500) {
