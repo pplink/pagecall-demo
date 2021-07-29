@@ -15,9 +15,3 @@ struct Rooms: Codable {
     var liveRooms: [Room]
     var closedRooms: [Room]
 }
-
-struct User {
-    var id: String
-    var name: String
-    var nickName: String
-}

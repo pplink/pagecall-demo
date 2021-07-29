@@ -14,9 +14,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
     var rooms = [Room]()
-    var user = User(id: "defsehun", name: "Park Sehun", nickName: "peter") // FIXME: test code
+    var nickname = UserDefaults.standard.string(forKey: "nickname") ?? ""
     var timer: Timer?
     var roomTextField: UITextField!
+    var nicknameTextField: UITextField!
     
     // MARK: ViewController Cycle
     override func viewDidLoad() {
@@ -25,7 +26,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.title = "Room List"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(onCreateRoom))
-            
+        
+        if nickname.isEmpty {
+            onCreateNickname()
+        }
+        
         setupTableView()
         setupSearchBar()
         loadData()
@@ -56,56 +61,93 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     // MARK: Button Action
-    @objc func onCreateRoom() {
-        DispatchQueue.main.async {
-            let alertPopUp = UIAlertController(title: "New Room", message: nil, preferredStyle: .alert)
-            
-            // error message
-            let label = UILabel(frame: CGRect(x: 0, y: 40, width: 270, height:18))
-            label.textAlignment = .center
-            label.textColor = .red
-            label.font = label.font.withSize(12)
-            alertPopUp.view.addSubview(label)
-            label.isHidden = true
-            
-            let create = UIAlertAction(title: "Create", style: .default, handler: { (action) -> Void in
-                if let userInput = self.roomTextField!.text {
-                    if userInput == "" {
-                        label.text = ""
-                        label.text = "Please enter room name to create."
-                        label.isHidden = false
-                        self.present(alertPopUp, animated: true, completion: nil)
+    @objc func onCreateNickname() {
+        let alertPopUp = UIAlertController(title: "Nickname", message: nil, preferredStyle: .alert)
+        
+        // error message
+        let label = UILabel(frame: CGRect(x: 0, y: 40, width: 270, height:18))
+        label.textAlignment = .center
+        label.textColor = .red
+        label.font = label.font.withSize(12)
+        alertPopUp.view.addSubview(label)
+        label.isHidden = true
+        
+        let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { (action) -> Void in
+            if let userInput = self.nicknameTextField!.text {
+                if userInput == "" {
+                    label.text = ""
+                    label.text = "Please enter nickname to create."
+                    label.isHidden = false
+                    self.present(alertPopUp, animated: true, completion: nil)
 
-                    }
+                } else {
+                    print("Create button success block called do stuff here....")
+                    self.nickname = userInput
+                    UserDefaults.standard.set(self.nickname, forKey: "nickname")
+                }
+            }
+        })
+
+        //Add OK and Cancel button to dialog message
+        alertPopUp.addAction(confirm)
+        
+        // Add Input TextField to dialog message
+        alertPopUp.addTextField { (textField) -> Void in
+            self.nicknameTextField = textField
+            self.nicknameTextField?.placeholder = "Please enter nickname"
+        }
+        
+        self.present(alertPopUp, animated: true)
+    }
+    
+    @objc func onCreateRoom() {
+        let alertPopUp = UIAlertController(title: "New Room", message: nil, preferredStyle: .alert)
+        
+        // error message
+        let label = UILabel(frame: CGRect(x: 0, y: 40, width: 270, height:18))
+        label.textAlignment = .center
+        label.textColor = .red
+        label.font = label.font.withSize(12)
+        alertPopUp.view.addSubview(label)
+        label.isHidden = true
+        
+        let create = UIAlertAction(title: "Create", style: .default, handler: { (action) -> Void in
+            if let userInput = self.roomTextField!.text {
+                if userInput == "" {
+                    label.text = ""
+                    label.text = "Please enter room name to create."
+                    label.isHidden = false
+                    self.present(alertPopUp, animated: true, completion: nil)
+
+                }
 //                    else if self.haveSameRoom(createdRoom: userInput){
 //                        label.text = ""
 //                        label.text = "You've already created room with this name."
 //                        label.isHidden = false
 //                        self.present(alertPopUp, animated: true, completion: nil)
 //                    }
-                    else{
-                        print("Create button success block called do stuff here....")
-                        self.createRoom(name: userInput)
-                    }
+                else{
+                    print("Create button success block called do stuff here....")
+                    self.createRoom(name: userInput)
                 }
-            })
-            
-            let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) -> Void in
-                print("Cancel button tapped")
             }
-
-            //Add OK and Cancel button to dialog message
-            alertPopUp.addAction(create)
-            alertPopUp.addAction(cancel)
-            
-            // Add Input TextField to dialog message
-            alertPopUp.addTextField { (textField) -> Void in
-                self.roomTextField = textField
-                self.roomTextField?.placeholder = "Please enter room name"
-            }
-            
-            self.present(alertPopUp, animated: true)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) -> Void in
+            print("Cancel button tapped")
         }
+
+        //Add OK and Cancel button to dialog message
+        alertPopUp.addAction(create)
+        alertPopUp.addAction(cancel)
+        
+        // Add Input TextField to dialog message
+        alertPopUp.addTextField { (textField) -> Void in
+            self.roomTextField = textField
+            self.roomTextField?.placeholder = "Please enter room name"
+        }
+        
+        self.present(alertPopUp, animated: true)
     }
     
     // MARK: Room Func
@@ -128,7 +170,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func goRoom(index:Int) {
-        Service.shared.requestRoomUrl(room: rooms[index], nickname: user.nickName) { [weak self] result in
+        Service.shared.requestRoomUrl(room: rooms[index], nickname: self.nickname) { [weak self] result in
             switch result {
             case .success(let url):
                 DispatchQueue.main.async {
