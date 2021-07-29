@@ -33,9 +33,9 @@ class Service {
         task.resume()
     }
     
-    func enterTheRoom(room: Room, nickname: String, completed: @escaping (Result<String, ErrorMessage>) -> Void) {
+    func requestRoomUrl(room: Room, nickname: String, completed: @escaping (Result<String, ErrorMessage>) -> Void) {
         let srtUrl = "\(Constants.endpoint)rooms/\(room.id)"
-        print("enterTheRoom URL=\(srtUrl)")
+        print("requestRoomUrl=\(srtUrl)")
         
         AF.request(srtUrl, method: .post, parameters: ["nickname": nickname], encoding: URLEncoding.httpBody).responseJSON() { response in
             switch response.result {
