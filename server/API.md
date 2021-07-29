@@ -86,7 +86,7 @@ POST /rooms/tShE2gbIjfypuRIR
 
 # 강의실 종료: PUT /rooms/:roomId
 ## 요청
-``
+```
 PUT /rooms/tShE2gbIjfypuRIR
 ```
 ## 응답
