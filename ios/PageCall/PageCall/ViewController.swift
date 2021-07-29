@@ -7,14 +7,17 @@
 
 import UIKit
 import PageCallSDK
+import Alamofire
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
     var rooms = [Room]()
+    var user = User(id: "defsehun", name: "Park Sehun", nickName: "peter") // FIXME: test code
     var timer: Timer?
     
+    // MARK: ViewController Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,27 +30,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // FIXME: Test code
-        /*
-        let pageCall = PageCall.sharedInstance()
-        pageCall.delegate = self
-            
-        #if DEBUG
-        #else
-        // pagecall log
-        pageCall.redirectLogToDocuments(withTimeInterval: 4)
-        #endif
-        
-        let strURL = "https://pplink.net/call_new/peter0726"
-
-        // PageCall MainViewController present
-        pageCall.mainViewController!.modalPresentationStyle = .overFullScreen
-        self.present(pageCall.mainViewController!, animated: true, completion: {
-            pageCall.webViewLoadRequest(withURLString: strURL)
-        })*/
     }
     
+    // MARK: TableView Func
     func setupTableView() {
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -115,12 +100,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
     }
     
+    // MARK: PageCall
+    func loadPageCall(strUrl: String) {
+        DispatchQueue.main.async {
+            let pageCall = PageCall.sharedInstance()
+            pageCall.delegate = self
+                
+            #if DEBUG
+            #else
+            // pagecall log
+            pageCall.redirectLogToDocuments(withTimeInterval: 4)
+            #endif
+            
+            // PageCall MainViewController present
+            pageCall.mainViewController!.modalPresentationStyle = .overFullScreen
+            self.present(pageCall.mainViewController!, animated: true, completion: {
+                pageCall.webViewLoadRequest(withURLString: strUrl)
+            })
+        }
+    }
+    
+    // MARK: UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rooms.count
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: 강의실 입장
+        // 강의실 입장
+        Service.shared.enterTheRoom(room: rooms[indexPath.row], nickname: user.nickName) { [weak self] result in
+            switch result {
+            case .success(let url):
+                DispatchQueue.main.async {
+                    self?.loadPageCall(strUrl: url)
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
+                    alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
+                    self?.present(alertPopUp, animated: true)
+                }
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,6 +157,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 }
 
+// MARK: PageCallDelegate
 extension ViewController: PageCallDelegate {
     func pageCallDidClose() {
         print("pageCallDidClose")
