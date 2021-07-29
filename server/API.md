@@ -1,4 +1,4 @@
-# 강의실 목록
+# 강의실 목록: GET /rooms
 ## 요청
 ```
 GET /rooms
@@ -43,7 +43,7 @@ GET /rooms
 }
 ```
 
-# 강의실 생성
+# 강의실 생성: POST /rooms
 ## 요청
 ```
 POST /rooms
@@ -68,10 +68,10 @@ POST /rooms
 }
 ```
 
-# 강의실 입장
+# 강의실 입장: POST /rooms/:roomId
 ## 요청
 ```
-POST /rooms/:roomId
+POST /rooms/tShE2gbIjfypuRIR
 
 {
     "nickname": "유저 닉네임"
@@ -84,10 +84,10 @@ POST /rooms/:roomId
 }
 ```
 
-# 강의실 종료
+# 강의실 종료: PUT /rooms/:roomId
 ## 요청
-```
-PUT /rooms/:roomId
+``
+PUT /rooms/tShE2gbIjfypuRIR
 ```
 ## 응답
 ```
