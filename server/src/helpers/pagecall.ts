@@ -77,8 +77,8 @@ export class PageCall {
 
   /**
    * 생성자
-   * @param key PageCall API Key
-   * @param endpoint PageCall API Endpoint
+   * @param key PageCall API 키
+   * @param endpoint PageCall API 엔드포인트
    */
   constructor(key: string, endpoint = 'https://api.pagecall.net/v1') {
     this.key = key;
@@ -141,7 +141,7 @@ export class PageCall {
 
   /**
    * 룸 정보
-   * @param roomId 룸 ID
+   * @param roomId PageCall 룸 ID
    */
   async getRoom(roomId: string): Promise<Room> {
     try {
@@ -198,7 +198,7 @@ export class PageCall {
   /**
    * 룸 업데이트
    * * 현재는 종료만 가능
-   * @param roomId 룸 ID
+   * @param roomId PageCall 룸 ID
    * @param is_terminated 종료 상태
    */
   async updateRoom(roomId: string, isTerminated: boolean): Promise<{ room: Room; before: Room }> {
@@ -215,7 +215,7 @@ export class PageCall {
 
   /**
    * Private 룸에 멤버 추가
-   * @param roomId 룸 ID
+   * @param roomId PageCall 룸 ID
    * @param userId User ID
    * @param options 추가 옵션
    * @param layoutId 레이아웃 ID
@@ -237,9 +237,9 @@ export class PageCall {
 
   /**
    * 룸에 참가중인 멤버 목록
-   * @param roomId 룸 ID
-   * @param offset
-   * @param limit
+   * @param roomId PageCall 룸 ID
+   * @param offset 조회 시작 기준 번호
+   * @param limit 조회 수
    */
   async getMembers(roomId: string, offset = 0, limit = 1000): Promise<Member[]> {
     try {
@@ -255,7 +255,7 @@ export class PageCall {
 
   /**
    * 룸에서 미팅을 진행 중인 멤버 목록
-   * @param roomId 룸 ID
+   * @param roomId PageCall 룸 ID
    */
   async getSessions(roomId: string, offset: number, limit: number): Promise<Session[]> {
     try {
