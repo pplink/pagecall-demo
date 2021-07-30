@@ -150,7 +150,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(alertPopUp, animated: true)
     }
     
-    // MARK: Room Func
+    // MARK: Room
     func createRoom(name:String) {
         Service.shared.createRoom(name: name) { [weak self] result in
             switch result {
@@ -187,7 +187,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    // MARK: TableView Func
+    // MARK: TableView
     func setupTableView() {
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -210,6 +210,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         textFieldInsideSearchBar?.placeholder = "Search by room name"
     }
     
+    func loadData() {
+            Service.shared.getResults(description: "rooms") { [weak self] result in
+                switch result {
+                case .success(let results):
+                    print(results)
+                    self?.rooms = results
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
+                        alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
+                        self?.present(alertPopUp, animated: true)
+                    }
+                    print(error)
+                }
+            }
+    }
+    
+    // MARK: UISearchBarDelegate
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let position = searchController.searchBar.text {
             timer?.invalidate()
@@ -235,27 +256,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func loadData() {
-            Service.shared.getResults(description: "rooms") { [weak self] result in
-                switch result {
-                case .success(let results):
-                    print(results)
-                    self?.rooms = results
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
-                        alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
-                        self?.present(alertPopUp, animated: true)
-                    }
-                    print(error)
-                }
-            }
-    }
-    
-    // MARK: UITableView
+    // MARK: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rooms.count
     }
