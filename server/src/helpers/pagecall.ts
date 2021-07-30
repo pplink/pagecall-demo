@@ -1,5 +1,5 @@
 /**
- * PCA Library
+ * PageCall Library
  */
 import axios, { AxiosInstance } from 'axios';
 import env from '../env';
@@ -69,10 +69,6 @@ type Room = {
 };
 
 export class PageCall {
-  private key: string;
-
-  private endpoint: string;
-
   private instance: AxiosInstance;
 
   /**
@@ -81,8 +77,6 @@ export class PageCall {
    * @param endpoint PageCall API 엔드포인트
    */
   constructor(key: string, endpoint = 'https://api.pagecall.net/v1') {
-    this.key = key;
-    this.endpoint = endpoint;
     this.instance = axios.create({
       baseURL: endpoint,
       headers: { Authorization: `Bearer ${key}` },
@@ -95,7 +89,7 @@ export class PageCall {
    */
   async getUser(userId: string): Promise<User> {
     try {
-      const res = await axios.get(`${this.endpoint}/users/${userId}`, { headers: { Authorization: `Bearer ${this.key}` } });
+      const res = await this.instance.get(`/users/${userId}`);
 
       return res.data.user;
     } catch (e) {
@@ -111,9 +105,7 @@ export class PageCall {
    */
   async getUsers(offset: number, limit: number, sortBy: '+created_at' | '-created_at'): Promise<User[]> {
     try {
-      const res = await axios.get(`${this.endpoint}/users?offset=${offset}&limit=${limit}&sort_by=${sortBy}`, {
-        headers: { Authorization: `Bearer ${this.key}` },
-      });
+      const res = await this.instance.get(`/users?offset=${offset}&limit=${limit}&sort_by=${sortBy}`);
 
       return res.data.users;
     } catch (e) {
@@ -131,7 +123,7 @@ export class PageCall {
     try {
       const body = { user_id: userId, name, metadata };
 
-      const res = await axios.post(`${this.endpoint}/users`, body, { headers: { Authorization: `Bearer ${this.key}` } });
+      const res = await this.instance.post('/users', body);
 
       return res.data.user;
     } catch (e) {
@@ -145,7 +137,7 @@ export class PageCall {
    */
   async getRoom(roomId: string): Promise<Room> {
     try {
-      const res = await axios.get(`${this.endpoint}/rooms/${roomId}`, { headers: { Authorization: `Bearer ${this.key}` } });
+      const res = await this.instance.get(`/rooms/${roomId}`);
 
       return res.data.room;
     } catch (e) {
@@ -162,9 +154,7 @@ export class PageCall {
    */
   async getRooms(offset: number, limit: number, sortBy: '+created_at' | '-created_at', isTerminated: boolean): Promise<Room[]> {
     try {
-      const res = await axios.get(`${this.endpoint}/rooms?offset=${offset}&limit=${limit}&sort_by=${sortBy}&is_terminated=${isTerminated}`, {
-        headers: { Authorization: `Bearer ${this.key}` },
-      });
+      const res = await this.instance.get(`/rooms?offset=${offset}&limit=${limit}&sort_by=${sortBy}&is_terminated=${isTerminated}`);
 
       return res.data.rooms;
     } catch (e) {
@@ -187,7 +177,7 @@ export class PageCall {
       isDistinct ? (body['is_distinct'] = isDistinct) : null;
       userIds ? (body['user_ids'] = userIds) : null;
 
-      const res = await axios.post(`${this.endpoint}/rooms`, body, { headers: { Authorization: `Bearer ${this.key}` } });
+      const res = await this.instance.post('/rooms', body);
 
       return res.data.room;
     } catch (e) {
@@ -205,7 +195,7 @@ export class PageCall {
     try {
       const body = { is_terminated: isTerminated };
 
-      const res = await axios.put(`${this.endpoint}/rooms/${roomId}`, body, { headers: { Authorization: `Bearer ${this.key}` } });
+      const res = await this.instance.put(`/rooms/${roomId}`, body);
 
       return { room: res.data.room, before: res.data.before };
     } catch (e) {
@@ -227,7 +217,7 @@ export class PageCall {
       layoutId ? (body['layout_id'] = layoutId) : null;
       options ? (body['options'] = options) : null;
 
-      const res = await axios.post(`${this.endpoint}/rooms/${roomId}/members`, body, { headers: { Authorization: `Bearer ${this.key}` } });
+      const res = await this.instance.post(`/rooms/${roomId}/members`, body);
 
       return res.data.member;
     } catch (e) {
@@ -243,9 +233,7 @@ export class PageCall {
    */
   async getMembers(roomId: string, offset = 0, limit = 1000): Promise<Member[]> {
     try {
-      const res = await axios.get(`${this.endpoint}/rooms/${roomId}/members?offset=${offset}&limit=${limit}`, {
-        headers: { Authorization: `Bearer ${this.key}` },
-      });
+      const res = await this.instance.get(`/rooms/${roomId}/members?offset=${offset}&limit=${limit}`);
 
       return res.data.members;
     } catch (e) {
@@ -259,9 +247,7 @@ export class PageCall {
    */
   async getSessions(roomId: string, offset: number, limit: number): Promise<Session[]> {
     try {
-      const res = await axios.get(`${this.endpoint}/rooms/${roomId}/sessions?is_connecting=true&offset=${offset}&limit=${limit}`, {
-        headers: { Authorization: `Bearer ${this.key}` },
-      });
+      const res = await this.instance.get(`/rooms/${roomId}/sessions?is_connecting=true&offset=${offset}&limit=${limit}`);
 
       return res.data.sessions;
     } catch (e) {
