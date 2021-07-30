@@ -9,11 +9,11 @@ import UIKit
 import PageCallSDK
 import Alamofire
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
     var rooms = [Room]()
+    var filteredRooms = [Room]()
     var nickname = UserDefaults.standard.string(forKey: "nickname") ?? ""
     var timer: Timer?
     var roomTextField: UITextField!
@@ -168,13 +168,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { (action) -> Void in
             print("Confirm button tapped")
-            Service.shared.quitRoom(room: self.rooms[indexPath.row]) { [weak self] result in
+            let room: Room
+            if self.isFiltering() {
+                room = self.filteredRooms[indexPath.row]
+            } else {
+                room = self.rooms[indexPath.row]
+            }
+            Service.shared.quitRoom(room: room) { [weak self] result in
                 switch result {
                 case .success(let room):
                     print("QuitRoom success=\(room)");
                     DispatchQueue.main.async {
                         self?.tableView.beginUpdates()
-                        self?.rooms.remove(at: indexPath.row);
+                        if self!.isFiltering() {
+                            self?.filteredRooms.remove(at: indexPath.row);
+                            // TODO: remove room obj
+                        } else {
+                            self?.rooms.remove(at: indexPath.row);
+                        }
                         self?.tableView.deleteRows(at: [indexPath], with: .fade)
                         self?.tableView.endUpdates()
                     }
@@ -214,8 +225,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func goRoom(index:Int) {
-        Service.shared.requestRoomUrl(room: rooms[index], nickname: self.nickname) { [weak self] result in
+    func goRoom(room:Room) {
+        Service.shared.requestRoomUrl(room: room, nickname: self.nickname) { [weak self] result in
             switch result {
             case .success(let url):
                 DispatchQueue.main.async {
@@ -246,15 +257,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
     }
     
-    private func setupSearchBar() {
-        definesPresentationContext = true
-        navigationItem.searchController = self.searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.delegate = self
-        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.placeholder = "Search by room name"
-    }
-    
     func loadData() {
             Service.shared.getResults(description: "rooms") { [weak self] result in
                 switch result {
@@ -275,47 +277,85 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
     }
     
+    // MARK: SearchBar
+    func setupSearchBar() {
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        definesPresentationContext = true
+        
+        // Setup the Scope Bar
+        //searchController.searchBar.scopeButtonTitles = ["All", "Live", "Quit"]
+        searchController.searchBar.delegate = self
+        
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.placeholder = "Search by room name"
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredRooms = rooms.filter({(room : Room) -> Bool in
+            if searchBarIsEmpty() {
+                return false
+            } else {
+                return room.name.lowercased().contains(searchText.lowercased())
+            }
+        })
+        tableView.reloadData()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
+    }
+    
     // MARK: UISearchBarDelegate
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if let position = searchController.searchBar.text {
-            timer?.invalidate()
-            timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { (_) in
-                Service.shared.getResults(description: position) {[weak self] result in
-                    switch result {
-                    case .success(let results):
-                        print(results)
-                        self?.rooms = results
-                        DispatchQueue.main.async {
-                            self?.tableView.reloadData()
-                        }
-                    case .failure(let error):
-                        DispatchQueue.main.async {
-                            let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
-                            alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
-                            self?.present(alertPopUp, animated: true)
-                        }
-                        print(error)
-                    }
-                }
-            })
-        }
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!)
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        //let searchBar = searchController.searchBar
+        //let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!)
     }
     
     // MARK: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+          return filteredRooms.count
+        }
         return rooms.count
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        goRoom(index: indexPath.row)
+        let room: Room
+        if isFiltering() {
+            room = filteredRooms[indexPath.row]
+        } else {
+            room = rooms[indexPath.row]
+        }
+        goRoom(room: room)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        cell.textLabel?.text = rooms[indexPath.row].name
+        let room: Room
+        if isFiltering() {
+            room = filteredRooms[indexPath.row]
+        } else {
+            room = rooms[indexPath.row]
+        }
+        
+        cell.textLabel?.text = room.name
         cell.textLabel?.numberOfLines = -1
         cell.textLabel?.font = .preferredFont(forTextStyle: .headline)
-        cell.detailTextLabel?.text = rooms[indexPath.row].createdAt
+        cell.detailTextLabel?.text = room.createdAt
         cell.detailTextLabel?.font = .preferredFont(forTextStyle: .subheadline)
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
