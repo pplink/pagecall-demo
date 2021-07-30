@@ -20,6 +20,11 @@ PageCall 데모 애플리케이션을 위한 iOS 클라언트 입니다. 본 예
 - 시뮬레이터에서 앱 실행 & 로컬에서 서버 실행
   - PageCall/PageCall/Service.swift 파일에서 서버 주소를 ```http://localhost:8080``` 으로 변경해 주어야 합니다.
 - 디바이스에서 앱 실행 시, 원격 서버에 API 서버를 실행 시키고, PageCall/PageCall/Service.swift 파일에서 서버 주소를 원격 서버 주소로 변경해 주어야 합니다.
+- Xcode ≥ 11.1
+- iOS ≥ 11
+- Swift ≥ 4.2
+- 테스트 기기 종류: iPhone, iPad
+- 시뮬레이터 지원 가능
   
 ## 사용법
 
