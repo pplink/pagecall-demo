@@ -44,7 +44,6 @@ class Service {
         print("Service#createRoom=\(urlString)")
         
         AF.request(urlString, method: .post, parameters: ["name": name], encoding: URLEncoding.httpBody).responseJSON() { response in
-            
             switch response.result {
                 case .success:
                     if let data = try! response.result.get() as? [String: Any] {
@@ -70,6 +69,25 @@ class Service {
                         print(data)
                         let pcaUrl = data["url"]
                         completed(.success(pcaUrl as! String))
+                    }
+                case .failure(let error):
+                    print("Error: \(error)")
+                    completed(.failure(.invalidData))
+            }
+        }
+    }
+    
+    func quitRoom(room: Room, completed: @escaping (Result<NSDictionary, ErrorMessage>) -> Void) {
+        let urlString = "\(Constants.endpoint)rooms/\(room.id)"
+        print("Service#quitRoom=\(urlString)")
+        
+        AF.request(urlString, method: .put, encoding: URLEncoding.httpBody).responseJSON() { response in
+            switch response.result {
+                case .success:
+                    if let data = try! response.result.get() as? [String: Any] {
+                        print(data)
+                        let room = data["room"]
+                        completed(.success(room as! NSDictionary))
                     }
                 case .failure(let error):
                     print("Error: \(error)")

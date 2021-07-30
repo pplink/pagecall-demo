@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Room List"
+        self.title = "Rooms"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(onCreateRoom))
         
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    // MARK: Button Action
+    // MARK: Action
     @objc func onCreateNickname() {
         let alertPopUp = UIAlertController(title: "Nickname", message: nil, preferredStyle: .alert)
         
@@ -111,6 +111,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alertPopUp.view.addSubview(label)
         label.isHidden = true
         
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
         let create = UIAlertAction(title: "Create", style: .default, handler: { (action) -> Void in
             if let userInput = self.roomTextField!.text {
                 if userInput == "" {
@@ -132,14 +136,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
         })
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) -> Void in
-            print("Cancel button tapped")
-        }
 
         //Add OK and Cancel button to dialog message
-        alertPopUp.addAction(create)
         alertPopUp.addAction(cancel)
+        alertPopUp.addAction(create)
         
         // Add Input TextField to dialog message
         alertPopUp.addTextField { (textField) -> Void in
@@ -147,6 +147,51 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.roomTextField?.placeholder = "Please enter room name"
         }
         
+        self.present(alertPopUp, animated: true)
+    }
+    
+    func onQuitRoom(indexPath:IndexPath) {
+        let alertPopUp = UIAlertController(title: "Do you want to quit?", message: "", preferredStyle: .alert)
+        
+        // error message
+        let label = UILabel(frame: CGRect(x: 0, y: 40, width: 270, height:18))
+        label.textAlignment = .center
+        label.textColor = .red
+        label.font = label.font.withSize(12)
+        alertPopUp.view.addSubview(label)
+        label.text = "All participants will be ended together."
+        label.isHidden = false
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { (action) -> Void in
+            print("Confirm button tapped")
+            Service.shared.quitRoom(room: self.rooms[indexPath.row]) { [weak self] result in
+                switch result {
+                case .success(let room):
+                    print("QuitRoom success=\(room)");
+                    DispatchQueue.main.async {
+                        self?.tableView.beginUpdates()
+                        self?.rooms.remove(at: indexPath.row);
+                        self?.tableView.deleteRows(at: [indexPath], with: .fade)
+                        self?.tableView.endUpdates()
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
+                        alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
+                        self?.present(alertPopUp, animated: true)
+                    }
+                }
+            }
+        })
+
+        //Add OK and Cancel button to dialog message
+        alertPopUp.addAction(cancel)
+        alertPopUp.addAction(confirm)
+
         self.present(alertPopUp, animated: true)
     }
     
@@ -262,7 +307,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 강의실 입장
         goRoom(index: indexPath.row)
     }
 
@@ -276,6 +320,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            onQuitRoom(indexPath: indexPath)
+        }
     }
 }
 
