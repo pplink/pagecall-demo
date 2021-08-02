@@ -2,6 +2,8 @@
 
 본 데모 애플리케이션은 고객사의 모바일 환경 PageCall 체험 및 PageCall Mobile SDK 도입을 돕기 위해 만들어졌습니다.
 
+<img src="./assets/pagecall.png"  width="360" height="250" hspace="10"><img src="./assets/pagecall.png"  width="360" height="250">
+
 ## 개요
 
 - 강의실을 생성, 삭제, 입장 할 수 있는 교육용 데모 애플리케이션입니다.
