@@ -18,9 +18,6 @@ PageCall 데모 애플리케이션을 위한 iOS 클라언트 입니다. 본 예
 ## 사전 요구사항
 
 - [Node.js 서버 데모](../server) 안내에 따라 서버를 먼저 실행 시키고 진행을 해야 합니다.
-- 시뮬레이터에서 앱 실행 & 로컬에서 서버 실행
-  - PageCall/PageCall/Service.swift 파일에서 서버 주소를 ```http://localhost:8080``` 으로 변경해 주어야 합니다.
-- 디바이스에서 앱 실행 시, 원격 서버에 API 서버를 실행 시키고, PageCall/PageCall/Service.swift 파일에서 서버 주소를 원격 서버 주소로 변경해 주어야 합니다.
 - Xcode ≥ 11.1
 - iOS ≥ 11
 - Swift ≥ 4.2
@@ -31,8 +28,28 @@ PageCall 데모 애플리케이션을 위한 iOS 클라언트 입니다. 본 예
 
 1. Xcode를 실행합니다.
 2. ios/PageCall 폴더를 오픈합니다.
-3. 앱을 실행해 볼 iPad 시뮬레이터 또는 테스트 기기를 지정합니다.
-4. 앱이 정상적으로 실행이 되는지 확인합니다.
+3. API 서버 엔드포인트를 설정합니다.
+   1. 로컬에서 서버를 실행 중 (시뮬레이터만 지원가능)
+      - PageCall/PageCall/Service.swift 파일에서 서버 주소를 ```http://localhost:8080``` 으로 변경해 줍니다.      
+      - Info.plist 하단에 다음과 같이 권한을 추가하여 줍니다.
+      ```
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+          ...
+          <key>NSAppTransportSecurity</key>
+          <dict>
+              <key>NSAllowsArbitraryLoads</key>
+                <true/>
+          </dict>  
+      </dict>
+      </plist>
+      ```
+   2. 원격 서버에서 서버를 실행 중 (디바이스, 시뮬레이터 모두 지원)
+      - PageCall/PageCall/Service.swift 파일에서 서버 주소를 원격 서버 주소로 변경해 줍니다.
+4. 앱을 실행해 볼 iPad 시뮬레이터 또는 테스트 기기를 지정합니다.
+5. 앱이 정상적으로 실행이 되는지 확인합니다.
 
 ## 구조
 
