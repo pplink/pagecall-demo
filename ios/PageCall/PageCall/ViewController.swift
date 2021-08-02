@@ -181,8 +181,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     DispatchQueue.main.async {
                         self?.tableView.beginUpdates()
                         if self!.isFiltering() {
-                            self?.filteredRooms.remove(at: indexPath.row);
-                            // TODO: remove room obj
+                            // find room
+                            let filteredRoom = self?.filteredRooms[indexPath.row];
+                            if let i = self?.rooms.firstIndex(where: { $0.id == filteredRoom?.id }) {
+                                self?.rooms.remove(at: i); // remove rooms
+                            }
+                            self?.filteredRooms.remove(at: indexPath.row); // remove filteredRooms
                         } else {
                             self?.rooms.remove(at: indexPath.row);
                         }
