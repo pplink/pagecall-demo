@@ -31,21 +31,8 @@ PageCall 데모 애플리케이션을 위한 iOS 클라언트 입니다. 본 예
 3. API 서버 엔드포인트를 설정합니다.
    1. 로컬에서 서버를 실행 중 (시뮬레이터만 지원)
       - PageCall/PageCall/Service.swift 파일에서 서버 주소를 ```http://localhost:8080``` 으로 변경해 줍니다.      
-      - Info.plist 하단에 다음과 같이 권한을 추가하여 줍니다.
-      ```
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-      <dict>
-          ...
-          <key>NSAppTransportSecurity</key>
-          <dict>
-              <key>NSAllowsArbitraryLoads</key>
-                <true/>
-          </dict>  
-      </dict>
-      </plist>
-      ```
+      - Info.plist 파일을 오픈한 후, Information Property List의 하위에 다음과 같이 권한을 추가하여 줍니다.
+      <img src="../assets/infoplist.png"  width="500" height="25" hspace="10">
    2. 원격 서버에서 서버를 실행 중 (디바이스, 시뮬레이터 모두 지원)
       - PageCall/PageCall/Service.swift 파일에서 서버 주소를 원격 서버 주소로 변경해 줍니다.
 4. 앱을 실행해 볼 iPad 시뮬레이터 또는 테스트 기기를 지정합니다.
