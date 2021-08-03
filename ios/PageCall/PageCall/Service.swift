@@ -8,7 +8,7 @@ struct Constants {
 class Service {
     static let shared = Service()
     
-    func getResults(description: String, completed: @escaping (Result<[Room], ErrorMessage>) -> Void) {
+    func getResults(description: String, completed: @escaping (Result<Rooms, ErrorMessage>) -> Void) {
         let urlString = "\(Constants.endpoint)\(description.replacingOccurrences(of: " ", with: "+"))"
         print("Service#getResults=\(urlString)")
         
@@ -30,7 +30,7 @@ class Service {
                 let deconder = JSONDecoder()
                 deconder.keyDecodingStrategy = .convertFromSnakeCase
                 let result = try deconder.decode(Rooms.self, from: data)
-                completed(.success(result.liveRooms))
+                completed(.success(result))
                
             } catch {
                 completed(.failure(.invalidData))
