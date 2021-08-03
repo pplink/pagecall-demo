@@ -247,6 +247,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func convertTimestamp(dateString:String) -> String {
+        
+        let isoDateFormatter = ISO8601DateFormatter()
+        isoDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        isoDateFormatter.formatOptions = [
+            .withFullDate,
+            .withFullTime,
+            .withDashSeparatorInDate,
+            .withFractionalSeconds]
+
+        if let realDate = isoDateFormatter.date(from: dateString) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd a hh:mm"
+            dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+            dateFormatter.locale = Locale.current
+            let resultString:String = dateFormatter.string(from: realDate)
+            return resultString
+        }
+        
+        return ""
+    }
+    
     // MARK: TableView
     func setupTableView() {
         view.addSubview(tableView)
@@ -359,8 +381,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = room.name
         cell.textLabel?.numberOfLines = -1
         cell.textLabel?.font = .preferredFont(forTextStyle: .headline)
-        cell.detailTextLabel?.text = room.createdAt
+        cell.detailTextLabel?.text = "Created at \(convertTimestamp(dateString: room.createdAt!))"
         cell.detailTextLabel?.font = .preferredFont(forTextStyle: .subheadline)
+        cell.detailTextLabel?.textColor = .gray
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         return cell
