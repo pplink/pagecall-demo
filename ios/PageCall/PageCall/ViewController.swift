@@ -13,11 +13,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
     var rooms = [Room]()
+    var liveRooms = [Room]()
+    var closedRooms = [Room]()
     var filteredRooms = [Room]()
     var nickname = UserDefaults.standard.string(forKey: "nickname") ?? ""
     var timer: Timer?
     var roomTextField: UITextField!
     var nicknameTextField: UITextField!
+    var segmentControl: UISegmentedControl!
     
     // MARK: ViewController Cycle
     override func viewDidLoad() {
@@ -33,11 +36,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         setupTableView()
         setupSearchBar()
+        setupSegmentedControl()
         loadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    func setupSegmentedControl() {
+        let titles = ["Live", "Closed"]
+        segmentControl = UISegmentedControl(items: titles)
+        //segmentControl.tintColor = .white
+        //segmentControl.backgroundColor = .black
+        segmentControl.selectedSegmentIndex = 0
+        for index in 0...titles.count-1 {
+            segmentControl.setWidth(120, forSegmentAt: index)
+        }
+        segmentControl.sizeToFit()
+        segmentControl.addTarget(self, action: #selector(segmentedValueChanged), for: .valueChanged)
+        segmentControl.sendActions(for: .valueChanged)
+        navigationItem.titleView = segmentControl
+    }
+    
+    @objc func segmentedValueChanged(_ sender:UISegmentedControl!) {
+        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.rooms = self.liveRooms
+        case 1:
+            self.rooms = self.closedRooms
+        default:
+            self.rooms = self.liveRooms
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: PageCall
@@ -288,8 +322,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 switch result {
                 case .success(let results):
                     print(results)
-                    self?.rooms = results
+                    self?.liveRooms = results.liveRooms
+                    self?.closedRooms = results.closedRooms
+                    self?.rooms = results.liveRooms
                     DispatchQueue.main.async {
+                        self?.segmentControl.selectedSegmentIndex = 0
                         self?.tableView.reloadData()
                     }
                 case .failure(let error):
@@ -360,6 +397,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.segmentControl.selectedSegmentIndex == 1 {
+            return
+        }
         let room: Room
         if isFiltering() {
             room = filteredRooms[indexPath.row]
