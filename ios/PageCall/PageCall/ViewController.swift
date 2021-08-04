@@ -9,6 +9,11 @@ import UIKit
 import PageCallSDK
 import Alamofire
 
+enum segmentIndex: Int {
+    case live = 0
+    case closed = 1
+}
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating {
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
@@ -37,6 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         setupTableView()
         setupSearchBar()
         setupSegmentedControl()
+        
         loadData()
     }
     
@@ -44,34 +50,115 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidAppear(animated)
     }
     
+    // MARK: Setup
+    func setupTableView() {
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+    }
+    
+    func loadData() {
+            Service.shared.getResults(description: "rooms") { [weak self] result in
+                switch result {
+                case .success(let results):
+                    print(results)
+                    self?.liveRooms = results.liveRooms
+                    self?.closedRooms = results.closedRooms
+                    
+                    switch self?.segmentControl.selectedSegmentIndex {
+                        case segmentIndex.live.rawValue:
+                            self?.rooms = self!.liveRooms
+                        case 1:
+                            self?.rooms = self!.closedRooms
+                        default:
+                            self?.rooms = self!.liveRooms
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
+                        alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
+                        self?.present(alertPopUp, animated: true)
+                    }
+                    print(error)
+                }
+            }
+    }
+    
+    func setupSearchBar() {
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        definesPresentationContext = true
+        
+        // Setup the Scope Bar
+        //searchController.searchBar.scopeButtonTitles = ["All", "Live", "Quit"]
+        searchController.searchBar.delegate = self
+        
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.placeholder = "Search by room name"
+    }
+    
     func setupSegmentedControl() {
         let titles = ["Live", "Closed"]
         segmentControl = UISegmentedControl(items: titles)
         //segmentControl.tintColor = .white
         //segmentControl.backgroundColor = .black
-        segmentControl.selectedSegmentIndex = 0
+        segmentControl.selectedSegmentIndex = segmentIndex.live.rawValue
         for index in 0...titles.count-1 {
             segmentControl.setWidth(120, forSegmentAt: index)
         }
         segmentControl.sizeToFit()
-        segmentControl.addTarget(self, action: #selector(segmentedValueChanged), for: .valueChanged)
+        segmentControl.addTarget(self, action: #selector(onSegmentedValueChanged), for: .valueChanged)
         segmentControl.sendActions(for: .valueChanged)
         navigationItem.titleView = segmentControl
     }
     
-    @objc func segmentedValueChanged(_ sender:UISegmentedControl!) {
-        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
-        switch sender.selectedSegmentIndex {
-        case 0:
-            self.rooms = self.liveRooms
-        case 1:
-            self.rooms = self.closedRooms
-        default:
-            self.rooms = self.liveRooms
+    // MARK: Private Func
+    func convertTimestamp(dateString:String) -> String {
+        
+        let isoDateFormatter = ISO8601DateFormatter()
+        isoDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        isoDateFormatter.formatOptions = [
+            .withFullDate,
+            .withFullTime,
+            .withDashSeparatorInDate,
+            .withFractionalSeconds]
+
+        if let realDate = isoDateFormatter.date(from: dateString) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd a hh:mm"
+            dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+            dateFormatter.locale = Locale.current
+            let resultString:String = dateFormatter.string(from: realDate)
+            return resultString
         }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        
+        return ""
+    }
+    
+    func isFiltering() -> Bool {
+        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
+    }
+    
+    func isLiveTableView() -> Bool {
+        if self.segmentControl.selectedSegmentIndex == segmentIndex.live.rawValue {
+            return true
         }
+        return false
     }
     
     // MARK: PageCall
@@ -214,16 +301,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     print("QuitRoom success=\(room)");
                     DispatchQueue.main.async {
                         self?.tableView.beginUpdates()
+                        
+                        // remove all
                         if self!.isFiltering() {
-                            // find room
                             let filteredRoom = self?.filteredRooms[indexPath.row];
+                            
+                            // remove rooms object
                             if let i = self?.rooms.firstIndex(where: { $0.id == filteredRoom?.id }) {
                                 self?.rooms.remove(at: i); // remove rooms
                             }
-                            self?.filteredRooms.remove(at: indexPath.row); // remove filteredRooms
+                            
+                            // remove filteredRooms object
+                            self?.filteredRooms.remove(at: indexPath.row);
                         } else {
+                            // remove rooms object
                             self?.rooms.remove(at: indexPath.row);
                         }
+                        
                         self?.tableView.deleteRows(at: [indexPath], with: .fade)
                         self?.tableView.endUpdates()
                     }
@@ -242,6 +336,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alertPopUp.addAction(confirm)
 
         self.present(alertPopUp, animated: true)
+    }
+    
+    @objc func onSegmentedValueChanged(_ sender:UISegmentedControl!) {
+        print("Selected Segment Index is : \(sender.selectedSegmentIndex)")
+        loadData()
     }
     
     // MARK: Room
@@ -281,82 +380,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func convertTimestamp(dateString:String) -> String {
-        
-        let isoDateFormatter = ISO8601DateFormatter()
-        isoDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        isoDateFormatter.formatOptions = [
-            .withFullDate,
-            .withFullTime,
-            .withDashSeparatorInDate,
-            .withFractionalSeconds]
-
-        if let realDate = isoDateFormatter.date(from: dateString) {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy/MM/dd a hh:mm"
-            dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-            dateFormatter.locale = Locale.current
-            let resultString:String = dateFormatter.string(from: realDate)
-            return resultString
-        }
-        
-        return ""
-    }
-    
-    // MARK: TableView
-    func setupTableView() {
-        view.addSubview(tableView)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-    }
-    
-    func loadData() {
-            Service.shared.getResults(description: "rooms") { [weak self] result in
-                switch result {
-                case .success(let results):
-                    print(results)
-                    self?.liveRooms = results.liveRooms
-                    self?.closedRooms = results.closedRooms
-                    self?.rooms = results.liveRooms
-                    DispatchQueue.main.async {
-                        self?.segmentControl.selectedSegmentIndex = 0
-                        self?.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
-                        alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
-                        self?.present(alertPopUp, animated: true)
-                    }
-                    print(error)
-                }
-            }
-    }
-    
     // MARK: SearchBar
-    func setupSearchBar() {
-        // Setup the Search Controller
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
-        definesPresentationContext = true
-        
-        // Setup the Scope Bar
-        //searchController.searchBar.scopeButtonTitles = ["All", "Live", "Quit"]
-        searchController.searchBar.delegate = self
-        
-        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.placeholder = "Search by room name"
-    }
-    
     func filterContentForSearchText(_ searchText: String) {
         filteredRooms = rooms.filter({(room : Room) -> Bool in
             if searchBarIsEmpty() {
@@ -370,11 +394,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    func isFiltering() -> Bool {
-        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
-        return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
     }
     
     // MARK: UISearchBarDelegate
@@ -397,16 +416,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.segmentControl.selectedSegmentIndex == 1 {
-            return
+        if isLiveTableView() {
+            let room: Room
+            if isFiltering() {
+                room = filteredRooms[indexPath.row]
+            } else {
+                room = rooms[indexPath.row]
+            }
+            goRoom(room: room)
         }
-        let room: Room
-        if isFiltering() {
-            room = filteredRooms[indexPath.row]
-        } else {
-            room = rooms[indexPath.row]
-        }
-        goRoom(room: room)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -424,19 +442,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.detailTextLabel?.text = "Created at \(convertTimestamp(dateString: room.createdAt!))"
         cell.detailTextLabel?.font = .preferredFont(forTextStyle: .subheadline)
         cell.detailTextLabel?.textColor = .gray
-        cell.accessoryType = .disclosureIndicator
+        if isLiveTableView() { cell.accessoryType = .disclosureIndicator }
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return isLiveTableView()
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             onQuitRoom(indexPath: indexPath)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Close"
     }
 }
 
