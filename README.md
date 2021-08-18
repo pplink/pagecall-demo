@@ -2,7 +2,7 @@
 
 본 데모 애플리케이션은 고객사의 모바일 환경 PageCall 체험 및 PageCall Mobile SDK 도입을 돕기 위해 만들어졌습니다.
 
-<img src="./assets/pagecall.png"  width="360" height="250" hspace="10"><img src="./assets/pagecall.png"  width="360" height="250">
+<img src="./assets/ios-0.png"  width="280" height="200" hspace="10"><img src="./assets/ios-1.png"  width="280" height="200" hspace="10"><img src="./assets/pagecall.png"  width="280" height="200">
 
 ## 개요
 
