@@ -61,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id<PageCallDelegate> delegate;
 @property (nonatomic, weak) UIViewController* mainViewController;
 @property (nonatomic, weak) WKWebView* webView;
+@property (nonatomic, assign) BOOL enableCallKit;
 
 + (PageCall *)sharedInstance;
 
@@ -94,6 +95,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // PCA runJSFunction
 - (void)runJSFunction:(NSString *)functionName completionHandler:(void (^)(BOOL result))completionHandler;
+
+// PCA addListener
+- (void)addListeners:(NSArray *)listeners;
 
 // CallKit
 - (void)startCallAction;
