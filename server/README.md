@@ -20,6 +20,7 @@ PageCall 데모 애플리케이션을 위한 API 서버 입니다. 본 예제는
 ## 사전 요구사항
 
 - PageCall 개발자 콘솔 에서 API 키 발급 및 Layout ID 복사 ([PageCall 개발자 콘솔 링크](https://console.pagecall.net/))
+- Layout ID는 ```classic-mobile``` 레이아웃의 ID를 사용해주세요.
 - Node.js ([설치 링크](https://nodejs.org/ko/download/))
   
 ## 사용법
