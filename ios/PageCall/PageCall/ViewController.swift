@@ -442,7 +442,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.detailTextLabel?.text = "Created at \(convertTimestamp(dateString: room.createdAt!))"
         cell.detailTextLabel?.font = .preferredFont(forTextStyle: .subheadline)
         cell.detailTextLabel?.textColor = .gray
-        if isLiveTableView() { cell.accessoryType = .disclosureIndicator }
+
+        if isLiveTableView() {
+            cell.accessoryType = .disclosureIndicator
+        } else {
+            cell.accessoryType = .none
+        }
+
         cell.selectionStyle = .none
         return cell
     }
