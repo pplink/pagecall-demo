@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35B6072094A6EF6F7D525194 /* Pods_PageCall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC8F0DB5E68308C77A84204 /* Pods_PageCall.framework */; };
 		54901E2026B27D310045A100 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 54901E1F26B27D310045A100 /* Alamofire */; };
 		54A1B2EE26AE8D86004C9EED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B2ED26AE8D86004C9EED /* AppDelegate.swift */; };
 		54A1B2F026AE8D86004C9EED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B2EF26AE8D86004C9EED /* SceneDelegate.swift */; };
@@ -16,10 +17,6 @@
 		54A1B2FA26AE8D87004C9EED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B2F826AE8D87004C9EED /* LaunchScreen.storyboard */; };
 		54A1B30526AE8D87004C9EED /* PageCallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B30426AE8D87004C9EED /* PageCallTests.swift */; };
 		54A1B31026AE8D87004C9EED /* PageCallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B30F26AE8D87004C9EED /* PageCallUITests.swift */; };
-		54A1B32226AE9E20004C9EED /* PageCallSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */; };
-		54A1B32326AE9E20004C9EED /* PageCallSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		54A1B32526AE9E21004C9EED /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */; };
-		54A1B32626AE9E21004C9EED /* WebRTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		54E4908426B011D50048919E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908326B011D50048919E /* Room.swift */; };
 		54E4908626B015890048919E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908526B015890048919E /* Service.swift */; };
 		54E4908826B019800048919E /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908726B019800048919E /* ErrorMessage.swift */; };
@@ -42,22 +39,8 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		54A1B32426AE9E20004C9EED /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				54A1B32626AE9E21004C9EED /* WebRTC.xcframework in Embed Frameworks */,
-				54A1B32326AE9E20004C9EED /* PageCallSDK.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		406250C9CF1362EAD5114DC4 /* Pods-PageCall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageCall.debug.xcconfig"; path = "Target Support Files/Pods-PageCall/Pods-PageCall.debug.xcconfig"; sourceTree = "<group>"; };
 		54A1B2EA26AE8D86004C9EED /* PageCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PageCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A1B2ED26AE8D86004C9EED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54A1B2EF26AE8D86004C9EED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,11 +55,11 @@
 		54A1B30B26AE8D87004C9EED /* PageCallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PageCallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A1B30F26AE8D87004C9EED /* PageCallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCallUITests.swift; sourceTree = "<group>"; };
 		54A1B31126AE8D87004C9EED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WebRTC.xcframework; sourceTree = "<group>"; };
-		54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PageCallSDK.xcframework; sourceTree = "<group>"; };
 		54E4908326B011D50048919E /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		54E4908526B015890048919E /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		54E4908726B019800048919E /* ErrorMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		8CC8F0DB5E68308C77A84204 /* Pods_PageCall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PageCall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C80D71C25A7E796A6BEDBAEA /* Pods-PageCall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageCall.release.xcconfig"; path = "Target Support Files/Pods-PageCall/Pods-PageCall.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54901E2026B27D310045A100 /* Alamofire in Frameworks */,
-				54A1B32526AE9E21004C9EED /* WebRTC.xcframework in Frameworks */,
-				54A1B32226AE9E20004C9EED /* PageCallSDK.xcframework in Frameworks */,
+				35B6072094A6EF6F7D525194 /* Pods_PageCall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +98,7 @@
 				54A1B30326AE8D87004C9EED /* PageCallTests */,
 				54A1B30E26AE8D87004C9EED /* PageCallUITests */,
 				54A1B2EB26AE8D86004C9EED /* Products */,
+				F7CCB16663D433C71DF049F0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,8 +149,7 @@
 		54A1B31D26AE8DF0004C9EED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				54A1B31E26AE8DF0004C9EED /* WebRTC.xcframework */,
-				54A1B31F26AE8DF0004C9EED /* PageCallSDK.xcframework */,
+				8CC8F0DB5E68308C77A84204 /* Pods_PageCall.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -180,6 +162,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F7CCB16663D433C71DF049F0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				406250C9CF1362EAD5114DC4 /* Pods-PageCall.debug.xcconfig */,
+				C80D71C25A7E796A6BEDBAEA /* Pods-PageCall.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -187,10 +178,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54A1B31426AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PageCall" */;
 			buildPhases = (
+				69AE889CA71B029131A2E206 /* [CP] Check Pods Manifest.lock */,
 				54A1B2E626AE8D86004C9EED /* Sources */,
 				54A1B2E726AE8D86004C9EED /* Frameworks */,
 				54A1B2E826AE8D86004C9EED /* Resources */,
-				54A1B32426AE9E20004C9EED /* Embed Frameworks */,
+				EA584055892EB73B24C3429E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -311,6 +303,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69AE889CA71B029131A2E206 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PageCall-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA584055892EB73B24C3429E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		54A1B2E626AE8D86004C9EED /* Sources */ = {
@@ -495,6 +529,7 @@
 		};
 		54A1B31526AE8D87004C9EED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 406250C9CF1362EAD5114DC4 /* Pods-PageCall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -515,6 +550,7 @@
 		};
 		54A1B31626AE8D87004C9EED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C80D71C25A7E796A6BEDBAEA /* Pods-PageCall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

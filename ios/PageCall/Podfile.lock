@@ -1,0 +1,21 @@
+PODS:
+  - GoogleWebRTC (1.1.31999)
+  - pagecall-ios-framework (2.1.1)
+
+DEPENDENCIES:
+  - GoogleWebRTC
+  - pagecall-ios-framework
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - GoogleWebRTC
+  https://github.com/pplink/pagecall-ios-sdk-specs.git:
+    - pagecall-ios-framework
+
+SPEC CHECKSUMS:
+  GoogleWebRTC: b39a78c4f5cc6b0323415b9233db03a2faa7b0f0
+  pagecall-ios-framework: 90ecea587770a1708bd5c0a71840702494403eda
+
+PODFILE CHECKSUM: 307157db2ea81407ffb8f586f90b826eba5d1991
+
+COCOAPODS: 1.10.1
