@@ -2,9 +2,9 @@ export type Room = {
   id: string;
   name: string;
   pcaRoomId: string;
-  start: Date;
-  end: Date | null;
+  start: string;
+  end: string | null;
   participant: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };

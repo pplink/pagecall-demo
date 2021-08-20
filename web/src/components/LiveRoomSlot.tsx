@@ -54,7 +54,7 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
       <LiveRoomSlotBlock>
         <div>
           <h2>{room.name}</h2>
-          <p>Created at {room.start.toISOString()}</p>
+          <p>Created at {new Date(room.start).toISOString()}</p>
         </div>
         <div>
           <Button

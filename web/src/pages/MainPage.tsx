@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import LiveRoomList from '../components/LiveRoomList';
 import {
@@ -10,6 +10,8 @@ import {
   TextField,
 } from '@material-ui/core';
 import Search from '@material-ui/icons/Search';
+import { Room } from '../models/room';
+import { request } from '../helpers';
 
 const MainPageBlock = styled.div`
   width: 50%;
@@ -32,6 +34,21 @@ const HeaderBlock = styled.div`
 
 const MainPage: FC = () => {
   const [isLive, setIsLive] = useState(true);
+  const [liveRooms, setLiveRooms] = useState<Room[]>([]);
+
+  useEffect(() => {
+    request
+      .get<{ liveRooms: Room[]; closedRooms: Room[] }>('/rooms')
+      .then((res) => {
+        console.log(res);
+        setLiveRooms(res.liveRooms.filter((room) => room.end === null));
+      })
+      .catch((e) => console.error(e));
+
+    return () => {
+      setLiveRooms([]);
+    };
+  }, []);
 
   return (
     <MainPageBlock>
@@ -71,7 +88,7 @@ const MainPage: FC = () => {
         </FormGroup>
       </HeaderBlock>
       <Divider style={{ marginTop: '32px' }} />
-      <LiveRoomList />
+      <LiveRoomList rooms={liveRooms} />
     </MainPageBlock>
   );
 };
