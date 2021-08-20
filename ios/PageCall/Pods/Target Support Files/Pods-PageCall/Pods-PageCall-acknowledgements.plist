@@ -1731,7 +1731,7 @@ SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>pagecall-ios-framework</string>
+			<string>PageCallSDK</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

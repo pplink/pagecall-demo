@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		6F3EA12F5A8BD2A18B59141424AE3A58 /* pagecall-ios-framework */ = {
+		AFD9B58C537C45F031C2066F04AE0356 /* PageCallSDK */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 46EF867227644DE1C298D44B7C018896 /* Build configuration list for PBXAggregateTarget "pagecall-ios-framework" */;
+			buildConfigurationList = 3675C159391B69531C1AD1438BA0EA64 /* Build configuration list for PBXAggregateTarget "PageCallSDK" */;
 			buildPhases = (
-				571F454333BD5C8C239EA7D31F7F0BE6 /* [CP] Copy XCFrameworks */,
+				F177CBA610EA0659CB4D67C41DA5937A /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
 			);
-			name = "pagecall-ios-framework";
+			name = PageCallSDK;
 		};
 		EC23BFCFC44D9224C054485B54824B8E /* GoogleWebRTC */ = {
 			isa = PBXAggregateTarget;
@@ -29,20 +29,20 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		45CB883D530E4A9ABA182E389A9AA76B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		596DB2B7DA4667B5CCAB476A1CC7A31E /* Pods-PageCall-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CCDD7D8DDAC05FB53D9C8E5A13368D94 /* Pods-PageCall-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		80E8BA837A030AC1044026413364B779 /* Pods-PageCall-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 671DBC535274B27C5D3263DD452D390A /* Pods-PageCall-dummy.m */; };
+		46BEF9DDA622FDA21F6437D46A1E5F7A /* Pods-PageCall-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 671DBC535274B27C5D3263DD452D390A /* Pods-PageCall-dummy.m */; };
+		67FA5A40DD763FA0D411F2EE790D42BE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		755EB4A18B186D93A2DCD8BE30960B6A /* Pods-PageCall-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CCDD7D8DDAC05FB53D9C8E5A13368D94 /* Pods-PageCall-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		19AD51ED89CCEB099F99096C25706901 /* PBXContainerItemProxy */ = {
+		006EBAE088C9AD9B547A6B4CEB7CC382 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6F3EA12F5A8BD2A18B59141424AE3A58;
-			remoteInfo = "pagecall-ios-framework";
+			remoteGlobalIDString = AFD9B58C537C45F031C2066F04AE0356;
+			remoteInfo = PageCallSDK;
 		};
-		3A0448BAB4D25D977E9A28CED01B1659 /* PBXContainerItemProxy */ = {
+		70F8B12AFE575556BD439CDD1F4C5C92 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -54,45 +54,37 @@
 /* Begin PBXFileReference section */
 		05413546A63C83E1005AA72F00729937 /* Pods_PageCall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PageCall.framework; path = "Pods-PageCall.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0676121619A1D41DC2DCB3DBB5EB0E64 /* Pods-PageCall-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PageCall-acknowledgements.plist"; sourceTree = "<group>"; };
-		2C89B5CB3962256F4D750F5D2FFF5B10 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebRTC.framework; path = Frameworks/frameworks/WebRTC.framework; sourceTree = "<group>"; };
-		591BB08233FAF5E0FD022B6F960B4804 /* PageCallSDK.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = PageCallSDK.xcframework; sourceTree = "<group>"; };
-		663F0CF95782DC98E5597BF986731324 /* pagecall-ios-framework-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "pagecall-ios-framework-xcframeworks.sh"; sourceTree = "<group>"; };
+		2076177F46F4F33EE3244AEFC4CDC586 /* PageCallSDK-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "PageCallSDK-xcframeworks.sh"; sourceTree = "<group>"; };
+		2D47247B17720F598F0A41384F6B1C9C /* PageCallSDK.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = PageCallSDK.xcframework; sourceTree = "<group>"; };
+		4DAD2FCD215CDA43EE79CBCC815442CE /* GoogleWebRTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleWebRTC.debug.xcconfig; sourceTree = "<group>"; };
 		671DBC535274B27C5D3263DD452D390A /* Pods-PageCall-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PageCall-dummy.m"; sourceTree = "<group>"; };
+		721238D26EFD152EB2B0B790651A04C6 /* GoogleWebRTC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleWebRTC.release.xcconfig; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		8CB69BD61A0E8DCE1F9E7B20A0198B46 /* GoogleWebRTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleWebRTC.debug.xcconfig; sourceTree = "<group>"; };
+		9CB91359B9642A2BEA29D6B76E7E6BFC /* PageCallSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PageCallSDK.release.xcconfig; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2DE8AD82ED43C1FD8AAF321DD74543E /* Pods-PageCall-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PageCall-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A9F4495093F5606B46C4D09B9F76BED3 /* Pods-PageCall-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PageCall-frameworks.sh"; sourceTree = "<group>"; };
 		ADB8E952D0EEE4C41B0000E3D3BB41F1 /* Pods-PageCall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PageCall.debug.xcconfig"; sourceTree = "<group>"; };
 		C3C767737F20B6D1858B60B2B58245C3 /* Pods-PageCall.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PageCall.modulemap"; sourceTree = "<group>"; };
+		C8643F917A0F8A5046C0BBE785D7F5E6 /* PageCallSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PageCallSDK.debug.xcconfig; sourceTree = "<group>"; };
 		CCDD7D8DDAC05FB53D9C8E5A13368D94 /* Pods-PageCall-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PageCall-umbrella.h"; sourceTree = "<group>"; };
-		DD7F9A3DBCF37828101BEC9CBDE75225 /* pagecall-ios-framework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "pagecall-ios-framework.debug.xcconfig"; sourceTree = "<group>"; };
-		E77DC64625A2A4CC82C7F6AB37C010DC /* GoogleWebRTC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GoogleWebRTC.release.xcconfig; sourceTree = "<group>"; };
 		F040DA9FED48A7507215603A825987F9 /* Pods-PageCall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PageCall.release.xcconfig"; sourceTree = "<group>"; };
-		FBF951F41C979AAA8A09D114BF931510 /* pagecall-ios-framework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "pagecall-ios-framework.release.xcconfig"; sourceTree = "<group>"; };
+		FB376D61887CAD6E934DE98C160857E7 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebRTC.framework; path = Frameworks/frameworks/WebRTC.framework; sourceTree = "<group>"; };
 		FC844A506CF36641A77FB04FAB9C2D23 /* Pods-PageCall-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PageCall-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D5710701957F41072E6AC53CDD7F8D0B /* Frameworks */ = {
+		640EC195283477CEB82CAA890F99347A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45CB883D530E4A9ABA182E389A9AA76B /* Foundation.framework in Frameworks */,
+				67FA5A40DD763FA0D411F2EE790D42BE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0095140002022743916F1EEBBF5F9654 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				591BB08233FAF5E0FD022B6F960B4804 /* PageCallSDK.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		0253D6D26E12BDF20AADDFFC08FC3B09 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +93,24 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		0E6F61B29D36D425DBD1A964C2B34DAF /* GoogleWebRTC */ = {
+		0AD6CF31CDEBE99BAAAEA34329AEFC30 /* PageCallSDK */ = {
 			isa = PBXGroup;
 			children = (
-				FD9B4219CA354AB90A69D548FD13BD2B /* Frameworks */,
-				D704BC7A888107B3A960CBAE2B8E6C81 /* Support Files */,
+				D1DB0C9E582C592E7C71356E3AFC186E /* Frameworks */,
+				65E90635EBE904685F267077220AB853 /* Support Files */,
 			);
-			name = GoogleWebRTC;
-			path = GoogleWebRTC;
+			name = PageCallSDK;
+			path = PageCallSDK;
+			sourceTree = "<group>";
+		};
+		32978F1B8147BF4538F369B28D9F06F6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4DAD2FCD215CDA43EE79CBCC815442CE /* GoogleWebRTC.debug.xcconfig */,
+				721238D26EFD152EB2B0B790651A04C6 /* GoogleWebRTC.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GoogleWebRTC";
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -117,6 +119,17 @@
 				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		65E90635EBE904685F267077220AB853 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2076177F46F4F33EE3244AEFC4CDC586 /* PageCallSDK-xcframeworks.sh */,
+				C8643F917A0F8A5046C0BBE785D7F5E6 /* PageCallSDK.debug.xcconfig */,
+				9CB91359B9642A2BEA29D6B76E7E6BFC /* PageCallSDK.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PageCallSDK";
 			sourceTree = "<group>";
 		};
 		72626FE1B805C17CAC5DD12DE1EB3EE6 /* Pods-PageCall */ = {
@@ -144,34 +157,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A1DAF7DC04610FEF85035D670281602A /* pagecall-ios-framework */ = {
+		A6E2990DAD2802AD7352FC5331FEF1BC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0095140002022743916F1EEBBF5F9654 /* Frameworks */,
-				AA54D13CE889CDA8026A6D5E642D3ED3 /* Support Files */,
-			);
-			name = "pagecall-ios-framework";
-			path = "pagecall-ios-framework";
-			sourceTree = "<group>";
-		};
-		AA54D13CE889CDA8026A6D5E642D3ED3 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				663F0CF95782DC98E5597BF986731324 /* pagecall-ios-framework-xcframeworks.sh */,
-				DD7F9A3DBCF37828101BEC9CBDE75225 /* pagecall-ios-framework.debug.xcconfig */,
-				FBF951F41C979AAA8A09D114BF931510 /* pagecall-ios-framework.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/pagecall-ios-framework";
-			sourceTree = "<group>";
-		};
-		BF30DF1D4F89D89301103256DFEC1378 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0E6F61B29D36D425DBD1A964C2B34DAF /* GoogleWebRTC */,
-				A1DAF7DC04610FEF85035D670281602A /* pagecall-ios-framework */,
+				CDCA12BEDE36E2DFE09F0854E3B4845D /* GoogleWebRTC */,
+				0AD6CF31CDEBE99BAAAEA34329AEFC30 /* PageCallSDK */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B1C52E6F49EF1C46BBB6D503DEEDF6C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB376D61887CAD6E934DE98C160857E7 /* WebRTC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDCA12BEDE36E2DFE09F0854E3B4845D /* GoogleWebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				B1C52E6F49EF1C46BBB6D503DEEDF6C2 /* Frameworks */,
+				32978F1B8147BF4538F369B28D9F06F6 /* Support Files */,
+			);
+			name = GoogleWebRTC;
+			path = GoogleWebRTC;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -179,10 +189,18 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				BF30DF1D4F89D89301103256DFEC1378 /* Pods */,
+				A6E2990DAD2802AD7352FC5331FEF1BC /* Pods */,
 				772C52493E648CE6731D514E12EF8F26 /* Products */,
 				0253D6D26E12BDF20AADDFFC08FC3B09 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		D1DB0C9E582C592E7C71356E3AFC186E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D47247B17720F598F0A41384F6B1C9C /* PageCallSDK.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
@@ -193,32 +211,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D704BC7A888107B3A960CBAE2B8E6C81 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				8CB69BD61A0E8DCE1F9E7B20A0198B46 /* GoogleWebRTC.debug.xcconfig */,
-				E77DC64625A2A4CC82C7F6AB37C010DC /* GoogleWebRTC.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/GoogleWebRTC";
-			sourceTree = "<group>";
-		};
-		FD9B4219CA354AB90A69D548FD13BD2B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2C89B5CB3962256F4D750F5D2FFF5B10 /* WebRTC.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		B40973EEBA68FAE76C744ED88BE2E98C /* Headers */ = {
+		4ACE0AEA46A3101716097A13C24BE4BE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				596DB2B7DA4667B5CCAB476A1CC7A31E /* Pods-PageCall-umbrella.h in Headers */,
+				755EB4A18B186D93A2DCD8BE30960B6A /* Pods-PageCall-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,18 +227,18 @@
 /* Begin PBXNativeTarget section */
 		143E53FA4234682B04889E36BFE02003 /* Pods-PageCall */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E3AE487D01BF02B405F48874A8B329A8 /* Build configuration list for PBXNativeTarget "Pods-PageCall" */;
+			buildConfigurationList = B7B336C1BF838A6D77E198C502EA82E9 /* Build configuration list for PBXNativeTarget "Pods-PageCall" */;
 			buildPhases = (
-				B40973EEBA68FAE76C744ED88BE2E98C /* Headers */,
-				F9E6CDB52EA9B6986B7523DCD4668541 /* Sources */,
-				D5710701957F41072E6AC53CDD7F8D0B /* Frameworks */,
-				2296F7B41E074D19D93F8BD2C5FC1291 /* Resources */,
+				4ACE0AEA46A3101716097A13C24BE4BE /* Headers */,
+				0B384F5C96EC5C927F1E05ED7A053501 /* Sources */,
+				640EC195283477CEB82CAA890F99347A /* Frameworks */,
+				519D1E55D691863ADEA682A08D5C92EE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				066B00B3384F9CE45340DD97B2F42DFE /* PBXTargetDependency */,
-				4733C9E162D69A3133B3BCB39603708F /* PBXTargetDependency */,
+				62B00708A0266D147446951525AFE53F /* PBXTargetDependency */,
+				856C9697B69440DC4B81DB3456A53B30 /* PBXTargetDependency */,
 			);
 			name = "Pods-PageCall";
 			productName = "Pods-PageCall";
@@ -268,14 +268,14 @@
 			projectRoot = "";
 			targets = (
 				EC23BFCFC44D9224C054485B54824B8E /* GoogleWebRTC */,
-				6F3EA12F5A8BD2A18B59141424AE3A58 /* pagecall-ios-framework */,
+				AFD9B58C537C45F031C2066F04AE0356 /* PageCallSDK */,
 				143E53FA4234682B04889E36BFE02003 /* Pods-PageCall */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2296F7B41E074D19D93F8BD2C5FC1291 /* Resources */ = {
+		519D1E55D691863ADEA682A08D5C92EE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -285,70 +285,53 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		571F454333BD5C8C239EA7D31F7F0BE6 /* [CP] Copy XCFrameworks */ = {
+		F177CBA610EA0659CB4D67C41DA5937A /* [CP] Copy XCFrameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/pagecall-ios-framework/pagecall-ios-framework-xcframeworks-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/PageCallSDK/PageCallSDK-xcframeworks-input-files.xcfilelist",
 			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/pagecall-ios-framework/pagecall-ios-framework-xcframeworks-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/PageCallSDK/PageCallSDK-xcframeworks-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/pagecall-ios-framework/pagecall-ios-framework-xcframeworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/PageCallSDK/PageCallSDK-xcframeworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F9E6CDB52EA9B6986B7523DCD4668541 /* Sources */ = {
+		0B384F5C96EC5C927F1E05ED7A053501 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80E8BA837A030AC1044026413364B779 /* Pods-PageCall-dummy.m in Sources */,
+				46BEF9DDA622FDA21F6437D46A1E5F7A /* Pods-PageCall-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		066B00B3384F9CE45340DD97B2F42DFE /* PBXTargetDependency */ = {
+		62B00708A0266D147446951525AFE53F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GoogleWebRTC;
 			target = EC23BFCFC44D9224C054485B54824B8E /* GoogleWebRTC */;
-			targetProxy = 3A0448BAB4D25D977E9A28CED01B1659 /* PBXContainerItemProxy */;
+			targetProxy = 70F8B12AFE575556BD439CDD1F4C5C92 /* PBXContainerItemProxy */;
 		};
-		4733C9E162D69A3133B3BCB39603708F /* PBXTargetDependency */ = {
+		856C9697B69440DC4B81DB3456A53B30 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "pagecall-ios-framework";
-			target = 6F3EA12F5A8BD2A18B59141424AE3A58 /* pagecall-ios-framework */;
-			targetProxy = 19AD51ED89CCEB099F99096C25706901 /* PBXContainerItemProxy */;
+			name = PageCallSDK;
+			target = AFD9B58C537C45F031C2066F04AE0356 /* PageCallSDK */;
+			targetProxy = 006EBAE088C9AD9B547A6B4CEB7CC382 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0BA415B84CBB4BD6FC09B025343AA469 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD7F9A3DBCF37828101BEC9CBDE75225 /* pagecall-ios-framework.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		2C9357A0526F2E054F288AC069128666 /* Debug */ = {
+		1E3A838CA489E66B27A864FEE3D298E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ADB8E952D0EEE4C41B0000E3D3BB41F1 /* Pods-PageCall.debug.xcconfig */;
 			buildSettings = {
@@ -385,9 +368,9 @@
 			};
 			name = Debug;
 		};
-		7A4A9BC203CC8B6F61CBF197815F5D98 /* Release */ = {
+		3CF7C096A6381B31A43CB1FAA8CD4E17 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBF951F41C979AAA8A09D114BF931510 /* pagecall-ios-framework.release.xcconfig */;
+			baseConfigurationReference = 9CB91359B9642A2BEA29D6B76E7E6BFC /* PageCallSDK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -403,7 +386,7 @@
 			};
 			name = Release;
 		};
-		8797DC8038C90766BC1D36D191A05DB0 /* Release */ = {
+		6A70827CF707D6E8D9B0699DF0685E47 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F040DA9FED48A7507215603A825987F9 /* Pods-PageCall.release.xcconfig */;
 			buildSettings = {
@@ -443,7 +426,7 @@
 		};
 		AB11C6FF61DD3A44C2F99D55B212AA74 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E77DC64625A2A4CC82C7F6AB37C010DC /* GoogleWebRTC.release.xcconfig */;
+			baseConfigurationReference = 721238D26EFD152EB2B0B790651A04C6 /* GoogleWebRTC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -587,9 +570,26 @@
 			};
 			name = Release;
 		};
+		F0B01B196E382E8F013167952D7429A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8643F917A0F8A5046C0BBE785D7F5E6 /* PageCallSDK.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		FF86AC2AE673969AA233A392DCDE2C2D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CB69BD61A0E8DCE1F9E7B20A0198B46 /* GoogleWebRTC.debug.xcconfig */;
+			baseConfigurationReference = 4DAD2FCD215CDA43EE79CBCC815442CE /* GoogleWebRTC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -616,11 +616,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		46EF867227644DE1C298D44B7C018896 /* Build configuration list for PBXAggregateTarget "pagecall-ios-framework" */ = {
+		3675C159391B69531C1AD1438BA0EA64 /* Build configuration list for PBXAggregateTarget "PageCallSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BA415B84CBB4BD6FC09B025343AA469 /* Debug */,
-				7A4A9BC203CC8B6F61CBF197815F5D98 /* Release */,
+				F0B01B196E382E8F013167952D7429A9 /* Debug */,
+				3CF7C096A6381B31A43CB1FAA8CD4E17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -634,11 +634,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E3AE487D01BF02B405F48874A8B329A8 /* Build configuration list for PBXNativeTarget "Pods-PageCall" */ = {
+		B7B336C1BF838A6D77E198C502EA82E9 /* Build configuration list for PBXNativeTarget "Pods-PageCall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C9357A0526F2E054F288AC069128666 /* Debug */,
-				8797DC8038C90766BC1D36D191A05DB0 /* Release */,
+				1E3A838CA489E66B27A864FEE3D298E0 /* Debug */,
+				6A70827CF707D6E8D9B0699DF0685E47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

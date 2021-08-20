@@ -1687,7 +1687,7 @@ freely, subject to the following restrictions:
 
 
 
-## pagecall-ios-framework
+## PageCallSDK
 
 MIT License
 
