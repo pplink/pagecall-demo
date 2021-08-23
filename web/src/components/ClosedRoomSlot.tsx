@@ -1,6 +1,7 @@
 import React from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
+import { formatDate } from '../helpers';
 import { ClosedRoom } from '../models/room';
 
 const ClosedRoomSlotBlock = styled.div`
@@ -24,8 +25,8 @@ const ClosedRoomSlot: FC<Props> = ({ room }) => {
       <ClosedRoomSlotBlock>
         <div>
           <h2>{room.name}</h2>
-          <p>Created at {new Date(room.start).toISOString()}</p>
-          <p>Terminated at {new Date(room.end).toISOString()}</p>
+          <p>Created at {formatDate(new Date(room.start))}</p>
+          <p>Terminated at {formatDate(new Date(room.end))}</p>
         </div>
       </ClosedRoomSlotBlock>
     </>
