@@ -17,8 +17,8 @@ interface Props {
 const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
   const [nickname, setNickname] = useState('');
 
-  const onChange = (e: any) => {
-    const value = e.target.value;
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
 
     setNickname(value);
   };
