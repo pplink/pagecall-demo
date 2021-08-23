@@ -1,23 +1,23 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { Room } from '../models/room';
+import { LiveRoom } from '../models/room';
 import LiveRoomSlot from './LiveRoomSlot';
 
-const LiveMeetingPageBlock = styled.div`
+const LiveRoomListBlock = styled.div`
   height: 100%;
 `;
 
 interface Props {
-  rooms: Room[];
+  rooms: LiveRoom[];
 }
 
 const LiveRoomList: FC<Props> = ({ rooms }) => {
   return (
-    <LiveMeetingPageBlock>
+    <LiveRoomListBlock>
       {rooms.map((room) => (
         <LiveRoomSlot key={room.id} room={room} />
       ))}
-    </LiveMeetingPageBlock>
+    </LiveRoomListBlock>
   );
 };
 

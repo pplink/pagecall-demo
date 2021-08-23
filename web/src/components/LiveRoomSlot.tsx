@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Room } from '../models/room';
+import { LiveRoom } from '../models/room';
 import EnterRoomModal from './EnterRoomModal';
 import CloseRoomModal from './CloseRoomModal';
 import { request } from '../helpers';
@@ -19,7 +19,7 @@ const LiveRoomSlotBlock = styled.div`
 `;
 
 interface Props {
-  room: Room;
+  room: LiveRoom;
 }
 
 const LiveRoomSlot: FC<Props> = ({ room }) => {

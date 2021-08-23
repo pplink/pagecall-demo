@@ -10,10 +10,11 @@ import {
   TextField,
 } from '@material-ui/core';
 import Search from '@material-ui/icons/Search';
-import { Room } from '../models';
+import { LiveRoom, ClosedRoom } from '../models';
 import { request } from '../helpers';
 import { useRoomsDispatch, useRoomsState } from '../contexts/RoomsContext';
 import CreateRoomModal from '../components/CreateRoomModal';
+import ClosedRoomList from '../components/ClosedRoomList';
 
 const MainPageBlock = styled.div`
   width: 50%;
@@ -51,7 +52,7 @@ const MainPage: FC = () => {
 
   useEffect(() => {
     request
-      .get<{ liveRooms: Room[]; closedRooms: Room[] }>('/rooms')
+      .get<{ liveRooms: LiveRoom[]; closedRooms: ClosedRoom[] }>('/rooms')
       .then((res) => {
         roomsDispatch({
           type: 'INIT_ROOMS',
@@ -77,7 +78,7 @@ const MainPage: FC = () => {
 
   const onCreateInCreateModal = (name: string) => {
     request
-      .post<{ room: Room }>('rooms', {
+      .post<{ room: LiveRoom }>('rooms', {
         name,
       })
       .then(({ room }) => {
@@ -130,13 +131,23 @@ const MainPage: FC = () => {
         </HeaderBlockRow>
       </HeaderBlock>
       <Divider style={{ marginTop: '32px' }} />
-      <LiveRoomList
-        rooms={roomsState.liveRooms
-          .filter((room) => {
-            return room.name.includes(searchInputs);
-          })
-          .sort((a, b) => (a.start > b.start ? -1 : 1))}
-      />
+      {isLive ? (
+        <LiveRoomList
+          rooms={roomsState.liveRooms
+            .filter((room) => {
+              return room.name.includes(searchInputs);
+            })
+            .sort((a, b) => (a.start > b.start ? -1 : 1))}
+        />
+      ) : (
+        <ClosedRoomList
+          rooms={roomsState.closedRooms
+            .filter((room) => {
+              return room.name.includes(searchInputs);
+            })
+            .sort((a, b) => (a.end > b.end ? -1 : 1))}
+        />
+      )}
       <CreateRoomModal
         open={isCreate}
         onCreate={onCreateInCreateModal}

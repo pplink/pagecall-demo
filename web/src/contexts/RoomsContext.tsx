@@ -1,15 +1,15 @@
 import React, { useReducer, createContext, Dispatch, useContext } from 'react';
-import { Room } from '../models';
+import { ClosedRoom, LiveRoom } from '../models';
 
 type State = {
-  liveRooms: Room[];
-  closedRooms: Room[];
+  liveRooms: LiveRoom[];
+  closedRooms: ClosedRoom[];
 };
 
 type Action =
-  | { type: 'INIT_ROOMS'; liveRooms: Room[]; closedRooms: Room[] }
-  | { type: 'CREATE_ROOM'; room: Room }
-  | { type: 'CLOSE_ROOM'; room: Room };
+  | { type: 'INIT_ROOMS'; liveRooms: LiveRoom[]; closedRooms: ClosedRoom[] }
+  | { type: 'CREATE_ROOM'; room: LiveRoom }
+  | { type: 'CLOSE_ROOM'; room: ClosedRoom };
 
 type RoomsDispatch = Dispatch<Action>;
 
