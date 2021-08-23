@@ -10,8 +10,9 @@ import {
   TextField,
 } from '@material-ui/core';
 import Search from '@material-ui/icons/Search';
-import { Room } from '../models/room';
+import { Room } from '../models';
 import { request } from '../helpers';
+import { useRoomsDispatch, useRoomsState } from '../contexts/RoomsContext';
 
 const MainPageBlock = styled.div`
   width: 50%;
@@ -34,22 +35,26 @@ const HeaderBlock = styled.div`
 
 const MainPage: FC = () => {
   const [isLive, setIsLive] = useState(true);
-  const [liveRooms, setLiveRooms] = useState<Room[]>([]);
   const [searchInputs, setSearchInputs] = useState('');
+  const roomsState = useRoomsState();
+  const roomsDispatch = useRoomsDispatch();
 
   useEffect(() => {
     request
       .get<{ liveRooms: Room[]; closedRooms: Room[] }>('/rooms')
       .then((res) => {
-        console.log(res);
-        setLiveRooms(res.liveRooms.filter((room) => room.end === null));
+        roomsDispatch({
+          type: 'INIT_ROOMS',
+          liveRooms: res.liveRooms,
+          closedRooms: res.closedRooms,
+        });
       })
       .catch((e) => console.error(e));
 
     return () => {
-      setLiveRooms([]);
+      roomsDispatch({ type: 'INIT_ROOMS', liveRooms: [], closedRooms: [] });
     };
-  }, []);
+  }, [roomsDispatch]);
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -96,7 +101,7 @@ const MainPage: FC = () => {
       </HeaderBlock>
       <Divider style={{ marginTop: '32px' }} />
       <LiveRoomList
-        rooms={liveRooms.filter((room) => {
+        rooms={roomsState.liveRooms.filter((room) => {
           return room.name.includes(searchInputs);
         })}
       />

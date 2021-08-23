@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MainPage from './pages/MainPage';
 import { createGlobalStyle } from 'styled-components';
+import { RoomsProvider } from './contexts/RoomsContext';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -11,8 +12,10 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <MainPage />
+    <RoomsProvider>
+      <GlobalStyle />
+      <MainPage />
+    </RoomsProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
