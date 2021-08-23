@@ -53,13 +53,13 @@ const MainPage: FC = () => {
   useEffect(() => {
     request
       .get<{ liveRooms: LiveRoom[]; closedRooms: ClosedRoom[] }>('/rooms')
-      .then((res) => {
+      .then((res) =>
         roomsDispatch({
           type: 'INIT_ROOMS',
           liveRooms: res.liveRooms,
           closedRooms: res.closedRooms,
-        });
-      })
+        }),
+      )
       .catch((e) => console.error(e));
 
     return () => {
