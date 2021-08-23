@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ClosedRoom, LiveRoom } from '../models/room';
 import EnterRoomModal from './EnterRoomModal';
 import CloseRoomModal from './CloseRoomModal';
-import { request } from '../helpers';
+import { formatDate, request } from '../helpers';
 import { useRoomsDispatch } from '../contexts/RoomsContext';
 
 const LiveRoomSlotBlock = styled.div`
@@ -68,7 +68,7 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
       <LiveRoomSlotBlock>
         <div>
           <h2>{room.name}</h2>
-          <p>Created at {new Date(room.start).toISOString()}</p>
+          <p>Created at {formatDate(new Date(room.start))}</p>
         </div>
         <div>
           <Button
