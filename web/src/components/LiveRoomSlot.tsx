@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { LiveRoom } from '../models/room';
+import { ClosedRoom, LiveRoom } from '../models/room';
 import EnterRoomModal from './EnterRoomModal';
 import CloseRoomModal from './CloseRoomModal';
 import { request } from '../helpers';
+import { useRoomsDispatch } from '../contexts/RoomsContext';
 
 const LiveRoomSlotBlock = styled.div`
   background: white;
@@ -25,6 +26,8 @@ interface Props {
 const LiveRoomSlot: FC<Props> = ({ room }) => {
   const [isEnterModalOpen, setIsEnterModalOpen] = useState(false);
   const [isCloseModalOpen, setIsCloseModalOpen] = useState(false);
+
+  const roomsDispatch = useRoomsDispatch();
 
   const onEnter = () => {
     setIsEnterModalOpen(true);
@@ -47,6 +50,9 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
   };
 
   const onCloseInCloseModal = () => {
+    request
+      .put<{ room: ClosedRoom }>(`/rooms/${room.id}`, {})
+      .then(({ room }) => roomsDispatch({ type: 'CLOSE_ROOM', room }));
     setIsCloseModalOpen(false);
   };
 
