@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Room } from '../models/room';
 import EnterRoomModal from './EnterRoomModal';
 import CloseRoomModal from './CloseRoomModal';
+import { request } from '../helpers';
 
 const LiveRoomSlotBlock = styled.div`
   background: white;
@@ -29,7 +30,13 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
     setIsEnterModalOpen(true);
   };
 
-  const onEnterInEnterModal = (nickname: string) => {
+  const onEnterInEnterModal = async (nickname: string) => {
+    const res: { url: string } = await request.post<{ url: string }>(
+      `/rooms/${room.id}`,
+      { nickname },
+    );
+    window.open(res.url, '_blank');
+
     setIsEnterModalOpen(false);
   };
 
