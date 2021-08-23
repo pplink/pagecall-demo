@@ -75,7 +75,7 @@ const MainPage: FC = () => {
     setIsCreate(true);
   };
 
-  const onCreateInCreateModal = async (name: string) => {
+  const onCreateInCreateModal = (name: string) => {
     request
       .post<{ room: Room }>('rooms', {
         name,
