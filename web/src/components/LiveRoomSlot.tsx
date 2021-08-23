@@ -30,12 +30,10 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
     setIsEnterModalOpen(true);
   };
 
-  const onEnterInEnterModal = async (nickname: string) => {
-    const res: { url: string } = await request.post<{ url: string }>(
-      `/rooms/${room.id}`,
-      { nickname },
-    );
-    window.open(res.url, '_blank');
+  const onEnterInEnterModal = (nickname: string) => {
+    request
+      .post<{ url: string }>(`/rooms/${room.id}`, { nickname })
+      .then(({ url }) => window.open(url, '_blank'));
 
     setIsEnterModalOpen(false);
   };
