@@ -13,6 +13,7 @@ import Search from '@material-ui/icons/Search';
 import { Room } from '../models';
 import { request } from '../helpers';
 import { useRoomsDispatch, useRoomsState } from '../contexts/RoomsContext';
+import CreateRoomModal from '../components/CreateRoomModal';
 
 const MainPageBlock = styled.div`
   width: 50%;
@@ -42,7 +43,9 @@ const HeaderBlockRow = styled.div`
 
 const MainPage: FC = () => {
   const [isLive, setIsLive] = useState(true);
+  const [isCreate, setIsCreate] = useState(false);
   const [searchInputs, setSearchInputs] = useState('');
+
   const roomsState = useRoomsState();
   const roomsDispatch = useRoomsDispatch();
 
@@ -63,9 +66,30 @@ const MainPage: FC = () => {
     };
   }, [roomsDispatch]);
 
-  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchInputs(value);
+  };
+
+  const onCreate = () => {
+    setIsCreate(true);
+  };
+
+  const onCreateInCreateModal = async (name: string) => {
+    request
+      .post<{ room: Room }>('rooms', {
+        name,
+      })
+      .then(({ room }) => {
+        roomsDispatch({ type: 'CREATE_ROOM', room });
+      })
+      .catch((e) => console.error(e));
+
+    setIsCreate(false);
+  };
+
+  const onCancelInCreateModal = () => {
+    setIsCreate(false);
   };
 
   return (
@@ -73,7 +97,7 @@ const MainPage: FC = () => {
       <HeaderBlock>
         <HeaderBlockRow>
           <h1>Rooms</h1>
-          <Button variant="outlined" color="default" style={{ height: '32px' }}>
+          <Button variant="outlined" color="primary" onClick={onCreate}>
             Create
           </Button>
         </HeaderBlockRow>
@@ -82,7 +106,7 @@ const MainPage: FC = () => {
             style={{ width: '256px' }}
             placeholder="Search by room name"
             type="search"
-            onChange={onSearchChange}
+            onChange={onSearch}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -112,6 +136,11 @@ const MainPage: FC = () => {
             return room.name.includes(searchInputs);
           })
           .sort((a, b) => (a.start > b.start ? -1 : 1))}
+      />
+      <CreateRoomModal
+        open={isCreate}
+        onCreate={onCreateInCreateModal}
+        onCancel={onCancelInCreateModal}
       />
     </MainPageBlock>
   );

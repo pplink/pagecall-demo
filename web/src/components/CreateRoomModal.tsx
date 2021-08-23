@@ -10,31 +10,30 @@ import React, { FC, useState } from 'react';
 
 interface Props {
   open: boolean;
-  onEnter: (nickname: string) => void;
+  onCreate: (name: string) => void;
   onCancel: () => void;
 }
 
-const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
-  const [nickname, setNickname] = useState('');
+const CreateRoomModal: FC<Props> = ({ open, onCreate, onCancel }) => {
+  const [name, setName] = useState('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
-    setNickname(value);
+    setName(value);
   };
 
   return (
     <Dialog open={open}>
-      <DialogTitle>Enter the room</DialogTitle>
+      <DialogTitle>Create a room</DialogTitle>
       <DialogContent style={{ width: '400px', height: '64px' }}>
         <TextField
           autoFocus
           required
-          id="nickname"
-          name="nickname"
-          label="Nickname"
+          name="name"
+          label="Room name"
           onChange={onChange}
-          value={nickname}
+          value={name}
           fullWidth
         />
       </DialogContent>
@@ -43,18 +42,18 @@ const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
           variant="outlined"
           color="primary"
           onClick={() => {
-            onEnter(nickname);
-            setNickname('');
+            onCreate(name);
+            setName('');
           }}
         >
-          Enter
+          Create
         </Button>
         <Button
           variant="outlined"
           color="secondary"
           onClick={() => {
             onCancel();
-            setNickname('');
+            setName('');
           }}
         >
           Cancel
@@ -64,4 +63,4 @@ const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
   );
 };
 
-export default EnterRoomModal;
+export default CreateRoomModal;
