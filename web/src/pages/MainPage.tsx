@@ -35,6 +35,7 @@ const HeaderBlock = styled.div`
 const MainPage: FC = () => {
   const [isLive, setIsLive] = useState(true);
   const [liveRooms, setLiveRooms] = useState<Room[]>([]);
+  const [searchInputs, setSearchInputs] = useState('');
 
   useEffect(() => {
     request
@@ -49,6 +50,11 @@ const MainPage: FC = () => {
       setLiveRooms([]);
     };
   }, []);
+
+  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setSearchInputs(value);
+  };
 
   return (
     <MainPageBlock>
@@ -65,6 +71,7 @@ const MainPage: FC = () => {
             style={{ width: '256px' }}
             placeholder="Search by room name"
             type="search"
+            onChange={onSearchChange}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -88,7 +95,11 @@ const MainPage: FC = () => {
         </FormGroup>
       </HeaderBlock>
       <Divider style={{ marginTop: '32px' }} />
-      <LiveRoomList rooms={liveRooms} />
+      <LiveRoomList
+        rooms={liveRooms.filter((room) => {
+          return room.name.includes(searchInputs);
+        })}
+      />
     </MainPageBlock>
   );
 };
