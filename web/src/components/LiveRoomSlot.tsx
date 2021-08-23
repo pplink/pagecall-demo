@@ -36,7 +36,10 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
   const onEnterInEnterModal = (nickname: string) => {
     request
       .post<{ url: string }>(`/rooms/${room.id}`, { nickname })
-      .then(({ url }) => window.open(url, '_blank'));
+      .then(({ url }) => {
+        localStorage.setItem('pagecall_url', url);
+        window.open('/room', '_blank');
+      });
 
     setIsEnterModalOpen(false);
   };

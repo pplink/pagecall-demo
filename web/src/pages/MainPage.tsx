@@ -137,7 +137,7 @@ const MainPage: FC = () => {
             .filter((room) => {
               return room.name.includes(searchInputs);
             })
-            .sort((a, b) => (a.start > b.start ? -1 : 1))}
+            .sort((a, b) => (a.start > b.start ? -1 : 1))} // 최신 시작 시간을 상위로 정렬
         />
       ) : (
         <ClosedRoomList
@@ -145,7 +145,7 @@ const MainPage: FC = () => {
             .filter((room) => {
               return room.name.includes(searchInputs);
             })
-            .sort((a, b) => (a.end > b.end ? -1 : 1))}
+            .sort((a, b) => (a.end > b.end ? -1 : 1))} // 최신 종료 시간을 상위로 정렬
         />
       )}
       <CreateRoomModal
