@@ -2,9 +2,9 @@ import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import LiveRoomList from '../components/LiveRoomList';
 import {
+  Button,
   Divider,
   FormControlLabel,
-  FormGroup,
   InputAdornment,
   Switch,
   TextField,
@@ -31,6 +31,13 @@ const MainPageBlock = styled.div`
 
 const HeaderBlock = styled.div`
   padding-top: 8px;
+`;
+
+const HeaderBlockRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const MainPage: FC = () => {
@@ -64,14 +71,13 @@ const MainPage: FC = () => {
   return (
     <MainPageBlock>
       <HeaderBlock>
-        <h1>Rooms</h1>
-        <FormGroup
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
+        <HeaderBlockRow>
+          <h1>Rooms</h1>
+          <Button variant="outlined" color="default" style={{ height: '32px' }}>
+            Create
+          </Button>
+        </HeaderBlockRow>
+        <HeaderBlockRow>
           <TextField
             style={{ width: '256px' }}
             placeholder="Search by room name"
@@ -97,13 +103,15 @@ const MainPage: FC = () => {
             }
             label="Live"
           />
-        </FormGroup>
+        </HeaderBlockRow>
       </HeaderBlock>
       <Divider style={{ marginTop: '32px' }} />
       <LiveRoomList
-        rooms={roomsState.liveRooms.filter((room) => {
-          return room.name.includes(searchInputs);
-        })}
+        rooms={roomsState.liveRooms
+          .filter((room) => {
+            return room.name.includes(searchInputs);
+          })
+          .sort((a, b) => (a.start > b.start ? -1 : 1))}
       />
     </MainPageBlock>
   );
