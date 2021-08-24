@@ -20,6 +20,7 @@ function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'INIT_ROOMS':
       return {
+        ...state,
         liveRooms: [...action.liveRooms],
         closedRooms: [...action.closedRooms],
       };
@@ -30,6 +31,7 @@ function reducer(state: State, action: Action): State {
       };
     case 'CLOSE_ROOM':
       return {
+        ...state,
         liveRooms: state.liveRooms.filter((room) => room.id !== action.room.id),
         closedRooms: state.closedRooms.concat([action.room]),
       };
