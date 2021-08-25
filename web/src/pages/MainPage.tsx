@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import LiveRoomList from '../components/LiveRoomList';
 import {
@@ -51,23 +51,23 @@ const MainPage: FC = () => {
   const roomsState = useRoomsState();
   const roomsDispatch = useRoomsDispatch();
 
-  const isCancelled = useRef(false);
   useEffect(() => {
-    if (!isCancelled.current) {
-      request
-        .get<{ liveRooms: LiveRoom[]; closedRooms: ClosedRoom[] }>('/rooms')
-        .then((res) =>
-          roomsDispatch({
-            type: 'INIT_ROOMS',
-            liveRooms: res.liveRooms,
-            closedRooms: res.closedRooms,
-          }),
-        )
-        .catch((e) => console.error(e));
-    }
+    let isCancelled = false;
+
+    request
+      .get<{ liveRooms: LiveRoom[]; closedRooms: ClosedRoom[] }>('/rooms')
+      .then((res) => {
+        if (isCancelled) return;
+        roomsDispatch({
+          type: 'INIT_ROOMS',
+          liveRooms: res.liveRooms,
+          closedRooms: res.closedRooms,
+        });
+      })
+      .catch((e) => console.error(e));
 
     return () => {
-      isCancelled.current = true;
+      isCancelled = true;
       roomsDispatch({ type: 'INIT_ROOMS', liveRooms: [], closedRooms: [] });
     };
   }, [roomsDispatch]);
