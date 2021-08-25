@@ -15,6 +15,7 @@ import { request } from '../helpers';
 import { useRoomsDispatch, useRoomsState } from '../contexts/RoomsContext';
 import CreateRoomModal from '../components/CreateRoomModal';
 import ClosedRoomList from '../components/ClosedRoomList';
+import { useCallback } from 'react';
 
 const MainPageBlock = styled.div`
   width: 50%;
@@ -71,31 +72,33 @@ const MainPage: FC = () => {
     };
   }, [roomsDispatch]);
 
-  const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSearchInputs(value);
-  };
+  const onSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInputs(e.target.value);
+  }, []);
 
-  const onCreate = () => {
+  const onCreate = useCallback(() => {
     setIsCreate(true);
-  };
-  // 함수들을 useCallback으로 감싸 주는게 권장 스펙
-  const onCreateInCreateModal = (name: string) => {
-    request
-      .post<{ room: LiveRoom }>('rooms', {
-        name,
-      })
-      .then(({ room }) => {
-        roomsDispatch({ type: 'CREATE_ROOM', room });
-      })
-      .catch((e) => console.error(e));
+  }, []);
 
-    setIsCreate(false);
-  };
+  const onCreateInCreateModal = useCallback(
+    (name: string) => {
+      request
+        .post<{ room: LiveRoom }>('rooms', {
+          name,
+        })
+        .then(({ room }) => {
+          roomsDispatch({ type: 'CREATE_ROOM', room });
+        })
+        .catch((e) => console.error(e));
 
-  const onCancelInCreateModal = () => {
+      setIsCreate(false);
+    },
+    [roomsDispatch],
+  );
+
+  const onCancelInCreateModal = useCallback(() => {
     setIsCreate(false);
-  };
+  }, []);
 
   const liveRooms: LiveRoom[] = useMemo(
     () =>
@@ -107,7 +110,7 @@ const MainPage: FC = () => {
 
   const closedRooms: ClosedRoom[] = useMemo(
     () =>
-      roomsState.closedRooms // 이런 부분도 useMemo를 사용하면 좋은 케이스
+      roomsState.closedRooms
         .filter((room) => room.name.includes(searchInputs))
         .sort((a, b) => (a.start > b.start ? -1 : 1)), // 최신 종료 시간을 상위로 정렬
     [roomsState, searchInputs],

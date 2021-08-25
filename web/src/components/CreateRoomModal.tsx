@@ -6,7 +6,7 @@ import {
   DialogTitle,
   TextField,
 } from '@material-ui/core';
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { useEffect } from 'react';
 
 interface Props {
@@ -22,11 +22,9 @@ const CreateRoomModal: FC<Props> = ({ open, onCreate, onCancel }) => {
     setName('');
   }, [open]);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    setName(value);
-  };
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  }, []);
 
   return (
     <Dialog open={open}>
