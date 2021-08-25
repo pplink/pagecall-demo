@@ -4,7 +4,7 @@ import MainPage from './pages/MainPage';
 import { createGlobalStyle } from 'styled-components';
 import { RoomsProvider } from './contexts/RoomsContext';
 import { BrowserRouter, Route } from 'react-router-dom';
-import PageCallPage from './pages/PageCallPage';
+import PagecallPage from './pages/PagecallPage';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,7 +18,7 @@ ReactDOM.render(
       <GlobalStyle />
       <BrowserRouter>
         <Route path="/" exact={true} component={MainPage} />
-        <Route path="/room" component={PageCallPage} />
+        <Route path="/rooms/:roomId" component={PagecallPage} />
       </BrowserRouter>
     </RoomsProvider>
   </React.StrictMode>,

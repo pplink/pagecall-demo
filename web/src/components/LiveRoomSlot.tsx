@@ -36,14 +36,8 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
 
   const onEnterInEnterModal = useCallback(
     (nickname: string) => {
-      request
-        .post<{ url: string }>(`/rooms/${room.id}`, { nickname })
-        .then(({ url }) => {
-          localStorage.setItem('pagecall_url', url);
-          window.open('/room', '_blank');
-        });
-
       setIsEnterModalOpen(false);
+      window.open(`/rooms/${room.id}?nickname=${nickname}`, '_blank');
     },
     [room],
   );
