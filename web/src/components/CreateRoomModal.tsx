@@ -7,6 +7,7 @@ import {
   TextField,
 } from '@material-ui/core';
 import React, { FC, useState } from 'react';
+import { useEffect } from 'react';
 
 interface Props {
   open: boolean;
@@ -16,6 +17,10 @@ interface Props {
 
 const CreateRoomModal: FC<Props> = ({ open, onCreate, onCancel }) => {
   const [name, setName] = useState('');
+
+  useEffect(() => {
+    setName('');
+  }, [open]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -43,19 +48,11 @@ const CreateRoomModal: FC<Props> = ({ open, onCreate, onCancel }) => {
           color="primary"
           onClick={() => {
             onCreate(name);
-            setName('');
           }}
         >
           Create
         </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => {
-            onCancel();
-            setName('');
-          }}
-        >
+        <Button variant="outlined" color="secondary" onClick={onCancel}>
           Cancel
         </Button>
       </DialogActions>

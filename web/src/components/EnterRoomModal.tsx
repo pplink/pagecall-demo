@@ -6,7 +6,7 @@ import {
   DialogTitle,
   TextField,
 } from '@material-ui/core';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 interface Props {
   open: boolean;
@@ -16,6 +16,10 @@ interface Props {
 
 const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
   const [nickname, setNickname] = useState('');
+
+  useEffect(() => {
+    setNickname('');
+  }, [open]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -44,19 +48,11 @@ const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
           color="primary"
           onClick={() => {
             onEnter(nickname);
-            setNickname('');
           }}
         >
           Enter
         </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => {
-            onCancel();
-            setNickname('');
-          }}
-        >
+        <Button variant="outlined" color="secondary" onClick={onCancel}>
           Cancel
         </Button>
       </DialogActions>

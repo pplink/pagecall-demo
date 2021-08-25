@@ -57,12 +57,12 @@ export function RoomsProvider({ children }: { children: React.ReactNode }) {
 
 export function useRoomsState(): State {
   const state = useContext(RoomsStateContext);
-  if (!state) throw new Error('Cannot find RoomsProvider'); // 유효하지 않을땐 에러를 발생
+  if (!state) throw new Error('Cannot find RoomsProvider'); // 유효하지 않을 땐 에러를 발생
   return state;
 }
 
 export function useRoomsDispatch(): RoomsDispatch {
   const dispatch = useContext(RoomsDispatchContext);
-  if (!dispatch) throw new Error('Cannot find RoomsProvider'); // 유효하지 않을땐 에러를 발생
+  if (!dispatch) throw new Error('Cannot find RoomsProvider'); // 유효하지 않을 땐 에러를 발생
   return dispatch;
 }
