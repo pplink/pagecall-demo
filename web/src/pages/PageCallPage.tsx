@@ -1,5 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
+import { request } from '../helpers';
+import qs from 'qs';
 
 const Iframe = styled.iframe`
   width: 100%;
@@ -15,18 +18,43 @@ const Iframe = styled.iframe`
   z-index: 9999999;
 `;
 
-// url을 params 넘겨서 받아 온다.
-const PageCallPage: FC = () => {
-  const url = localStorage.getItem('pagecall_url');
+const PageCallPage: FC<RouteComponentProps<{ roomId: string }>> = ({
+  match,
+  location,
+}) => {
+  const [pagecallUrl, setPagecallUrl] = useState<string | null>(null);
 
-  if (url)
+  useEffect(() => {
+    let isCancelled = false;
+    const query = qs.parse(location.search, {
+      ignoreQueryPrefix: true,
+    });
+
+    console.log(JSON.stringify(query));
+
+    request
+      .post<{ url: string }>(`/rooms/${match.params.roomId}`, {
+        nickname: query.nickname,
+      })
+      .then(({ url }) => {
+        if (isCancelled) return;
+        setPagecallUrl(url);
+      });
+
+    return () => {
+      isCancelled = true;
+      setPagecallUrl(null);
+    };
+  }, [location.search, match.params.roomId]);
+
+  if (pagecallUrl)
     return (
       <Iframe
         name="pagecall-room"
         frameBorder="0"
         width="100%"
         height="100%"
-        src={url}
+        src={pagecallUrl}
         allow="camera *;microphone *"
       />
     );
