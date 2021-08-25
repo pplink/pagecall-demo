@@ -100,6 +100,10 @@ const MainPage: FC = () => {
     setIsCreate(false);
   }, []);
 
+  const onToggle = useCallback(() => {
+    setIsLive((isLive) => !isLive);
+  }, []);
+
   const liveRooms: LiveRoom[] = useMemo(
     () =>
       roomsState.liveRooms
@@ -127,7 +131,7 @@ const MainPage: FC = () => {
         </HeaderBlockRow>
         <HeaderBlockRow>
           <TextField
-            style={{ width: '256px' }} // 매 렌더마다 객체가 계속 생성됨. 밖에 빼는 것이 좋다. 만약 변경이 되는 값을 사용한다면 useMemo로 추가 개선이 가능.
+            style={{ width: '256px' }}
             placeholder="Search by room name"
             type="search"
             onChange={onSearch}
@@ -141,13 +145,7 @@ const MainPage: FC = () => {
           />
           <FormControlLabel
             control={
-              <Switch
-                color="secondary"
-                checked={isLive}
-                onChange={() => {
-                  setIsLive((isLive) => !isLive);
-                }}
-              />
+              <Switch color="secondary" checked={isLive} onChange={onToggle} />
             }
             label="Live"
           />
