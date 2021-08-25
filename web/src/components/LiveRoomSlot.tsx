@@ -7,6 +7,7 @@ import EnterRoomModal from './EnterRoomModal';
 import CloseRoomModal from './CloseRoomModal';
 import { formatDate, request } from '../helpers';
 import { useRoomsDispatch } from '../contexts/RoomsContext';
+import { useCallback } from 'react';
 
 const LiveRoomSlotBlock = styled.div`
   background: white;
@@ -29,39 +30,42 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
 
   const roomsDispatch = useRoomsDispatch();
 
-  const onEnter = () => {
+  const onEnter = useCallback(() => {
     setIsEnterModalOpen(true);
-  };
+  }, []);
 
-  const onEnterInEnterModal = (nickname: string) => {
-    request
-      .post<{ url: string }>(`/rooms/${room.id}`, { nickname })
-      .then(({ url }) => {
-        localStorage.setItem('pagecall_url', url);
-        window.open('/room', '_blank');
-      });
+  const onEnterInEnterModal = useCallback(
+    (nickname: string) => {
+      request
+        .post<{ url: string }>(`/rooms/${room.id}`, { nickname })
+        .then(({ url }) => {
+          localStorage.setItem('pagecall_url', url);
+          window.open('/room', '_blank');
+        });
 
+      setIsEnterModalOpen(false);
+    },
+    [room],
+  );
+
+  const onCancelInEnterModal = useCallback(() => {
     setIsEnterModalOpen(false);
-  };
+  }, []);
 
-  const onCancelInEnterModal = () => {
-    setIsEnterModalOpen(false);
-  };
-
-  const onClose = () => {
+  const onClose = useCallback(() => {
     setIsCloseModalOpen(true);
-  };
+  }, []);
 
-  const onCloseInCloseModal = () => {
+  const onCloseInCloseModal = useCallback(() => {
     request
       .put<{ room: ClosedRoom }>(`/rooms/${room.id}`, {})
       .then(({ room }) => roomsDispatch({ type: 'CLOSE_ROOM', room }));
     setIsCloseModalOpen(false);
-  };
+  }, [room, roomsDispatch]);
 
-  const onCancelInCloseModal = () => {
+  const onCancelInCloseModal = useCallback(() => {
     setIsCloseModalOpen(false);
-  };
+  }, []);
 
   return (
     <>
