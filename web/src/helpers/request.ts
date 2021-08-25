@@ -12,7 +12,6 @@ class Request {
    * @param url 서버 URL
    */
   constructor(config?: AxiosRequestConfig) {
-    console.log(env.NODE_ENV);
     this.instance = axios.create(config);
   }
 

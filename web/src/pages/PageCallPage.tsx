@@ -30,8 +30,6 @@ const PageCallPage: FC<RouteComponentProps<{ roomId: string }>> = ({
       ignoreQueryPrefix: true,
     });
 
-    console.log(JSON.stringify(query));
-
     request
       .post<{ url: string }>(`/rooms/${match.params.roomId}`, {
         nickname: query.nickname,
