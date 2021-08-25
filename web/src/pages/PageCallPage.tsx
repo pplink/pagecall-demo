@@ -15,6 +15,7 @@ const Iframe = styled.iframe`
   z-index: 9999999;
 `;
 
+// url을 params 넘겨서 받아 온다.
 const PageCallPage: FC = () => {
   const url = localStorage.getItem('pagecall_url');
 

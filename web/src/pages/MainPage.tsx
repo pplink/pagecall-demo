@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import LiveRoomList from '../components/LiveRoomList';
 import {
@@ -50,19 +50,23 @@ const MainPage: FC = () => {
   const roomsState = useRoomsState();
   const roomsDispatch = useRoomsDispatch();
 
+  const isCancelled = useRef(false);
   useEffect(() => {
-    request
-      .get<{ liveRooms: LiveRoom[]; closedRooms: ClosedRoom[] }>('/rooms')
-      .then((res) =>
-        roomsDispatch({
-          type: 'INIT_ROOMS',
-          liveRooms: res.liveRooms,
-          closedRooms: res.closedRooms,
-        }),
-      )
-      .catch((e) => console.error(e));
+    if (!isCancelled.current) {
+      request
+        .get<{ liveRooms: LiveRoom[]; closedRooms: ClosedRoom[] }>('/rooms')
+        .then((res) =>
+          roomsDispatch({
+            type: 'INIT_ROOMS',
+            liveRooms: res.liveRooms,
+            closedRooms: res.closedRooms,
+          }),
+        )
+        .catch((e) => console.error(e));
+    }
 
     return () => {
+      isCancelled.current = true;
       roomsDispatch({ type: 'INIT_ROOMS', liveRooms: [], closedRooms: [] });
     };
   }, [roomsDispatch]);
@@ -75,7 +79,7 @@ const MainPage: FC = () => {
   const onCreate = () => {
     setIsCreate(true);
   };
-
+  // 함수들을 useCallback으로 감싸 주는게 권장 스펙
   const onCreateInCreateModal = (name: string) => {
     request
       .post<{ room: LiveRoom }>('rooms', {
@@ -93,6 +97,22 @@ const MainPage: FC = () => {
     setIsCreate(false);
   };
 
+  const liveRooms: LiveRoom[] = useMemo(
+    () =>
+      roomsState.liveRooms
+        .filter((room) => room.name.includes(searchInputs))
+        .sort((a, b) => (a.start > b.start ? -1 : 1)), // 최신 시작 시간을 상위로 정렬
+    [roomsState, searchInputs],
+  );
+
+  const closedRooms: ClosedRoom[] = useMemo(
+    () =>
+      roomsState.closedRooms // 이런 부분도 useMemo를 사용하면 좋은 케이스
+        .filter((room) => room.name.includes(searchInputs))
+        .sort((a, b) => (a.start > b.start ? -1 : 1)), // 최신 종료 시간을 상위로 정렬
+    [roomsState, searchInputs],
+  );
+
   return (
     <MainPageBlock>
       <HeaderBlock>
@@ -104,7 +124,7 @@ const MainPage: FC = () => {
         </HeaderBlockRow>
         <HeaderBlockRow>
           <TextField
-            style={{ width: '256px' }}
+            style={{ width: '256px' }} // 매 렌더마다 객체가 계속 생성됨. 밖에 빼는 것이 좋다. 만약 변경이 되는 값을 사용한다면 useMemo로 추가 개선이 가능.
             placeholder="Search by room name"
             type="search"
             onChange={onSearch}
@@ -132,21 +152,9 @@ const MainPage: FC = () => {
       </HeaderBlock>
       <Divider style={{ marginTop: '32px' }} />
       {isLive ? (
-        <LiveRoomList
-          rooms={roomsState.liveRooms
-            .filter((room) => {
-              return room.name.includes(searchInputs);
-            })
-            .sort((a, b) => (a.start > b.start ? -1 : 1))} // 최신 시작 시간을 상위로 정렬
-        />
+        <LiveRoomList rooms={liveRooms} />
       ) : (
-        <ClosedRoomList
-          rooms={roomsState.closedRooms
-            .filter((room) => {
-              return room.name.includes(searchInputs);
-            })
-            .sort((a, b) => (a.end > b.end ? -1 : 1))} // 최신 종료 시간을 상위로 정렬
-        />
+        <ClosedRoomList rooms={closedRooms} />
       )}
       <CreateRoomModal
         open={isCreate}
