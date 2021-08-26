@@ -14,12 +14,12 @@
 #import "RTCVideoEncoder.h"
 
 RTC_OBJC_EXPORT
-@interface RTC_OBJC_TYPE (RTCVideoEncoderVP8) : NSObject
+@interface RTCVideoEncoderVP8 : NSObject
 
 /* This returns a VP8 encoder that can be returned from a RTCVideoEncoderFactory injected into
  * RTCPeerConnectionFactory. Even though it implements the RTCVideoEncoder protocol, it can not be
  * used independently from the RTCPeerConnectionFactory.
  */
-+ (id<RTC_OBJC_TYPE(RTCVideoEncoder)>)vp8Encoder;
++ (id<RTCVideoEncoder>)vp8Encoder;
 
 @end

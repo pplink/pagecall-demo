@@ -1,10 +1,10 @@
 PODS:
-  - GoogleWebRTC (1.1.31999)
+  - GoogleWebRTC (1.1.29229)
   - PageCallSDK (2.1.1)
 
 DEPENDENCIES:
-  - GoogleWebRTC
-  - PageCallSDK
+  - GoogleWebRTC (= 1.1.29229)
+  - PageCallSDK (~> 2.1.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -13,9 +13,9 @@ SPEC REPOS:
     - PageCallSDK
 
 SPEC CHECKSUMS:
-  GoogleWebRTC: b39a78c4f5cc6b0323415b9233db03a2faa7b0f0
+  GoogleWebRTC: ffbf2dca3bdef0fbeebcff497e0a659bd69761c8
   PageCallSDK: efaed94f593f0af405632cb125ebac194e846763
 
-PODFILE CHECKSUM: 4a95a6fc88e65788a8bf246fcca9a129f0872620
+PODFILE CHECKSUM: 1ed1237093bf5dc5deb8e0d5b3d5de755a0a5ad3
 
 COCOAPODS: 1.10.1

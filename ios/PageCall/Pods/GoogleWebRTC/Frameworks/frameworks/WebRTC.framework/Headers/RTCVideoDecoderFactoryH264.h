@@ -14,5 +14,5 @@
 #import "RTCVideoDecoderFactory.h"
 
 RTC_OBJC_EXPORT
-@interface RTC_OBJC_TYPE (RTCVideoDecoderFactoryH264) : NSObject <RTC_OBJC_TYPE(RTCVideoDecoderFactory)>
+@interface RTCVideoDecoderFactoryH264 : NSObject <RTCVideoDecoderFactory>
 @end

@@ -36,6 +36,19 @@ PageCall 데모 애플리케이션을 위한 iOS 클라언트 입니다. 본 예
 4. 앱을 실행해 볼 iPad 시뮬레이터 또는 테스트 기기를 지정합니다.
 5. 앱이 정상적으로 실행이 되는지 확인합니다.
 
+## Pagecall iOS SDK 설치
+### CocoaPods
+`PodFile`: 에 아래 항목을 추가합니다.
+```
+target 'PageCall' do
+  use_frameworks!
+
+  pod 'PageCallSDK', '~> 2.1.1', :source => 'https://github.com/pplink/pagecall-specs.git'
+  pod 'GoogleWebRTC', '1.1.29229' :source => 'https://github.com/cocoapods/specs'
+end
+```
+`run pod install --verbose`을 실행 하여 프로젝트에 추가 합니다.
+
 ## 구조
 
 - ex) src/app: Express.js 의 라우터와 컨트롤러가 구현되어 있습니다.

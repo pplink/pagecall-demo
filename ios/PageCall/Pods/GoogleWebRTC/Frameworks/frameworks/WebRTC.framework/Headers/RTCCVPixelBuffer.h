@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** RTCVideoFrameBuffer containing a CVPixelBufferRef */
 RTC_OBJC_EXPORT
-@interface RTC_OBJC_TYPE (RTCCVPixelBuffer) : NSObject <RTC_OBJC_TYPE(RTCVideoFrameBuffer)>
+@interface RTCCVPixelBuffer : NSObject <RTCVideoFrameBuffer>
 
 @property(nonatomic, readonly) CVPixelBufferRef pixelBuffer;
 @property(nonatomic, readonly) int cropX;

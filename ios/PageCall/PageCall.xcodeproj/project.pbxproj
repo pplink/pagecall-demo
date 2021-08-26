@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35B6072094A6EF6F7D525194 /* Pods_PageCall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC8F0DB5E68308C77A84204 /* Pods_PageCall.framework */; };
-		54901E2026B27D310045A100 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 54901E1F26B27D310045A100 /* Alamofire */; };
+		54901E2026B27D310045A100 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 54901E1F26B27D310045A100 /* SwiftPackageProductDependency */; };
 		54A1B2EE26AE8D86004C9EED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B2ED26AE8D86004C9EED /* AppDelegate.swift */; };
 		54A1B2F026AE8D86004C9EED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B2EF26AE8D86004C9EED /* SceneDelegate.swift */; };
 		54A1B2F226AE8D86004C9EED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B2F126AE8D86004C9EED /* ViewController.swift */; };
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54901E2026B27D310045A100 /* Alamofire in Frameworks */,
+				54901E2026B27D310045A100 /* BuildFile in Frameworks */,
 				35B6072094A6EF6F7D525194 /* Pods_PageCall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,7 +182,7 @@
 				54A1B2E626AE8D86004C9EED /* Sources */,
 				54A1B2E726AE8D86004C9EED /* Frameworks */,
 				54A1B2E826AE8D86004C9EED /* Resources */,
-				EA584055892EB73B24C3429E /* [CP] Embed Pods Frameworks */,
+				688C9663BC67DF17F805E4B6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,7 +190,7 @@
 			);
 			name = PageCall;
 			packageProductDependencies = (
-				54901E1F26B27D310045A100 /* Alamofire */,
+				54901E1F26B27D310045A100 /* SwiftPackageProductDependency */,
 			);
 			productName = PageCall;
 			productReference = 54A1B2EA26AE8D86004C9EED /* PageCall.app */;
@@ -264,7 +264,7 @@
 			);
 			mainGroup = 54A1B2E126AE8D86004C9EED;
 			packageReferences = (
-				54901E1E26B27D310045A100 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				54901E1E26B27D310045A100 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 54A1B2EB26AE8D86004C9EED /* Products */;
 			projectDirPath = "";
@@ -305,6 +305,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		688C9663BC67DF17F805E4B6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		69AE889CA71B029131A2E206 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,23 +342,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA584055892EB73B24C3429E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -695,7 +695,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		54901E1E26B27D310045A100 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		54901E1E26B27D310045A100 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -706,9 +706,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		54901E1F26B27D310045A100 /* Alamofire */ = {
+		54901E1F26B27D310045A100 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 54901E1E26B27D310045A100 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 54901E1E26B27D310045A100 /* RemoteSwiftPackageReference */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

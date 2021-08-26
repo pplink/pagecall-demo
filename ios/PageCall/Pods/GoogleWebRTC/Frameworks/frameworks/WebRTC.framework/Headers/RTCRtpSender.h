@@ -18,8 +18,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 RTC_OBJC_EXPORT
-@protocol RTC_OBJC_TYPE
-(RTCRtpSender)<NSObject>
+@protocol RTCRtpSender <NSObject>
 
 /** A unique identifier for this sender. */
 @property(nonatomic, readonly) NSString *senderId;
@@ -27,25 +26,22 @@ RTC_OBJC_EXPORT
 /** The currently active RTCRtpParameters, as defined in
  *  https://www.w3.org/TR/webrtc/#idl-def-RTCRtpParameters.
  */
-@property(nonatomic, copy) RTC_OBJC_TYPE(RTCRtpParameters) * parameters;
+@property(nonatomic, copy) RTCRtpParameters *parameters;
 
 /** The RTCMediaStreamTrack associated with the sender.
  *  Note: reading this property returns a new instance of
  *  RTCMediaStreamTrack. Use isEqual: instead of == to compare
  *  RTCMediaStreamTrack instances.
  */
-@property(nonatomic, copy, nullable) RTC_OBJC_TYPE(RTCMediaStreamTrack) * track;
-
-/** IDs of streams associated with the RTP sender */
-@property(nonatomic, copy) NSArray<NSString *> *streamIds;
+@property(nonatomic, copy, nullable) RTCMediaStreamTrack *track;
 
 /** The RTCDtmfSender accociated with the RTP sender. */
-@property(nonatomic, readonly, nullable) id<RTC_OBJC_TYPE(RTCDtmfSender)> dtmfSender;
+@property(nonatomic, readonly, nullable) id<RTCDtmfSender> dtmfSender;
 
 @end
 
 RTC_OBJC_EXPORT
-@interface RTC_OBJC_TYPE (RTCRtpSender) : NSObject <RTC_OBJC_TYPE(RTCRtpSender)>
+@interface RTCRtpSender : NSObject <RTCRtpSender>
 
 - (instancetype)init NS_UNAVAILABLE;
 

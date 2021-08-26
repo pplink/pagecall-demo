@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 // For kRTCFileLoggerTypeApp, the oldest log is overwritten.
 // This class is not threadsafe.
 RTC_OBJC_EXPORT
-@interface RTC_OBJC_TYPE (RTCFileLogger) : NSObject
+@interface RTCFileLogger : NSObject
 
 // The severity level to capture. The default is kRTCFileLoggerSeverityInfo.
 @property(nonatomic, assign) RTCFileLoggerSeverity severity;
