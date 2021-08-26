@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020 The WebRTC Project Authors. All rights reserved.
+ *  Copyright 2017 The WebRTC project authors. All Rights Reserved.
  *
  *  Use of this source code is governed by a BSD-style license
  *  that can be found in the LICENSE file in the root of the source
@@ -12,12 +12,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/** Listens for NWPathMonitor updates and forwards the results to a C++
- *  observer.
- */
-@interface RTCNetworkMonitor : NSObject
+@interface RTCIntervalRange : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
+@property(nonatomic, readonly) NSInteger min;
+@property(nonatomic, readonly) NSInteger max;
+
+- (instancetype)init;
+- (instancetype)initWithMin:(NSInteger)min max:(NSInteger)max NS_DESIGNATED_INITIALIZER;
 
 @end
 
