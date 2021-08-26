@@ -7,15 +7,16 @@ import {
   TextField,
 } from '@material-ui/core';
 import React, { FC, useCallback, useEffect, useState } from 'react';
+import { LiveRoom } from '../models';
 
 interface Props {
   open: boolean;
-  onEnter: (nickname: string) => void;
+  room: LiveRoom;
   onCancel: () => void;
 }
 
-const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
-  const [nickname, setNickname] = useState('');
+const EnterRoomModal: FC<Props> = ({ open, room, onCancel }) => {
+  const [nickname, setNickname] = useState<string>('');
 
   useEffect(() => {
     setNickname('');
@@ -24,6 +25,11 @@ const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
   }, []);
+
+  const onEnter = useCallback(() => {
+    onCancel();
+    window.open(`/rooms/${room.id}?nickname=${nickname}`, '_blank');
+  }, [nickname, onCancel, room]);
 
   return (
     <Dialog open={open}>
@@ -41,13 +47,7 @@ const EnterRoomModal: FC<Props> = ({ open, onEnter, onCancel }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => {
-            onEnter(nickname);
-          }}
-        >
+        <Button variant="outlined" color="primary" onClick={onEnter}>
           Enter
         </Button>
         <Button variant="outlined" color="secondary" onClick={onCancel}>

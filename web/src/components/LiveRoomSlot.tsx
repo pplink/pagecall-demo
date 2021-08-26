@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@material-ui/core';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { ClosedRoom, LiveRoom } from '../models/room';
-import EnterRoomModal from './EnterRoomModal';
-import CloseRoomModal from './CloseRoomModal';
-import { formatDate, request } from '../helpers';
-import { useRoomsDispatch } from '../contexts/RoomsContext';
-import { useCallback } from 'react';
+import { LiveRoom } from '../models/room';
+import { formatDate } from '../helpers';
 
 const LiveRoomSlotBlock = styled.div`
   background: white;
@@ -22,45 +18,11 @@ const LiveRoomSlotBlock = styled.div`
 
 interface Props {
   room: LiveRoom;
+  onEnter: () => void;
+  onClose: () => void;
 }
 
-const LiveRoomSlot: FC<Props> = ({ room }) => {
-  const [isEnterModalOpen, setIsEnterModalOpen] = useState(false);
-  const [isCloseModalOpen, setIsCloseModalOpen] = useState(false);
-
-  const roomsDispatch = useRoomsDispatch();
-
-  const onEnter = useCallback(() => {
-    setIsEnterModalOpen(true);
-  }, []);
-
-  const onEnterInEnterModal = useCallback(
-    (nickname: string) => {
-      setIsEnterModalOpen(false);
-      window.open(`/rooms/${room.id}?nickname=${nickname}`, '_blank');
-    },
-    [room],
-  );
-
-  const onCancelInEnterModal = useCallback(() => {
-    setIsEnterModalOpen(false);
-  }, []);
-
-  const onClose = useCallback(() => {
-    setIsCloseModalOpen(true);
-  }, []);
-
-  const onCloseInCloseModal = useCallback(() => {
-    request
-      .put<{ room: ClosedRoom }>(`/rooms/${room.id}`, {})
-      .then(({ room }) => roomsDispatch({ type: 'CLOSE_ROOM', room }));
-    setIsCloseModalOpen(false);
-  }, [room, roomsDispatch]);
-
-  const onCancelInCloseModal = useCallback(() => {
-    setIsCloseModalOpen(false);
-  }, []);
-
+const LiveRoomSlot: FC<Props> = ({ room, onEnter, onClose }) => {
   return (
     <>
       <LiveRoomSlotBlock>
@@ -82,16 +44,6 @@ const LiveRoomSlot: FC<Props> = ({ room }) => {
           </Button>
         </div>
       </LiveRoomSlotBlock>
-      <EnterRoomModal
-        open={isEnterModalOpen}
-        onEnter={onEnterInEnterModal}
-        onCancel={onCancelInEnterModal}
-      />
-      <CloseRoomModal
-        open={isCloseModalOpen}
-        onClose={onCloseInCloseModal}
-        onCancel={onCancelInCloseModal}
-      />
     </>
   );
 };
