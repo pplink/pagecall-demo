@@ -6,7 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { useRoomsDispatch } from '../contexts/RoomsContext';
 import { request } from '../helpers';
 import { ClosedRoom, LiveRoom } from '../models';
@@ -18,16 +18,22 @@ interface Props {
 }
 
 const CloseRoomModal: FC<Props> = ({ open, room, onCancel }) => {
+  const [isClosing, setIsClosing] = useState<boolean>(false);
   const roomsDispatch = useRoomsDispatch();
 
   const onClose = useCallback(() => {
+    if (isClosing) return;
+
+    setIsClosing(true);
     request
       .put<{ room: ClosedRoom }>(`/rooms/${room.id}`, {})
       .then(({ room }) => {
         roomsDispatch({ type: 'CLOSE_ROOM', room });
         onCancel();
-      });
-  }, [onCancel, room, roomsDispatch]);
+      })
+      .catch((e) => console.error(e))
+      .finally(() => setIsClosing(false));
+  }, [isClosing, onCancel, room.id, roomsDispatch]);
 
   return (
     <Dialog open={open}>
