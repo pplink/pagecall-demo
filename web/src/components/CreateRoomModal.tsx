@@ -37,10 +37,9 @@ const CreateRoomModal: FC<Props> = ({ open, onCancel }) => {
       })
       .then(({ room }) => {
         roomsDispatch({ type: 'CREATE_ROOM', room });
+        onCancel();
       })
       .catch((e) => console.error(e));
-
-    onCancel();
   }, [name, onCancel, roomsDispatch]);
 
   return (
