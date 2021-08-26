@@ -23,8 +23,10 @@ const CloseRoomModal: FC<Props> = ({ open, room, onCancel }) => {
   const onClose = useCallback(() => {
     request
       .put<{ room: ClosedRoom }>(`/rooms/${room.id}`, {})
-      .then(({ room }) => roomsDispatch({ type: 'CLOSE_ROOM', room }));
-    onCancel();
+      .then(({ room }) => {
+        roomsDispatch({ type: 'CLOSE_ROOM', room });
+        onCancel();
+      });
   }, [onCancel, room, roomsDispatch]);
 
   return (
