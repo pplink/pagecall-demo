@@ -19,6 +19,7 @@ interface Props {
 
 const CreateRoomModal: FC<Props> = ({ open, onCancel }) => {
   const [name, setName] = useState('');
+  const [isCreating, setIsCreating] = useState<boolean>(false);
 
   const roomsDispatch = useRoomsDispatch();
 
@@ -30,7 +31,11 @@ const CreateRoomModal: FC<Props> = ({ open, onCancel }) => {
     setName(e.target.value);
   }, []);
 
-  const onCreate = useCallback(() => {
+  const onCreate = useCallback(async () => {
+    if (isCreating) return;
+
+    setIsCreating(true);
+
     request
       .post<{ room: LiveRoom }>('rooms', {
         name,
@@ -39,8 +44,9 @@ const CreateRoomModal: FC<Props> = ({ open, onCancel }) => {
         roomsDispatch({ type: 'CREATE_ROOM', room });
         onCancel();
       })
-      .catch((e) => console.error(e));
-  }, [name, onCancel, roomsDispatch]);
+      .catch((e) => console.error(e))
+      .finally(() => setIsCreating(false));
+  }, [isCreating, name, onCancel, roomsDispatch]);
 
   return (
     <Dialog open={open}>
