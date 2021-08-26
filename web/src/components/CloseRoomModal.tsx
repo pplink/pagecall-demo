@@ -25,6 +25,7 @@ const CloseRoomModal: FC<Props> = ({ open, room, onCancel }) => {
     if (isClosing) return;
 
     setIsClosing(true);
+
     request
       .put<{ room: ClosedRoom }>(`/rooms/${room.id}`, {})
       .then(({ room }) => {
