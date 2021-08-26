@@ -45,7 +45,7 @@ const HeaderBlockRow = styled.div`
 
 const MainPage: FC = () => {
   const [isLive, setIsLive] = useState(true);
-  const [isCreate, setIsCreate] = useState(false);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [searchInputs, setSearchInputs] = useState('');
 
   const roomsState = useRoomsState();
@@ -72,36 +72,20 @@ const MainPage: FC = () => {
     };
   }, [roomsDispatch]);
 
+  const onToggle = useCallback(() => {
+    setIsLive((isLive) => !isLive);
+  }, []);
+
   const onSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInputs(e.target.value);
   }, []);
 
-  const onCreate = useCallback(() => {
-    setIsCreate(true);
+  const openCreateRoomModal = useCallback(() => {
+    setIsCreateModalOpen(true);
   }, []);
 
-  const onCreateInCreateModal = useCallback(
-    (name: string) => {
-      request
-        .post<{ room: LiveRoom }>('rooms', {
-          name,
-        })
-        .then(({ room }) => {
-          roomsDispatch({ type: 'CREATE_ROOM', room });
-        })
-        .catch((e) => console.error(e));
-
-      setIsCreate(false);
-    },
-    [roomsDispatch],
-  );
-
-  const onCancelInCreateModal = useCallback(() => {
-    setIsCreate(false);
-  }, []);
-
-  const onToggle = useCallback(() => {
-    setIsLive((isLive) => !isLive);
+  const closeCreateRoomModal = useCallback(() => {
+    setIsCreateModalOpen(false);
   }, []);
 
   const liveRooms: LiveRoom[] = useMemo(
@@ -125,7 +109,11 @@ const MainPage: FC = () => {
       <HeaderBlock>
         <HeaderBlockRow>
           <h1>Rooms</h1>
-          <Button variant="outlined" color="primary" onClick={onCreate}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={openCreateRoomModal}
+          >
             Create
           </Button>
         </HeaderBlockRow>
@@ -158,9 +146,8 @@ const MainPage: FC = () => {
         <ClosedRoomList rooms={closedRooms} />
       )}
       <CreateRoomModal
-        open={isCreate}
-        onCreate={onCreateInCreateModal}
-        onCancel={onCancelInCreateModal}
+        open={isCreateModalOpen}
+        onCancel={closeCreateRoomModal}
       />
     </MainPageBlock>
   );

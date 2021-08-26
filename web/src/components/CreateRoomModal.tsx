@@ -8,15 +8,19 @@ import {
 } from '@material-ui/core';
 import React, { FC, useCallback, useState } from 'react';
 import { useEffect } from 'react';
+import { useRoomsDispatch } from '../contexts/RoomsContext';
+import { request } from '../helpers';
+import { LiveRoom } from '../models';
 
 interface Props {
   open: boolean;
-  onCreate: (name: string) => void;
   onCancel: () => void;
 }
 
-const CreateRoomModal: FC<Props> = ({ open, onCreate, onCancel }) => {
+const CreateRoomModal: FC<Props> = ({ open, onCancel }) => {
   const [name, setName] = useState('');
+
+  const roomsDispatch = useRoomsDispatch();
 
   useEffect(() => {
     setName('');
@@ -25,6 +29,19 @@ const CreateRoomModal: FC<Props> = ({ open, onCreate, onCancel }) => {
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   }, []);
+
+  const onCreate = useCallback(() => {
+    request
+      .post<{ room: LiveRoom }>('rooms', {
+        name,
+      })
+      .then(({ room }) => {
+        roomsDispatch({ type: 'CREATE_ROOM', room });
+      })
+      .catch((e) => console.error(e));
+
+    onCancel();
+  }, [name, onCancel, roomsDispatch]);
 
   return (
     <Dialog open={open}>
@@ -41,13 +58,7 @@ const CreateRoomModal: FC<Props> = ({ open, onCreate, onCancel }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => {
-            onCreate(name);
-          }}
-        >
+        <Button variant="outlined" color="primary" onClick={onCreate}>
           Create
         </Button>
         <Button variant="outlined" color="secondary" onClick={onCancel}>
