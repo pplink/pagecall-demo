@@ -4,7 +4,7 @@ import MainPage from './pages/MainPage';
 import { createGlobalStyle } from 'styled-components';
 import { RoomsProvider } from './contexts/RoomsContext';
 import { BrowserRouter, Route } from 'react-router-dom';
-import PagecallPage from './pages/PagecallPage';
+import PagecallPage from './pages/PageCallPage';
 
 const GlobalStyle = createGlobalStyle`
   body {
