@@ -2,4 +2,5 @@
     <string name="app_name">Pagecall</string>
     <string name="search_room">Search by room name</string>
     <string name="is_live">Live</string>
+    <string name="created_at">Created at %s</string>
 </resources>

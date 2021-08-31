@@ -5,10 +5,11 @@
       <map>
         <entry key="app/src/main/res/drawable-anydpi-v26/ic_launcher_background.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/drawable/bottom_boder.xml" value="0.31484375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35220465184815086" />
-        <entry key="app/src/main/res/layout/live_room_item.xml" value="0.10236794300176584" />
+        <entry key="app/src/main/res/layout/live_room_item.xml" value="0.335" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.24635416666666668" />
       </map>
