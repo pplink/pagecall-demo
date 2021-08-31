@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pagecall</string>
+    <string name="search_room">Search by room name</string>
+    <string name="is_live">Live</string>
 </resources>
