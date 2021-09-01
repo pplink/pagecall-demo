@@ -2,11 +2,11 @@ package com.pplink.pagecall
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
 import com.pplink.pagecall.adapter.ClosedRoomAdapter
 import com.pplink.pagecall.adapter.LiveRoomAdapter
 import com.pplink.pagecall.databinding.ActivityMainBinding
 import com.pplink.pagecall.model.Mock
+import com.pplink.pagecall.model.RoomViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
