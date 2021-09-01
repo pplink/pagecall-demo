@@ -14,10 +14,11 @@ class ClosedRoomAdapter(private val context: Context, private val dataset: List<
     class ClosedRoomViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.item_name)
         val startTextView: TextView = view.findViewById(R.id.item_start)
+        val endTextView: TextView = view.findViewById(R.id.item_end)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClosedRoomAdapter.ClosedRoomViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.live_room_item, parent, false)
+        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.closed_room_item, parent, false)
         return ClosedRoomAdapter.ClosedRoomViewHolder(adapterLayout)
     }
 
@@ -25,6 +26,7 @@ class ClosedRoomAdapter(private val context: Context, private val dataset: List<
         val room = dataset[position]
         holder.nameTextView.text = room.name
         holder.startTextView.text = room.start
+        holder.endTextView.text = room.end
     }
 
     override fun getItemCount(): Int {
