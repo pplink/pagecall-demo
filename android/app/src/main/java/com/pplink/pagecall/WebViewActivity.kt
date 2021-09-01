@@ -12,14 +12,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.pplink.pagecall.databinding.ActivityWebViewBinding
 
+private const val PERMISSION_REQUEST_CODE = 1888
+
 class WebViewActivity : AppCompatActivity() {
     companion object {
         const val PAGECALL_URL = "pagecall_url"
     }
 
-    private val PERMISSION_REQUEST_CODE = 1888
-
-    lateinit var binding: ActivityWebViewBinding
+    private lateinit var binding: ActivityWebViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
