@@ -12,9 +12,9 @@ import com.pplink.pagecall.model.LiveRoom
 
 class ClosedRoomAdapter(private val context: Context, private val dataset: List<ClosedRoom>): RecyclerView.Adapter<ClosedRoomAdapter.ClosedRoomViewHolder>() {
     class ClosedRoomViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
-        val nameTextView: TextView = view.findViewById(R.id.item_name)
-        val startTextView: TextView = view.findViewById(R.id.item_start)
-        val endTextView: TextView = view.findViewById(R.id.item_end)
+        val nameTextView: TextView = view.findViewById(R.id.room_name)
+        val startTextView: TextView = view.findViewById(R.id.room_start)
+        val endTextView: TextView = view.findViewById(R.id.room_end)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClosedRoomAdapter.ClosedRoomViewHolder {
