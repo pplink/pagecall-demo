@@ -42,16 +42,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.searchRoom.doAfterTextChanged {
-                binding.closedRoomList.adapter =
-                    ClosedRoomListAdapter(
-                        this,
-                        viewModel.filterClosedRooms(Regex(".*$it.*"))
-                            .sortedByDescending { room -> room.end })
-                binding.liveRoomList.adapter =
-                    LiveRoomListAdapter(
-                        this,
-                        viewModel.filterLiveRooms(Regex(".*$it.*"))
-                            .sortedByDescending { room -> room.start })
+            val (liveRooms, closedRoom) = viewModel.filterRooms(Regex(".*$it.*"))
+
+            binding.liveRoomList.adapter =
+                LiveRoomListAdapter(
+                    this,
+                    liveRooms
+                        .sortedByDescending { room -> room.start })
+            binding.closedRoomList.adapter =
+                ClosedRoomListAdapter(
+                    this,
+                    closedRoom
+                        .sortedByDescending { room -> room.end })
         }
     }
 
