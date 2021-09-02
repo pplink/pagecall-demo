@@ -37,13 +37,8 @@ class CloseRoomDialog : DialogFragment() {
                 .setPositiveButton("Close",
                     DialogInterface.OnClickListener { dialog, _ ->
                         val roomId = args.getString("roomId")!!
-                        val room = viewModel.findLiveRoomById(roomId)
 
-                        room?.let {
-                            val closedRoom = ClosedRoom(room.id, room.name, room.pcaRoomId, room.start, "something", room.participant, room.createdAt, room.updatedAt)
-                            viewModel.removeLiveRoom(room)
-                            viewModel.addClosedRoom(closedRoom)
-                        }
+                        viewModel.closeLiveRoom(roomId)
 
                         dialog.cancel()
                     })

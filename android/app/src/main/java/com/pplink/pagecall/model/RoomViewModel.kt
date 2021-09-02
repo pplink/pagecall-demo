@@ -21,31 +21,31 @@ class RoomViewModel : ViewModel() {
 
     private fun getRooms() {
         viewModelScope.launch {
-            val roomList = PagecallApi.retrofitService.getRooms()
-            _liveRooms.value = roomList.liveRooms
-            _closedRooms.value = roomList.closedRooms
+            val getRoomsResponse = PagecallApi.retrofitService.getRooms()
+            _liveRooms.value = getRoomsResponse.liveRooms
+            _closedRooms.value = getRoomsResponse.closedRooms
         }
     }
 
-    fun findLiveRoomById(id: String): LiveRoom? {
-        return _liveRooms.value!!.find { liveRoom -> liveRoom.id == id }
+    fun createLiveRoom(name: String) {
+        viewModelScope.launch {
+            val createRoomRequest = CreateRoomRequest(name)
+            val createRoomResponse = PagecallApi.retrofitService.createRoom(createRoomRequest)
+            val mutableList = _liveRooms.value!!.toMutableList()
+            mutableList.add(createRoomResponse.room)
+            _liveRooms.value = mutableList
+        }
     }
 
-    fun addLiveRoom(room: LiveRoom) {
-        val mutableList = _liveRooms.value!!.toMutableList()
-        mutableList.add(room)
-        _liveRooms.value = mutableList
-    }
+    fun closeLiveRoom(id: String) {
+        viewModelScope.launch {
+            val closeRoomsResponse = PagecallApi.retrofitService.closeRoom(id)
 
-    fun removeLiveRoom(room: LiveRoom) {
-        val mutableList = _liveRooms.value!!.toMutableList()
-        mutableList.remove(room)
-        _liveRooms.value = mutableList
-    }
+            _liveRooms.value = _liveRooms.value!!.filter { it.id != id }
 
-    fun addClosedRoom(room: ClosedRoom) {
-        val mutableList = _closedRooms.value!!.toMutableList()
-        mutableList.add(room)
-        _closedRooms.value = mutableList
+            val closedRoomList = _closedRooms.value!!.toMutableList()
+            closedRoomList.add(closeRoomsResponse.room)
+            _closedRooms.value = closedRoomList
+        }
     }
 }
