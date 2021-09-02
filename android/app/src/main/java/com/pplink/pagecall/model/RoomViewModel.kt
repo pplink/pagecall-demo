@@ -49,11 +49,7 @@ class RoomViewModel : ViewModel() {
         }
     }
 
-    fun filterLiveRooms(regex: Regex): List<LiveRoom> {
-        return _liveRooms.value!!.filter { regex.containsMatchIn(it.name) }
-    }
-
-    fun filterClosedRooms(regex: Regex): List<ClosedRoom> {
-        return _closedRooms.value!!.filter { regex.containsMatchIn(it.name) }
+    fun filterRooms(regex: Regex): Pair<List<LiveRoom>, List<ClosedRoom>> {
+        return Pair(_liveRooms.value!!.filter { regex.containsMatchIn(it.name) }, _closedRooms.value!!.filter { regex.containsMatchIn(it.name) })
     }
 }
