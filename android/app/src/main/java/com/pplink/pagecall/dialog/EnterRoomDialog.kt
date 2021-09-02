@@ -34,18 +34,14 @@ class EnterRoomDialog : DialogFragment() {
                     val nicknameEditText = view.findViewById<EditText>(R.id.nickname)
 
                     it.lifecycleScope.launch {
-                        try {
-                            val enterRoomRequest =
-                                EnterRoomRequest(nicknameEditText.text.toString())
-                            val enterRoomResponse =
-                                PagecallApi.retrofitService.enterRoom(roomId, enterRoomRequest)
-                            val intent = Intent(it, WebViewActivity::class.java)
+                        val enterRoomRequest =
+                            EnterRoomRequest(nicknameEditText.text.toString())
+                        val enterRoomResponse =
+                            PagecallApi.retrofitService.enterRoom(roomId, enterRoomRequest)
+                        val intent = Intent(it, WebViewActivity::class.java)
 
-                            intent.putExtra(WebViewActivity.PAGECALL_URL, enterRoomResponse.url)
-                            it.startActivity(intent)
-                        } catch (e: Exception) {
-                            Log.e("ENTER_ROOM", e.toString())
-                        }
+                        intent.putExtra(WebViewActivity.PAGECALL_URL, enterRoomResponse.url)
+                        it.startActivity(intent)
                     }
 
                     dialog.cancel()
