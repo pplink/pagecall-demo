@@ -4,18 +4,8 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
-import com.pplink.pagecall.MainActivity
-import com.pplink.pagecall.R
-import com.pplink.pagecall.adapter.ClosedRoomAdapter
-import com.pplink.pagecall.adapter.LiveRoomAdapter
-import com.pplink.pagecall.databinding.ActivityMainBinding
-import com.pplink.pagecall.model.ClosedRoom
 import com.pplink.pagecall.model.RoomViewModel
 
 class CloseRoomDialog : DialogFragment() {
@@ -24,7 +14,6 @@ class CloseRoomDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         super.onCreateDialog(savedInstanceState)
         return activity?.let {
-            // Use the Builder class for convenient dialog construction
             val args = requireArguments()
 
             val builder = AlertDialog.Builder(it)
@@ -42,7 +31,6 @@ class CloseRoomDialog : DialogFragment() {
 
                         dialog.cancel()
                     })
-            // Create the AlertDialog object and return it
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }

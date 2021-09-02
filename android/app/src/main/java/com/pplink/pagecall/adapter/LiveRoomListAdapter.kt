@@ -1,27 +1,21 @@
 package com.pplink.pagecall.adapter
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pplink.pagecall.MainActivity
 import com.pplink.pagecall.R
-import com.pplink.pagecall.WebViewActivity
 import com.pplink.pagecall.dialog.CloseRoomDialog
 import com.pplink.pagecall.dialog.EnterRoomDialog
 import com.pplink.pagecall.model.LiveRoom
 
-class LiveRoomAdapter(private val context: Context, private val dataset: List<LiveRoom>) :
-    RecyclerView.Adapter<LiveRoomAdapter.LiveRoomViewHolder>() {
+class LiveRoomListAdapter(private val context: Context, private val dataset: List<LiveRoom>) :
+    RecyclerView.Adapter<LiveRoomListAdapter.LiveRoomViewHolder>() {
     class LiveRoomViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.room_name)
         val startTextView: TextView = view.findViewById(R.id.room_start)

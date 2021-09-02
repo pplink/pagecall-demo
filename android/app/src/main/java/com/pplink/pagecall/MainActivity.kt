@@ -2,14 +2,12 @@ package com.pplink.pagecall
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
-import com.pplink.pagecall.adapter.ClosedRoomAdapter
-import com.pplink.pagecall.adapter.LiveRoomAdapter
+import com.pplink.pagecall.adapter.ClosedRoomListAdapter
+import com.pplink.pagecall.adapter.LiveRoomListAdapter
 import com.pplink.pagecall.databinding.ActivityMainBinding
 import com.pplink.pagecall.dialog.CreateRoomDialog
-import com.pplink.pagecall.dialog.EnterRoomDialog
 import com.pplink.pagecall.model.RoomViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -24,11 +22,11 @@ class MainActivity : AppCompatActivity() {
         changeRoomListView(true)
 
         viewModel.liveRooms.observe(this, {
-                newList -> binding.liveRoomList.adapter = LiveRoomAdapter(this, newList)
+                newList -> binding.liveRoomList.adapter = LiveRoomListAdapter(this, newList)
         })
 
         viewModel.closedRooms.observe(this, {
-            newList -> binding.closedRoomList.adapter = ClosedRoomAdapter(this, newList)
+            newList -> binding.closedRoomList.adapter = ClosedRoomListAdapter(this, newList)
         })
 
         binding.isLive.setOnCheckedChangeListener { _, isLive ->
@@ -36,8 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.createRoomButton.setOnClickListener {
-            val dialog = CreateRoomDialog()
-            dialog.show(supportFragmentManager, "CREATE_ROOM")
+            CreateRoomDialog().show(supportFragmentManager, "CREATE_ROOM")
         }
     }
 
