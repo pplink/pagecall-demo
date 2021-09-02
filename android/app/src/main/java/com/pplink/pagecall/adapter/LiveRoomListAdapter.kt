@@ -13,6 +13,7 @@ import com.pplink.pagecall.R
 import com.pplink.pagecall.dialog.CloseRoomDialog
 import com.pplink.pagecall.dialog.EnterRoomDialog
 import com.pplink.pagecall.model.LiveRoom
+import java.time.format.DateTimeFormatter
 
 class LiveRoomListAdapter(private val context: Context, private val dataset: List<LiveRoom>) :
     RecyclerView.Adapter<LiveRoomListAdapter.LiveRoomViewHolder>() {
@@ -32,7 +33,11 @@ class LiveRoomListAdapter(private val context: Context, private val dataset: Lis
     override fun onBindViewHolder(holder: LiveRoomViewHolder, position: Int) {
         val room = dataset[position]
         holder.nameTextView.text = room.name
-        holder.startTextView.text = room.start
+
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        val outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+
+        holder.startTextView.text = "Started at ${outputFormatter.format(inputFormatter.parse(room.start))}"
 
         val activity = context as MainActivity
         val manager = activity.supportFragmentManager
