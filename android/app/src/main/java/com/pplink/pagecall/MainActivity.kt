@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
         changeRoomListView(true)
 
         viewModel.liveRooms.observe(this, {
-                newList -> binding.liveRoomList.adapter = LiveRoomListAdapter(this, newList)
+                newList -> binding.liveRoomList.adapter = LiveRoomListAdapter(this, newList.sortedByDescending { it.start })
         })
 
         viewModel.closedRooms.observe(this, {
-            newList -> binding.closedRoomList.adapter = ClosedRoomListAdapter(this, newList)
+            newList -> binding.closedRoomList.adapter = ClosedRoomListAdapter(this, newList.sortedByDescending { it.end })
         })
 
         binding.isLive.setOnCheckedChangeListener { _, isLive ->
