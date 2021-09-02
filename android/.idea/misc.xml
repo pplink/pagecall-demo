@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35220465184815086" />
         <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.162109375" />
         <entry key="app/src/main/res/layout/closed_room_item.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/dialog_create_room.xml" value="0.17265625" />
         <entry key="app/src/main/res/layout/dialog_enter_room.xml" value="0.3140281004862138" />
         <entry key="app/src/main/res/layout/fragment_closed_room_list.xml" value="0.17265625" />
         <entry key="app/src/main/res/layout/fragment_live_room_list.xml" value="0.162109375" />

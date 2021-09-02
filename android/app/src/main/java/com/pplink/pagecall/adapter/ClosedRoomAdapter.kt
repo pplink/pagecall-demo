@@ -17,9 +17,9 @@ class ClosedRoomAdapter(private val context: Context, private val dataset: List<
         val endTextView: TextView = view.findViewById(R.id.room_end)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClosedRoomAdapter.ClosedRoomViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClosedRoomViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.closed_room_item, parent, false)
-        return ClosedRoomAdapter.ClosedRoomViewHolder(adapterLayout)
+        return ClosedRoomViewHolder(adapterLayout)
     }
 
     override fun onBindViewHolder(holder: ClosedRoomViewHolder, position: Int) {
