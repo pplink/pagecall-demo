@@ -6,37 +6,40 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class RoomViewModel : ViewModel() {
-    private var _liveRooms = mutableListOf<LiveRoom>()
-    val liveRooms: List<LiveRoom>
-        get() = _liveRooms
+    private var _liveRooms = MutableLiveData<List<LiveRoom>>()
+    val liveRooms: LiveData<List<LiveRoom>> = _liveRooms
 
-    private var _closedRooms = mutableListOf<ClosedRoom>()
-    val closedRooms: List<ClosedRoom>
-        get() = _closedRooms
+    private var _closedRooms = MutableLiveData<List<ClosedRoom>>()
+    val closedRooms: LiveData<List<ClosedRoom>> = _closedRooms
 
     init {
         getRooms()
     }
 
     private fun getRooms() {
-        Log.d("VIEW_MODEL","test")
-        _liveRooms = Mock().loadLiveRooms().toMutableList()
-        _closedRooms = Mock().loadClosedRooms().toMutableList()
+        _liveRooms.value = Mock().loadLiveRooms()
+        _closedRooms.value = Mock().loadClosedRooms()
     }
 
     fun findLiveRoomById(id: String): LiveRoom? {
-        return _liveRooms.find { liveRoom -> liveRoom.id == id }
+        return _liveRooms.value!!.find { liveRoom -> liveRoom.id == id }
     }
 
     fun addLiveRoom(room: LiveRoom) {
-        _liveRooms.add(room)
+        val mutableList = _liveRooms.value!!.toMutableList()
+        mutableList.add(room)
+        _liveRooms.value = mutableList
     }
 
     fun removeLiveRoom(room: LiveRoom) {
-        _liveRooms.remove(room)
+        val mutableList = _liveRooms.value!!.toMutableList()
+        mutableList.remove(room)
+        _liveRooms.value = mutableList
     }
 
     fun addClosedRoom(room: ClosedRoom) {
-        _closedRooms.add(room)
+        val mutableList = _closedRooms.value!!.toMutableList()
+        mutableList.add(room)
+        _closedRooms.value = mutableList
     }
 }

@@ -45,11 +45,6 @@ class CloseRoomDialog : DialogFragment() {
                             viewModel.addClosedRoom(closedRoom)
                         }
 
-                        val liveRoomList = it.findViewById<RecyclerView>(R.id.live_room_list)
-                        liveRoomList.adapter!!.notifyDataSetChanged()
-                        val closedRoomList = it.findViewById<RecyclerView>(R.id.closed_room_list)
-                        closedRoomList.adapter!!.notifyDataSetChanged()
-
                         dialog.cancel()
                     })
             // Create the AlertDialog object and return it

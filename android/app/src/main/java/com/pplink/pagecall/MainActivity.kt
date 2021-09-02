@@ -21,6 +21,14 @@ class MainActivity : AppCompatActivity() {
 
         changeRoomListView(true)
 
+        viewModel.liveRooms.observe(this, {
+                newList -> binding.liveRoomList.adapter = LiveRoomAdapter(this, newList)
+        })
+
+        viewModel.closedRooms.observe(this, {
+            newList -> binding.closedRoomList.adapter = ClosedRoomAdapter(this, newList)
+        })
+
         binding.isLive.setOnCheckedChangeListener { _, isLive ->
             changeRoomListView(isLive)
         }
@@ -28,11 +36,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeRoomListView(isLive: Boolean) {
         if (isLive) {
-            binding.liveRoomList.adapter = LiveRoomAdapter(this, viewModel.liveRooms)
             binding.liveRoomList.visibility = View.VISIBLE
             binding.closedRoomList.visibility = View.GONE
         } else {
-            binding.closedRoomList.adapter = ClosedRoomAdapter(this, viewModel.closedRooms)
             binding.liveRoomList.visibility = View.GONE
             binding.closedRoomList.visibility = View.VISIBLE
         }
