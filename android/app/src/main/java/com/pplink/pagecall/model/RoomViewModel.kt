@@ -4,6 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.pplink.pagecall.network.PagecallApi
+import kotlinx.coroutines.launch
 
 class RoomViewModel : ViewModel() {
     private var _liveRooms = MutableLiveData<List<LiveRoom>>()
@@ -17,8 +20,11 @@ class RoomViewModel : ViewModel() {
     }
 
     private fun getRooms() {
-        _liveRooms.value = Mock().loadLiveRooms()
-        _closedRooms.value = Mock().loadClosedRooms()
+        viewModelScope.launch {
+            val roomList = PagecallApi.retrofitService.getRooms()
+            _liveRooms.value = roomList.liveRooms
+            _closedRooms.value = roomList.closedRooms
+        }
     }
 
     fun findLiveRoomById(id: String): LiveRoom? {
