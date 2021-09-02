@@ -8,6 +8,8 @@ import androidx.activity.viewModels
 import com.pplink.pagecall.adapter.ClosedRoomAdapter
 import com.pplink.pagecall.adapter.LiveRoomAdapter
 import com.pplink.pagecall.databinding.ActivityMainBinding
+import com.pplink.pagecall.dialog.CreateRoomDialog
+import com.pplink.pagecall.dialog.EnterRoomDialog
 import com.pplink.pagecall.model.RoomViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.isLive.setOnCheckedChangeListener { _, isLive ->
             changeRoomListView(isLive)
+        }
+
+        binding.createRoomButton.setOnClickListener {
+            val dialog = CreateRoomDialog()
+            dialog.show(supportFragmentManager, "CREATE_ROOM")
         }
     }
 

@@ -61,4 +61,13 @@
         app:layout_constraintTop_toBottomOf="@+id/search_room"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <Button
+        android:id="@+id/create_room_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="@+id/is_live"
+        app:layout_constraintEnd_toStartOf="@+id/is_live"
+        app:layout_constraintTop_toTopOf="@+id/is_live" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
