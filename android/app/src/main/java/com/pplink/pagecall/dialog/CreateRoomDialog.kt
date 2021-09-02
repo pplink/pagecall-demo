@@ -30,7 +30,7 @@ class CreateRoomDialog : DialogFragment() {
             builder.setView(view).setPositiveButton("Create",
                 DialogInterface.OnClickListener { dialog, _ ->
                     val roomNameEditText = view.findViewById<EditText>(R.id.room_name)
-
+                    viewModel.createLiveRoom(roomNameEditText.text.toString())
                     dialog.cancel()
                 })
                 .setNegativeButton("Cancel",

@@ -1,13 +1,11 @@
 package com.pplink.pagecall.network
 
-import com.pplink.pagecall.model.LiveRoom
-import com.pplink.pagecall.model.RoomList
+import com.pplink.pagecall.model.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
+import retrofit2.http.*
 
 private const val BASE_URL = "http://3.38.3.80:8080"
 private val moshi = Moshi.Builder()
@@ -20,7 +18,16 @@ private val retrofit = Retrofit.Builder()
 
 interface PagecallApiService {
     @GET("rooms")
-    suspend fun getRooms(): RoomList
+    suspend fun getRooms(): GetRoomsResponse
+
+    @POST("rooms")
+    suspend fun createRoom(@Body CreateRoomRequest: CreateRoomRequest): CreateRoomResponse
+
+    @POST("rooms/{id}")
+    suspend fun enterRoom(@Path("id") id: String, @Body EnterRoomRequest: EnterRoomRequest): EnterRoomResponse
+
+    @PUT("rooms/{id}")
+    suspend fun closeRoom(@Path("id") id: String): CloseRoomResponse
 }
 
 object PagecallApi {

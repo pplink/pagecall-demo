@@ -3,6 +3,7 @@ package com.pplink.pagecall.dialog
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -10,7 +11,13 @@ import android.view.View
 import android.widget.EditText
 import androidx.core.view.marginLeft
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.lifecycleScope
 import com.pplink.pagecall.R
+import com.pplink.pagecall.WebViewActivity
+import com.pplink.pagecall.model.EnterRoomRequest
+import com.pplink.pagecall.network.PagecallApi
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class EnterRoomDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -26,11 +33,20 @@ class EnterRoomDialog : DialogFragment() {
                     val roomId = args.getString("roomId")!!
                     val nicknameEditText = view.findViewById<EditText>(R.id.nickname)
 
-                    Log.d("ENTER_DIALOG", nicknameEditText.text.toString())
-                    //            val context = holder.itemView.context
-//            val intent = Intent(context, WebViewActivity::class.java)
-//            intent.putExtra(WebViewActivity.PAGECALL_URL, "https://app.pagecall.net/6108bf574b07620008c58b12?access_token=s_69mVIkmi8GsDHOH51zpVASI7l1yIrw")
-//            context.startActivity(intent)
+                    it.lifecycleScope.launch {
+                        try {
+                            val enterRoomRequest =
+                                EnterRoomRequest(nicknameEditText.text.toString())
+                            val enterRoomResponse =
+                                PagecallApi.retrofitService.enterRoom(roomId, enterRoomRequest)
+                            val intent = Intent(it, WebViewActivity::class.java)
+
+                            intent.putExtra(WebViewActivity.PAGECALL_URL, enterRoomResponse.url)
+                            it.startActivity(intent)
+                        } catch (e: Exception) {
+                            Log.e("ENTER_ROOM", e.toString())
+                        }
+                    }
 
                     dialog.cancel()
                 })
