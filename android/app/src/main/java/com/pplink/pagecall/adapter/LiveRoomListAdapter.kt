@@ -37,7 +37,8 @@ class LiveRoomListAdapter(private val context: Context, private val dataset: Lis
         val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         val outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
-        holder.startTextView.text = "Started at ${outputFormatter.format(inputFormatter.parse(room.start))}"
+        holder.startTextView.text =
+            "Started at ${outputFormatter.format(inputFormatter.parse(room.start))}"
 
         val activity = context as MainActivity
         val manager = activity.supportFragmentManager

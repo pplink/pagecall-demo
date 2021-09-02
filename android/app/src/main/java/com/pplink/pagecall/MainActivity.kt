@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import com.pplink.pagecall.adapter.ClosedRoomListAdapter
 import com.pplink.pagecall.adapter.LiveRoomListAdapter
 import com.pplink.pagecall.databinding.ActivityMainBinding
@@ -21,12 +23,14 @@ class MainActivity : AppCompatActivity() {
 
         changeRoomListView(true)
 
-        viewModel.liveRooms.observe(this, {
-                newList -> binding.liveRoomList.adapter = LiveRoomListAdapter(this, newList.sortedByDescending { it.start })
+        viewModel.liveRooms.observe(this, { newList ->
+            binding.liveRoomList.adapter =
+                LiveRoomListAdapter(this, newList.sortedByDescending { it.start })
         })
 
-        viewModel.closedRooms.observe(this, {
-            newList -> binding.closedRoomList.adapter = ClosedRoomListAdapter(this, newList.sortedByDescending { it.end })
+        viewModel.closedRooms.observe(this, { newList ->
+            binding.closedRoomList.adapter =
+                ClosedRoomListAdapter(this, newList.sortedByDescending { it.end })
         })
 
         binding.isLive.setOnCheckedChangeListener { _, isLive ->
@@ -35,6 +39,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.createRoomButton.setOnClickListener {
             CreateRoomDialog().show(supportFragmentManager, "CREATE_ROOM")
+        }
+
+        binding.searchRoom.doAfterTextChanged {
+                binding.closedRoomList.adapter =
+                    ClosedRoomListAdapter(
+                        this,
+                        viewModel.filterClosedRooms(Regex(".*$it.*"))
+                            .sortedByDescending { room -> room.end })
+                binding.liveRoomList.adapter =
+                    LiveRoomListAdapter(
+                        this,
+                        viewModel.filterLiveRooms(Regex(".*$it.*"))
+                            .sortedByDescending { room -> room.start })
         }
     }
 

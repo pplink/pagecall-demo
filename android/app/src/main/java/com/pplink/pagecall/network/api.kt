@@ -24,7 +24,10 @@ interface PagecallApiService {
     suspend fun createRoom(@Body CreateRoomRequest: CreateRoomRequest): CreateRoomResponse
 
     @POST("rooms/{id}")
-    suspend fun enterRoom(@Path("id") id: String, @Body EnterRoomRequest: EnterRoomRequest): EnterRoomResponse
+    suspend fun enterRoom(
+        @Path("id") id: String,
+        @Body EnterRoomRequest: EnterRoomRequest
+    ): EnterRoomResponse
 
     @PUT("rooms/{id}")
     suspend fun closeRoom(@Path("id") id: String): CloseRoomResponse
