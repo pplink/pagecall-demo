@@ -2,6 +2,7 @@ package com.pplink.pagecall
 
 import android.Manifest
 import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -16,6 +17,11 @@ import com.pplink.pagecall.databinding.ActivityWebViewBinding
 import android.widget.Toast
 
 import android.webkit.WebView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import retrofit2.http.Url
+import java.lang.Exception
 
 
 private const val PERMISSION_REQUEST_CODE = 1888
@@ -25,7 +31,26 @@ class WebViewActivity : AppCompatActivity() {
         const val PAGECALL_URL = "pagecall_url"
     }
 
+
     private lateinit var binding: ActivityWebViewBinding
+    private var _filePathCallback: ValueCallback<Array<Uri>>? = null
+
+    private val filterActivityLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK && it.data != null) {
+                var results: Array<Uri>? = null
+
+                it.data?.let { data ->
+                    data.dataString?.let { dataString ->
+                        results = arrayOf(Uri.parse(dataString))
+                    }
+                }
+                _filePathCallback!!.onReceiveValue(results)
+            } else {
+                _filePathCallback!!.onReceiveValue(null)
+            }
+            _filePathCallback = null
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +79,36 @@ class WebViewActivity : AppCompatActivity() {
                     // 현재는 Pagecall 나가기 후, 정가운데 이미지를 눌러야 동작한다.
                     this@WebViewActivity.finish()
                 }
-            }
 
+                override fun onShowFileChooser(
+                    webView: WebView?,
+                    filePathCallback: ValueCallback<Array<Uri>>?,
+                    fileChooserParams: FileChooserParams?
+                ): Boolean {
+                    if (_filePathCallback != null) {
+                        _filePathCallback!!.onReceiveValue(null)
+                        _filePathCallback = null
+                    }
+
+                    try {
+                        _filePathCallback = filePathCallback
+                        val intent = Intent()
+                        intent.apply {
+                            action = Intent.ACTION_GET_CONTENT
+                            addCategory(Intent.CATEGORY_OPENABLE)
+                            type = "*/*"
+                            putExtra(Intent.EXTRA_ALLOW_MULTIPLE, fileChooserParams!!.acceptTypes)
+                        }
+
+                        filterActivityLauncher.launch(intent)
+                    } catch (e: Exception) {
+                        _filePathCallback!!.onReceiveValue(null)
+                        _filePathCallback = null
+                    }
+
+                    return true
+                }
+            }
         }
 
         CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true)
