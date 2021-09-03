@@ -1,0 +1,7 @@
+
+target 'PageCall' do
+  use_frameworks!
+
+  pod 'PageCallSDK', '~> 2.1.1', :source => 'https://github.com/pplink/pagecall-specs.git'
+  pod 'GoogleWebRTC', '1.1.29229', :source => 'https://github.com/cocoapods/specs'
+end
