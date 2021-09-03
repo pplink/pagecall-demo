@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E8CA91DD37CF4AF8D32C278 /* Pods_PageCall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E0F3C71056F971A67BD6AE0 /* Pods_PageCall.framework */; };
-		54901E2026B27D310045A100 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 54901E1F26B27D310045A100 /* SwiftPackageProductDependency */; };
+		54901E2026B27D310045A100 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 54901E1F26B27D310045A100 /* Alamofire */; };
 		54A1B2EE26AE8D86004C9EED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B2ED26AE8D86004C9EED /* AppDelegate.swift */; };
 		54A1B2F026AE8D86004C9EED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B2EF26AE8D86004C9EED /* SceneDelegate.swift */; };
 		54A1B2F226AE8D86004C9EED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A1B2F126AE8D86004C9EED /* ViewController.swift */; };
@@ -80,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54901E2026B27D310045A100 /* BuildFile in Frameworks */,
+				54901E2026B27D310045A100 /* Alamofire in Frameworks */,
 				3E8CA91DD37CF4AF8D32C278 /* Pods_PageCall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,7 +108,6 @@
 				4545BF72E09664D301906DA8 /* Pods-PageCall.debug.xcconfig */,
 				C556E81349C143C2C9DDE650 /* Pods-PageCall.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -205,7 +204,7 @@
 			);
 			name = PageCall;
 			packageProductDependencies = (
-				54901E1F26B27D310045A100 /* SwiftPackageProductDependency */,
+				54901E1F26B27D310045A100 /* Alamofire */,
 			);
 			productName = PageCall;
 			productReference = 54A1B2EA26AE8D86004C9EED /* PageCall.app */;
@@ -279,7 +278,7 @@
 			);
 			mainGroup = 54A1B2E126AE8D86004C9EED;
 			packageReferences = (
-				54901E1E26B27D310045A100 /* RemoteSwiftPackageReference */,
+				54901E1E26B27D310045A100 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 54A1B2EB26AE8D86004C9EED /* Products */;
 			projectDirPath = "";
@@ -477,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -532,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -556,6 +555,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pplink.PageCall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -577,6 +577,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pplink.PageCall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -710,7 +711,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		54901E1E26B27D310045A100 /* RemoteSwiftPackageReference */ = {
+		54901E1E26B27D310045A100 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -721,9 +722,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		54901E1F26B27D310045A100 /* SwiftPackageProductDependency */ = {
+		54901E1F26B27D310045A100 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 54901E1E26B27D310045A100 /* RemoteSwiftPackageReference */;
+			package = 54901E1E26B27D310045A100 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -172,7 +172,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // pagecall log
             pageCall.redirectLogToDocuments(withTimeInterval: 4)
             #endif
-            
+
             // PageCall MainViewController present
             pageCall.mainViewController!.modalPresentationStyle = .overFullScreen
             self.present(pageCall.mainViewController!, animated: true, completion: {
