@@ -65,7 +65,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func loadData() {
-            Service.shared.getResults(description: "rooms") { [weak self] result in
+        Service.shared.getResults(description: "rooms") { [weak self] result in
+            DispatchQueue.main.async {
                 switch result {
                 case .success(let results):
                     print(results)
@@ -85,14 +86,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         self?.tableView.reloadData()
                     }
                 case .failure(let error):
-                    DispatchQueue.main.async {
-                        let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
-                        alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
-                        self?.present(alertPopUp, animated: true)
-                    }
+                    let alertPopUp = UIAlertController(title: error.rawValue, message: nil, preferredStyle: .alert)
+                    alertPopUp.addAction(UIAlertAction(title: "OK", style: .default))
+                    self?.present(alertPopUp, animated: true)
                     print(error)
                 }
             }
+        }
     }
     
     func setupSearchBar() {
