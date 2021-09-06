@@ -8,35 +8,35 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/icon_cost_of_service"
+        android:id="@+id/cost_of_service_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:importantForAccessibility="no"
-        app:layout_constraintBottom_toBottomOf="@+id/search_room"
+        app:layout_constraintBottom_toBottomOf="@+id/search_room_edit_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search_room"
+        app:layout_constraintTop_toTopOf="@+id/search_room_edit_text"
         app:srcCompat="@drawable/ic_search" />
 
     <EditText
-        android:id="@+id/search_room"
+        android:id="@+id/search_room_edit_text"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:hint="@string/search_room"
         android:inputType="text"
         android:minHeight="48dp"
-        app:layout_constraintStart_toEndOf="@+id/icon_cost_of_service"
+        app:layout_constraintStart_toEndOf="@+id/cost_of_service_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/is_live"
+        android:id="@+id/is_live_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
         android:minHeight="48dp"
         android:text="@string/is_live"
-        app:layout_constraintBottom_toBottomOf="@+id/search_room"
+        app:layout_constraintBottom_toBottomOf="@+id/search_room_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search_room" />
+        app:layout_constraintTop_toTopOf="@+id/search_room_edit_text" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/live_room_list"
@@ -46,7 +46,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_room"
+        app:layout_constraintTop_toBottomOf="@+id/search_room_edit_text"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -58,7 +58,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_room"
+        app:layout_constraintTop_toBottomOf="@+id/search_room_edit_text"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
@@ -66,8 +66,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create"
-        app:layout_constraintBottom_toBottomOf="@+id/is_live"
-        app:layout_constraintEnd_toStartOf="@+id/is_live"
-        app:layout_constraintTop_toTopOf="@+id/is_live" />
+        app:layout_constraintBottom_toBottomOf="@+id/is_live_switch"
+        app:layout_constraintEnd_toStartOf="@+id/is_live_switch"
+        app:layout_constraintTop_toTopOf="@+id/is_live_switch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

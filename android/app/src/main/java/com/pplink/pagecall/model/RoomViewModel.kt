@@ -1,6 +1,5 @@
 package com.pplink.pagecall.model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,9 +30,10 @@ class RoomViewModel : ViewModel() {
         viewModelScope.launch {
             val createRoomRequest = CreateRoomRequest(name)
             val createRoomResponse = PagecallApi.retrofitService.createRoom(createRoomRequest)
-            val mutableList = _liveRooms.value!!.toMutableList()
-            mutableList.add(createRoomResponse.room)
-            _liveRooms.value = mutableList
+
+            val newLiveRooms = _liveRooms.value!!.toMutableList()
+            newLiveRooms.add(createRoomResponse.room)
+            _liveRooms.value = newLiveRooms
         }
     }
 
@@ -43,13 +43,15 @@ class RoomViewModel : ViewModel() {
 
             _liveRooms.value = _liveRooms.value!!.filter { it.id != id }
 
-            val closedRoomList = _closedRooms.value!!.toMutableList()
-            closedRoomList.add(closeRoomsResponse.room)
-            _closedRooms.value = closedRoomList
+            val newClosedRooms = _closedRooms.value!!.toMutableList()
+            newClosedRooms.add(closeRoomsResponse.room)
+            _closedRooms.value = newClosedRooms
         }
     }
 
     fun filterRooms(regex: Regex): Pair<List<LiveRoom>, List<ClosedRoom>> {
-        return Pair(_liveRooms.value!!.filter { regex.containsMatchIn(it.name) }, _closedRooms.value!!.filter { regex.containsMatchIn(it.name) })
+        val filteredLiveRooms = _liveRooms.value!!.filter { regex.containsMatchIn(it.name) }
+        val filteredClosedRooms = _closedRooms.value!!.filter { regex.containsMatchIn(it.name) }
+        return Pair(filteredLiveRooms, filteredClosedRooms)
     }
 }

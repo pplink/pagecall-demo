@@ -7,7 +7,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/enter_the_room"
+        android:id="@+id/enter_the_room_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter the room"
@@ -17,13 +17,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/nickname"
+        android:id="@+id/nickname_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Nickname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/enter_the_room"
-        app:layout_constraintTop_toBottomOf="@+id/enter_the_room" />
+        app:layout_constraintStart_toStartOf="@+id/enter_the_room_text"
+        app:layout_constraintTop_toBottomOf="@+id/enter_the_room_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

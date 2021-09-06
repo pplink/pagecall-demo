@@ -1,26 +1,17 @@
 package com.pplink.pagecall
 
 import android.Manifest
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.webkit.*
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.pplink.pagecall.databinding.ActivityWebViewBinding
-import android.widget.Toast
-
 import android.webkit.WebView
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import retrofit2.http.Url
 import java.lang.Exception
 
 
@@ -31,12 +22,12 @@ class WebViewActivity : AppCompatActivity() {
         const val PAGECALL_URL = "pagecall_url"
     }
 
-
-    private lateinit var binding: ActivityWebViewBinding
+    private lateinit var _binding: ActivityWebViewBinding
     private var _filePathCallback: ValueCallback<Array<Uri>>? = null
 
     private val filterActivityLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            // WebView 내부에서 파일 선택자를 열기 위한 로직
             if (it.resultCode == Activity.RESULT_OK && it.data != null) {
                 var results: Array<Uri>? = null
 
@@ -47,19 +38,22 @@ class WebViewActivity : AppCompatActivity() {
                 }
                 _filePathCallback!!.onReceiveValue(results)
             } else {
+                // 에러 또는 선택된 파일이 없더라도 반드시 초기화 해주어야 한다.
+                // 그렇지 않으면 다시 파일 선택자가 열리지 않는다.
                 _filePathCallback!!.onReceiveValue(null)
             }
+
             _filePathCallback = null
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        binding = ActivityWebViewBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        _binding = ActivityWebViewBinding.inflate(layoutInflater)
+        setContentView(_binding.root)
 
         val url = intent?.extras?.getString(PAGECALL_URL).toString()
-        val webView = binding.webView
+        val webView = _binding.webView
 
         requestPermissionsForPagecall()
 

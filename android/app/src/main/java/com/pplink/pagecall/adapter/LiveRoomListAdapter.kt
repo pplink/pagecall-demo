@@ -17,11 +17,12 @@ import java.time.format.DateTimeFormatter
 
 class LiveRoomListAdapter(private val context: Context, private val dataset: List<LiveRoom>) :
     RecyclerView.Adapter<LiveRoomListAdapter.LiveRoomViewHolder>() {
+
     class LiveRoomViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val nameTextView: TextView = view.findViewById(R.id.room_name)
-        val startTextView: TextView = view.findViewById(R.id.room_start)
-        val enterRoomButton: Button = view.findViewById(R.id.enter_room)
-        val closeRoomButton: Button = view.findViewById(R.id.close_room)
+        val nameTextView: TextView = view.findViewById(R.id.room_name_text)
+        val startTextView: TextView = view.findViewById(R.id.room_start_text)
+        val enterRoomButton: Button = view.findViewById(R.id.enter_room_button)
+        val closeRoomButton: Button = view.findViewById(R.id.close_room_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LiveRoomViewHolder {
@@ -32,6 +33,7 @@ class LiveRoomListAdapter(private val context: Context, private val dataset: Lis
 
     override fun onBindViewHolder(holder: LiveRoomViewHolder, position: Int) {
         val room = dataset[position]
+
         holder.nameTextView.text = room.name
 
         val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
