@@ -40,6 +40,6 @@ Pagecall 데모 애플리케이션을 위한 안드로이드 클라이언트 입
 
 ## 핵심 소스코드
 ***페이지콜을 WebView에 보여주는 핵심 로직이 동작합니다.***
-- dialog/EnterRoomDialog.kt : API로 부터 Pagecall 입장 URL을 받아와서 WebViewActivity로 전달하고 WebViewActivity로 이동합니다.
+- dialog/EnterRoomDialog.kt : API로 부터 Pagecall 입장 URL을 받아와서 WebViewActivity로 전달하고 이동합니다.
 - WebViewActivity.kt: Pagecall을 보여주기 위한 WebView 설정 및 권한 요청들이 동작합니다.
 - manifests/AndroidManifest.xml: Pagecall이 필요한 권한들이 있습니다.
