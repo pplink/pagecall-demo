@@ -7,36 +7,42 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/cost_of_service_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:importantForAccessibility="no"
-        app:layout_constraintBottom_toBottomOf="@+id/search_room_edit_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search_room_edit_text"
-        app:srcCompat="@drawable/ic_search" />
-
     <EditText
         android:id="@+id/search_room_edit_text"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:hint="@string/search_room"
         android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintStart_toEndOf="@+id/cost_of_service_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/cost_of_service_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@+id/search_room_edit_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/search_room_edit_text"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_search" />
+
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/is_live_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:checked="true"
         android:minHeight="48dp"
         android:text="@string/is_live"
         app:layout_constraintBottom_toBottomOf="@+id/search_room_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search_room_edit_text" />
+        app:layout_constraintTop_toTopOf="@+id/search_room_edit_text"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/live_room_list"
@@ -44,10 +50,11 @@
         android:layout_height="0dp"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_room_edit_text"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/closed_room_list"
@@ -61,13 +68,18 @@
         app:layout_constraintTop_toBottomOf="@+id/search_room_edit_text"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/create_room_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create"
-        app:layout_constraintBottom_toBottomOf="@+id/is_live_switch"
-        app:layout_constraintEnd_toStartOf="@+id/is_live_switch"
-        app:layout_constraintTop_toTopOf="@+id/is_live_switch" />
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="76dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="34dp"
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:tint="@android:color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
