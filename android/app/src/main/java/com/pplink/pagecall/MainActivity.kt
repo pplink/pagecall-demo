@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import com.pplink.pagecall.adapter.ClosedRoomListAdapter
 import com.pplink.pagecall.adapter.LiveRoomListAdapter
@@ -24,16 +23,18 @@ class MainActivity : AppCompatActivity() {
         changeRoomListView(true)
 
         viewModel.liveRooms.observe(this, { newList ->
+            // 시작한 날짜를 기준으로 정렬한다.
             binding.liveRoomList.adapter =
                 LiveRoomListAdapter(this, newList.sortedByDescending { it.start })
         })
 
         viewModel.closedRooms.observe(this, { newList ->
+            // 종료한 날짜를 기준으로 정렬한다.
             binding.closedRoomList.adapter =
                 ClosedRoomListAdapter(this, newList.sortedByDescending { it.end })
         })
 
-        binding.isLive.setOnCheckedChangeListener { _, isLive ->
+        binding.isLiveSwitch.setOnCheckedChangeListener { _, isLive ->
             changeRoomListView(isLive)
         }
 
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             CreateRoomDialog().show(supportFragmentManager, "CREATE_ROOM")
         }
 
-        binding.searchRoom.doAfterTextChanged {
+        binding.searchRoomEditText.doAfterTextChanged {
             val (liveRooms, closedRoom) = viewModel.filterRooms(Regex(".*$it.*"))
 
             binding.liveRoomList.adapter =

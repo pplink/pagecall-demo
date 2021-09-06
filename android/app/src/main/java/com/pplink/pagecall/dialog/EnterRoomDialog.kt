@@ -5,11 +5,7 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
-import android.util.Log
-import android.view.View
 import android.widget.EditText
-import androidx.core.view.marginLeft
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.pplink.pagecall.R
@@ -17,7 +13,6 @@ import com.pplink.pagecall.WebViewActivity
 import com.pplink.pagecall.model.EnterRoomRequest
 import com.pplink.pagecall.network.PagecallApi
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class EnterRoomDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -31,7 +26,8 @@ class EnterRoomDialog : DialogFragment() {
             builder.setView(view).setPositiveButton("Enter",
                 DialogInterface.OnClickListener { dialog, _ ->
                     val roomId = args.getString("roomId")!!
-                    val nicknameEditText = view.findViewById<EditText>(R.id.nickname)
+                    // 만약 닉네임이 빈 문자열이면, 페이지콜 자체에서 랜덤한 닉네임으로 강의실 입장 처리한다.
+                    val nicknameEditText = view.findViewById<EditText>(R.id.nickname_edit_text)
 
                     it.lifecycleScope.launch {
                         val enterRoomRequest =

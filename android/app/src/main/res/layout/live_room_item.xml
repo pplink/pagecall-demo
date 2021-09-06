@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/room_name"
+        android:id="@+id/room_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="32dp"
@@ -17,26 +17,26 @@
         tools:text="페이지콜" />
 
     <TextView
-        android:id="@+id/room_start"
+        android:id="@+id/room_start_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/room_name"
-        app:layout_constraintTop_toBottomOf="@id/room_name"
+        app:layout_constraintStart_toStartOf="@id/room_name_text"
+        app:layout_constraintTop_toBottomOf="@id/room_name_text"
         tools:text="2020년 3월 20일" />
 
     <Button
-        android:id="@+id/enter_room"
+        android:id="@+id/enter_room_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="ENTER"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/close_room"
+        app:layout_constraintEnd_toStartOf="@id/close_room_button"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/close_room"
+        android:id="@+id/close_room_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CLOSE"
