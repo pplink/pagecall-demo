@@ -1,6 +1,6 @@
 # Pagecall 데모 애플리케이션 iOS 클라이언트
 
-Pagecall 데모 애플리케이션을 위한 iOS 클라언트 입니다. 본 예제는 고객사의 Pagecall iOS Mobile SDK 도입에 대한 이해를 돕고자 만들어졌습니다.
+Pagecall 데모 애플리케이션을 위한 iOS 클라이언트 입니다. 본 예제는 고객사의 Pagecall iOS Mobile SDK 도입에 대한 이해를 돕고자 만들어졌습니다.
 
 ## 안내
 
