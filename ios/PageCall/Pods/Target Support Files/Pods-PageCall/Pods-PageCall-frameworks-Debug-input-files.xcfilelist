@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-PageCall/Pods-PageCall-frameworks.sh
+${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/PageCallSDK/PageCallSDK.framework/PageCallSDK

@@ -1,0 +1,6 @@
+framework module Pods_PageCall {
+  umbrella header "Pods-PageCall-umbrella.h"
+
+  export *
+  module * { export * }
+}
