@@ -52,7 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		54A1B2EA26AE8D86004C9EED /* PageCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PageCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A1B2EA26AE8D86004C9EED /* Pagecall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pagecall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A1B2ED26AE8D86004C9EED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54A1B2EF26AE8D86004C9EED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		54A1B2F126AE8D86004C9EED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,10 +60,10 @@
 		54A1B2F626AE8D87004C9EED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54A1B2F926AE8D87004C9EED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54A1B2FB26AE8D87004C9EED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		54A1B30026AE8D87004C9EED /* PageCallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PageCallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A1B30026AE8D87004C9EED /* PagecallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PagecallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A1B30426AE8D87004C9EED /* PageCallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCallTests.swift; sourceTree = "<group>"; };
 		54A1B30626AE8D87004C9EED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		54A1B30B26AE8D87004C9EED /* PageCallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PageCallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A1B30B26AE8D87004C9EED /* PagecallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PagecallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A1B30F26AE8D87004C9EED /* PageCallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCallUITests.swift; sourceTree = "<group>"; };
 		54A1B31126AE8D87004C9EED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54E4908326B011D50048919E /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -111,9 +111,9 @@
 		54A1B2EB26AE8D86004C9EED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				54A1B2EA26AE8D86004C9EED /* PageCall.app */,
-				54A1B30026AE8D87004C9EED /* PageCallTests.xctest */,
-				54A1B30B26AE8D87004C9EED /* PageCallUITests.xctest */,
+				54A1B2EA26AE8D86004C9EED /* Pagecall.app */,
+				54A1B30026AE8D87004C9EED /* PagecallTests.xctest */,
+				54A1B30B26AE8D87004C9EED /* PagecallUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,9 +163,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		54A1B2E926AE8D86004C9EED /* PageCall */ = {
+		54A1B2E926AE8D86004C9EED /* Pagecall */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 54A1B31426AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PageCall" */;
+			buildConfigurationList = 54A1B31426AE8D87004C9EED /* Build configuration list for PBXNativeTarget "Pagecall" */;
 			buildPhases = (
 				54A1B2E626AE8D86004C9EED /* Sources */,
 				54A1B2E726AE8D86004C9EED /* Frameworks */,
@@ -176,17 +176,17 @@
 			);
 			dependencies = (
 			);
-			name = PageCall;
+			name = Pagecall;
 			packageProductDependencies = (
 				54901E1F26B27D310045A100 /* Alamofire */,
 			);
 			productName = PageCall;
-			productReference = 54A1B2EA26AE8D86004C9EED /* PageCall.app */;
+			productReference = 54A1B2EA26AE8D86004C9EED /* Pagecall.app */;
 			productType = "com.apple.product-type.application";
 		};
-		54A1B2FF26AE8D87004C9EED /* PageCallTests */ = {
+		54A1B2FF26AE8D87004C9EED /* PagecallTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 54A1B31726AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PageCallTests" */;
+			buildConfigurationList = 54A1B31726AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PagecallTests" */;
 			buildPhases = (
 				54A1B2FC26AE8D87004C9EED /* Sources */,
 				54A1B2FD26AE8D87004C9EED /* Frameworks */,
@@ -197,14 +197,14 @@
 			dependencies = (
 				54A1B30226AE8D87004C9EED /* PBXTargetDependency */,
 			);
-			name = PageCallTests;
+			name = PagecallTests;
 			productName = PageCallTests;
-			productReference = 54A1B30026AE8D87004C9EED /* PageCallTests.xctest */;
+			productReference = 54A1B30026AE8D87004C9EED /* PagecallTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		54A1B30A26AE8D87004C9EED /* PageCallUITests */ = {
+		54A1B30A26AE8D87004C9EED /* PagecallUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 54A1B31A26AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PageCallUITests" */;
+			buildConfigurationList = 54A1B31A26AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PagecallUITests" */;
 			buildPhases = (
 				54A1B30726AE8D87004C9EED /* Sources */,
 				54A1B30826AE8D87004C9EED /* Frameworks */,
@@ -215,9 +215,9 @@
 			dependencies = (
 				54A1B30D26AE8D87004C9EED /* PBXTargetDependency */,
 			);
-			name = PageCallUITests;
+			name = PagecallUITests;
 			productName = PageCallUITests;
-			productReference = 54A1B30B26AE8D87004C9EED /* PageCallUITests.xctest */;
+			productReference = 54A1B30B26AE8D87004C9EED /* PagecallUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -258,9 +258,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				54A1B2E926AE8D86004C9EED /* PageCall */,
-				54A1B2FF26AE8D87004C9EED /* PageCallTests */,
-				54A1B30A26AE8D87004C9EED /* PageCallUITests */,
+				54A1B2E926AE8D86004C9EED /* Pagecall */,
+				54A1B2FF26AE8D87004C9EED /* PagecallTests */,
+				54A1B30A26AE8D87004C9EED /* PagecallUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,12 +327,12 @@
 /* Begin PBXTargetDependency section */
 		54A1B30226AE8D87004C9EED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 54A1B2E926AE8D86004C9EED /* PageCall */;
+			target = 54A1B2E926AE8D86004C9EED /* Pagecall */;
 			targetProxy = 54A1B30126AE8D87004C9EED /* PBXContainerItemProxy */;
 		};
 		54A1B30D26AE8D87004C9EED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 54A1B2E926AE8D86004C9EED /* PageCall */;
+			target = 54A1B2E926AE8D86004C9EED /* Pagecall */;
 			targetProxy = 54A1B30C26AE8D87004C9EED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -487,7 +487,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pplink.PageCall;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pplink.Pagecall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -508,7 +508,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pplink.PageCall;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pplink.Pagecall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -533,7 +533,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PageCall.app/PageCall";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pagecall.app/Pagecall";
 			};
 			name = Debug;
 		};
@@ -555,7 +555,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PageCall.app/PageCall";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pagecall.app/Pagecall";
 			};
 			name = Release;
 		};
@@ -611,7 +611,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		54A1B31426AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PageCall" */ = {
+		54A1B31426AE8D87004C9EED /* Build configuration list for PBXNativeTarget "Pagecall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				54A1B31526AE8D87004C9EED /* Debug */,
@@ -620,7 +620,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		54A1B31726AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PageCallTests" */ = {
+		54A1B31726AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PagecallTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				54A1B31826AE8D87004C9EED /* Debug */,
@@ -629,7 +629,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		54A1B31A26AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PageCallUITests" */ = {
+		54A1B31A26AE8D87004C9EED /* Build configuration list for PBXNativeTarget "PagecallUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				54A1B31B26AE8D87004C9EED /* Debug */,
