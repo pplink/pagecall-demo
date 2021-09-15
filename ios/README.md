@@ -1,6 +1,6 @@
 # Pagecall 데모 애플리케이션 iOS 클라이언트
 
-Pagecall 데모 애플리케이션을 위한 iOS 클라이언트 입니다. 본 예제는 고객사의 Pagecall iOS Mobile SDK 도입에 대한 이해를 돕고자 만들어졌습니다.
+Pagecall 데모 애플리케이션을 위한 iOS 클라언트 입니다. 본 예제는 고객사의 Pagecall iOS Mobile SDK 도입에 대한 이해를 돕고자 만들어졌습니다.
 
 ## 안내
 
@@ -35,6 +35,46 @@ Pagecall 데모 애플리케이션을 위한 iOS 클라이언트 입니다. 본 
       - PageCall/PageCall/Service.swift 파일에서 서버 주소를 원격 서버 주소로 변경해 줍니다.
 4. 앱을 실행해 볼 iPad 시뮬레이터 또는 테스트 기기를 지정합니다.
 5. 앱이 정상적으로 실행이 되는지 확인합니다.
+
+## Pagecall iOS SDK 설치
+
+iOS에서 Pagecall 사용하기 위해서는 Pagecall 프레임워크가 필요합니다.
+
+### CocoaPods
+
+`PodFile`: 에 아래 항목을 추가합니다.
+```
+target 'PageCall' do
+  use_frameworks!
+
+  pod 'PageCallSDK', '~> 2.1.1', :source => 'https://github.com/pplink/pagecall-specs.git'
+  
+end
+```
+`pod install --verbose`을 실행 하여 프로젝트에 추가 합니다.
+
+## WebRTC Framework 설치
+
+iOS 및 macOS용 WebRTC 프레임워크입니다. Google에서 iOS용 공식 빌드를 제공합니다.
+
+### CocoaPods
+
+`PodFile`: 에 아래 항목을 추가합니다.
+```
+target 'PageCall' do
+  use_frameworks!
+
+  pod 'GoogleWebRTC', '1.1.29229' :source => 'https://github.com/cocoapods/specs'
+  
+end
+```
+`pod install --verbose`을 실행 하여 프로젝트에 추가 합니다.
+
+### Swift Package Manager
+
+M1 칩셋 기반의 맥에서는 Swift Package Manager를 사용해서 xcframework 설치 해야 합니다.
+`Swift 5.3 / Xcode 12` 이상 설치 가능
+Swift 패키지 관리자를 통해 WebRTC `repository https://github.com/alexpiezo/WebRTC.git` 추가 합니다.
 
 ## 구조
 
