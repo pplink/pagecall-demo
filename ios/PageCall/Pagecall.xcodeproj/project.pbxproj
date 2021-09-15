@@ -19,6 +19,8 @@
 		54E4908426B011D50048919E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908326B011D50048919E /* Room.swift */; };
 		54E4908626B015890048919E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908526B015890048919E /* Service.swift */; };
 		54E4908826B019800048919E /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E4908726B019800048919E /* ErrorMessage.swift */; };
+		54FA4A7A26F2015A00931D08 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = 54FA4A7926F2015A00931D08 /* WebRTC */; };
+		843D17C65FF79E63B9B33683 /* Pods_Pagecall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797B04B2E2A5A9699E154C78 /* Pods_Pagecall.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		49F3550F49322C656BD3307E /* Pods-Pagecall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pagecall.debug.xcconfig"; path = "Target Support Files/Pods-Pagecall/Pods-Pagecall.debug.xcconfig"; sourceTree = "<group>"; };
 		54A1B2EA26AE8D86004C9EED /* Pagecall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pagecall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A1B2ED26AE8D86004C9EED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54A1B2EF26AE8D86004C9EED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 		54E4908326B011D50048919E /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		54E4908526B015890048919E /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		54E4908726B019800048919E /* ErrorMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		72208A85B834EAE4F06BDDE4 /* Pods-Pagecall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pagecall.release.xcconfig"; path = "Target Support Files/Pods-Pagecall/Pods-Pagecall.release.xcconfig"; sourceTree = "<group>"; };
+		797B04B2E2A5A9699E154C78 /* Pods_Pagecall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pagecall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +82,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				54901E2026B27D310045A100 /* Alamofire in Frameworks */,
+				54FA4A7A26F2015A00931D08 /* WebRTC in Frameworks */,
+				843D17C65FF79E63B9B33683 /* Pods_Pagecall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CACA39C05C013FBA0C6CF26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				797B04B2E2A5A9699E154C78 /* Pods_Pagecall.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		54A1B2E126AE8D86004C9EED = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +120,8 @@
 				54A1B30326AE8D87004C9EED /* PageCallTests */,
 				54A1B30E26AE8D87004C9EED /* PageCallUITests */,
 				54A1B2EB26AE8D86004C9EED /* Products */,
+				B3A9D9146E3C91DC052C1BAC /* Pods */,
+				1CACA39C05C013FBA0C6CF26 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +177,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B3A9D9146E3C91DC052C1BAC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				49F3550F49322C656BD3307E /* Pods-Pagecall.debug.xcconfig */,
+				72208A85B834EAE4F06BDDE4 /* Pods-Pagecall.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -167,10 +193,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54A1B31426AE8D87004C9EED /* Build configuration list for PBXNativeTarget "Pagecall" */;
 			buildPhases = (
+				A24FF09BCB0ABD5236667603 /* [CP] Check Pods Manifest.lock */,
 				54A1B2E626AE8D86004C9EED /* Sources */,
 				54A1B2E726AE8D86004C9EED /* Frameworks */,
 				54A1B2E826AE8D86004C9EED /* Resources */,
 				54A1B32426AE9E20004C9EED /* Embed Frameworks */,
+				4679EFAF29D309A41630AEC8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,6 +207,7 @@
 			name = Pagecall;
 			packageProductDependencies = (
 				54901E1F26B27D310045A100 /* Alamofire */,
+				54FA4A7926F2015A00931D08 /* WebRTC */,
 			);
 			productName = PageCall;
 			productReference = 54A1B2EA26AE8D86004C9EED /* Pagecall.app */;
@@ -253,6 +282,7 @@
 			mainGroup = 54A1B2E126AE8D86004C9EED;
 			packageReferences = (
 				54901E1E26B27D310045A100 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				54FA4A7826F2015A00931D08 /* XCRemoteSwiftPackageReference "WebRTC" */,
 			);
 			productRefGroup = 54A1B2EB26AE8D86004C9EED /* Products */;
 			projectDirPath = "";
@@ -291,6 +321,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4679EFAF29D309A41630AEC8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pagecall/Pods-Pagecall-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pagecall/Pods-Pagecall-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pagecall/Pods-Pagecall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A24FF09BCB0ABD5236667603 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pagecall-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		54A1B2E626AE8D86004C9EED /* Sources */ = {
@@ -475,6 +547,7 @@
 		};
 		54A1B31526AE8D87004C9EED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49F3550F49322C656BD3307E /* Pods-Pagecall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -496,6 +569,7 @@
 		};
 		54A1B31626AE8D87004C9EED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72208A85B834EAE4F06BDDE4 /* Pods-Pagecall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -649,6 +723,14 @@
 				minimumVersion = 5.4.3;
 			};
 		};
+		54FA4A7826F2015A00931D08 /* XCRemoteSwiftPackageReference "WebRTC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpiezo/WebRTC.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 93.4577.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -656,6 +738,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 54901E1E26B27D310045A100 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		54FA4A7926F2015A00931D08 /* WebRTC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54FA4A7826F2015A00931D08 /* XCRemoteSwiftPackageReference "WebRTC" */;
+			productName = WebRTC;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
