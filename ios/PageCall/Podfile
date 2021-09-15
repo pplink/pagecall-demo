@@ -1,0 +1,7 @@
+
+target 'Pagecall' do
+  use_frameworks!
+
+  pod 'PageCallSDK', '~> 2.1.1', :source => 'https://github.com/pplink/pagecall-specs.git'
+
+end
