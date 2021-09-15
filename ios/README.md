@@ -44,7 +44,7 @@ iOS에서 Pagecall 사용하기 위해서는 Pagecall 프레임워크가 필요�
 
 `PodFile`: 에 아래 항목을 추가합니다.
 ```
-target 'PageCall' do
+target 'Pagecall' do
   use_frameworks!
 
   pod 'PageCallSDK', '~> 2.1.1', :source => 'https://github.com/pplink/pagecall-specs.git'
@@ -61,7 +61,7 @@ iOS 및 macOS용 WebRTC 프레임워크입니다. Google에서 iOS용 공식 빌
 
 `PodFile`: 에 아래 항목을 추가합니다.
 ```
-target 'PageCall' do
+target 'Pagecall' do
   use_frameworks!
 
   pod 'GoogleWebRTC', '1.1.29229' :source => 'https://github.com/cocoapods/specs'
