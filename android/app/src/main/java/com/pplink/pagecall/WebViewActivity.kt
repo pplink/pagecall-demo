@@ -29,7 +29,7 @@ class WebViewActivity : AppCompatActivity() {
 
     private fun setPagecall(url: String, html: String?, customJavascript: String?) {
         val pagecall = Pagecall.newInstance(url, html)
-
+        // 페이지콜 나가기 후, 정중앙의 X 버튼 클릭 시 onExit 이벤트가 발생.
         pagecall.pagecallClient = object: PagecallClient() {
             override fun onExit() {
                 this@WebViewActivity.finish()
