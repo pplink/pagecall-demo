@@ -11,14 +11,18 @@
 		4B53C913273BDBEB000A9406 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B53C912273BDBEB000A9406 /* ContentView.swift */; };
 		4B53C915273BDBED000A9406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B53C914273BDBED000A9406 /* Assets.xcassets */; };
 		4B53C918273BDBED000A9406 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B53C917273BDBED000A9406 /* Preview Assets.xcassets */; };
+		5EBC6944BD8531EE1A4C533C /* Pods_PagecallWithSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685D3A23FF3EB64E0CDA0F02 /* Pods_PagecallWithSwiftUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A2D583A429ABCAEFF54C152 /* Pods-PagecallWithSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PagecallWithSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-PagecallWithSwiftUI/Pods-PagecallWithSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		4B53C90D273BDBEB000A9406 /* PagecallWithSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagecallWithSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B53C910273BDBEB000A9406 /* PagecallWithSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagecallWithSwiftUIApp.swift; sourceTree = "<group>"; };
 		4B53C912273BDBEB000A9406 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B53C914273BDBED000A9406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B53C917273BDBED000A9406 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		685D3A23FF3EB64E0CDA0F02 /* Pods_PagecallWithSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PagecallWithSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7371B1CFBFA9CE6AD798925D /* Pods-PagecallWithSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PagecallWithSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-PagecallWithSwiftUI/Pods-PagecallWithSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,17 +30,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EBC6944BD8531EE1A4C533C /* Pods_PagecallWithSwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09FF1B708332F336631BC76F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7371B1CFBFA9CE6AD798925D /* Pods-PagecallWithSwiftUI.debug.xcconfig */,
+				4A2D583A429ABCAEFF54C152 /* Pods-PagecallWithSwiftUI.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4B53C904273BDBEB000A9406 = {
 			isa = PBXGroup;
 			children = (
 				4B53C90F273BDBEB000A9406 /* PagecallWithSwiftUI */,
 				4B53C90E273BDBEB000A9406 /* Products */,
+				09FF1B708332F336631BC76F /* Pods */,
+				FA13B810C34D49D859F22F6C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +84,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		FA13B810C34D49D859F22F6C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				685D3A23FF3EB64E0CDA0F02 /* Pods_PagecallWithSwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B53C91B273BDBED000A9406 /* Build configuration list for PBXNativeTarget "PagecallWithSwiftUI" */;
 			buildPhases = (
+				5BA3E213327F60FA33DA7A93 /* [CP] Check Pods Manifest.lock */,
 				4B53C909273BDBEB000A9406 /* Sources */,
 				4B53C90A273BDBEB000A9406 /* Frameworks */,
 				4B53C90B273BDBEB000A9406 /* Resources */,
+				83A277F7DBC9859B25AEF87C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5BA3E213327F60FA33DA7A93 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PagecallWithSwiftUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83A277F7DBC9859B25AEF87C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PagecallWithSwiftUI/Pods-PagecallWithSwiftUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PagecallWithSwiftUI/Pods-PagecallWithSwiftUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PagecallWithSwiftUI/Pods-PagecallWithSwiftUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4B53C909273BDBEB000A9406 /* Sources */ = {
@@ -263,6 +332,7 @@
 		};
 		4B53C91C273BDBED000A9406 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7371B1CFBFA9CE6AD798925D /* Pods-PagecallWithSwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -292,6 +362,7 @@
 		};
 		4B53C91D273BDBED000A9406 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A2D583A429ABCAEFF54C152 /* Pods-PagecallWithSwiftUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

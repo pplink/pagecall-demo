@@ -1,0 +1,21 @@
+PODS:
+  - GoogleWebRTC (1.1.31999)
+  - PageCallSDK (2.2.0)
+
+DEPENDENCIES:
+  - GoogleWebRTC
+  - PageCallSDK (~> 2.2.0)
+
+SPEC REPOS:
+  https://github.com/pplink/pagecall-specs.git:
+    - PageCallSDK
+  trunk:
+    - GoogleWebRTC
+
+SPEC CHECKSUMS:
+  GoogleWebRTC: b39a78c4f5cc6b0323415b9233db03a2faa7b0f0
+  PageCallSDK: 102941da5f20fe87b495ac41f701595244ec9695
+
+PODFILE CHECKSUM: 9448d2b39b787a5bf99e9d6bda0ce3b19bbe1ae8
+
+COCOAPODS: 1.11.2
