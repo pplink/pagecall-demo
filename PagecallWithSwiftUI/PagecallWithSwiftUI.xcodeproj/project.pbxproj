@@ -21,6 +21,7 @@
 		4B53C912273BDBEB000A9406 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B53C914273BDBED000A9406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B53C917273BDBED000A9406 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4B53C920273BE729000A9406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		685D3A23FF3EB64E0CDA0F02 /* Pods_PagecallWithSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PagecallWithSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7371B1CFBFA9CE6AD798925D /* Pods-PagecallWithSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PagecallWithSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-PagecallWithSwiftUI/Pods-PagecallWithSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +69,7 @@
 		4B53C90F273BDBEB000A9406 /* PagecallWithSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				4B53C920273BE729000A9406 /* Info.plist */,
 				4B53C910273BDBEB000A9406 /* PagecallWithSwiftUIApp.swift */,
 				4B53C912273BDBEB000A9406 /* ContentView.swift */,
 				4B53C914273BDBED000A9406 /* Assets.xcassets */,
@@ -342,6 +344,10 @@
 				DEVELOPMENT_TEAM = 9H2SNY3HBF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PagecallWithSwiftUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "페이지콜 이용을 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "페이지콜 이용을 위해 마이크 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -372,6 +378,10 @@
 				DEVELOPMENT_TEAM = 9H2SNY3HBF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PagecallWithSwiftUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "페이지콜 이용을 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "페이지콜 이용을 위해 마이크 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
