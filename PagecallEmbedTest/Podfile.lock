@@ -1,0 +1,16 @@
+PODS:
+  - PageCallSDK (2.2.2)
+
+DEPENDENCIES:
+  - PageCallSDK (~> 2.2.0)
+
+SPEC REPOS:
+  https://github.com/pplink/pagecall-specs.git:
+    - PageCallSDK
+
+SPEC CHECKSUMS:
+  PageCallSDK: fa7fe155477b312ab78d3baf19397f6cf54269c9
+
+PODFILE CHECKSUM: d7181cd38c267df1c3562063ed184264e6517eaa
+
+COCOAPODS: 1.11.2
