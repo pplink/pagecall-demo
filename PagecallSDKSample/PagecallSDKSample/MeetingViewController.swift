@@ -2,7 +2,7 @@ import UIKit
 import WebKit
 import PagecallSDK
 
-class MeetingViewController: UIViewController {
+class MeetingViewController: UIViewController, WKUIDelegate {
     public var url: URL?
     var webView: PagecallWebView?
     
@@ -10,6 +10,7 @@ class MeetingViewController: UIViewController {
         super.viewDidLoad();
         if let url = url {
             let webView = PagecallWebView(frame: CGRect.zero);
+            webView.uiDelegate = self
             webView.load(URLRequest(url: url))
             self.view.addSubview(webView)
             self.webView = webView;
@@ -26,5 +27,10 @@ class MeetingViewController: UIViewController {
         // If it is not called, the webView can still have the access to microphone or camera
         webView?.dispose();
         webView = nil;
+    }
+    
+    @available(iOS 15.0, *)
+    func webView(_ webView: WKWebView, requestMediaCapturePermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, type: WKMediaCaptureType, decisionHandler: @escaping (WKPermissionDecision) -> Void) {
+        decisionHandler(.grant)
     }
 }
