@@ -29,6 +29,10 @@ class MeetingViewController: UIViewController, WKUIDelegate {
         webView = nil;
     }
     
+    func webViewDidClose(_ webView: WKWebView) {
+        self.dismiss(animated: true)
+    }
+    
     @available(iOS 15.0, *)
     func webView(_ webView: WKWebView, requestMediaCapturePermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, type: WKMediaCaptureType, decisionHandler: @escaping (WKPermissionDecision) -> Void) {
         decisionHandler(.grant)
