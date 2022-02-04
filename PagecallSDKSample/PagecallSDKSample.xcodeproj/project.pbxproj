@@ -317,6 +317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9H2SNY3HBF;
+				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PagecallSDKSample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "PagecallSDK Sample";
@@ -349,6 +350,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9H2SNY3HBF;
+				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PagecallSDKSample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "PagecallSDK Sample";
