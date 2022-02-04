@@ -10,6 +10,11 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? MeetingViewController {
+            if let urlString = urlField.text, let url = URL(string: urlString) {
+                viewController.url = url;
+            } else {
+                viewController.url = nil;
+            }
         }
     }
 }

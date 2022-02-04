@@ -1,11 +1,30 @@
 import UIKit
+import WebKit
+import PagecallSDK
 
 class MeetingViewController: UIViewController {
+    public var url: URL?
+    var webView: PagecallWebView?
+    
     override func viewDidLoad() {
-        print("View did load")
+        super.viewDidLoad();
+        if let url = url {
+            let webView = PagecallWebView(frame: CGRect.zero);
+            webView.load(URLRequest(url: url))
+            self.view.addSubview(webView)
+            self.webView = webView;
+            
+            webView.translatesAutoresizingMaskIntoConstraints = false;
+            webView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80.0).isActive = true;
+            webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20.0).isActive = true;
+            webView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0).isActive = true;
+            webView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20.0).isActive = true;
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        print("View did disappear")
+        // If it is not called, the webView can still have the access to microphone or camera
+        webView?.dispose();
+        webView = nil;
     }
 }
