@@ -14,6 +14,7 @@
 		4BC9A4EF27ACF16C00BA3CBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC9A4ED27ACF16C00BA3CBB /* Main.storyboard */; };
 		4BC9A4F127ACF16D00BA3CBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC9A4F027ACF16D00BA3CBB /* Assets.xcassets */; };
 		4BC9A4F427ACF16D00BA3CBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC9A4F227ACF16D00BA3CBB /* LaunchScreen.storyboard */; };
+		4BC9A4FE27ACF2F300BA3CBB /* MeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9A4FD27ACF2F300BA3CBB /* MeetingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		4BC9A4F327ACF16D00BA3CBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BC9A4F527ACF16D00BA3CBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BC9A4FC27ACF18C00BA3CBB /* PagecallSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PagecallSDK; path = "../../pagecall-ios-new/PagecallSDK"; sourceTree = "<group>"; };
+		4BC9A4FD27ACF2F300BA3CBB /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				4BC9A4F027ACF16D00BA3CBB /* Assets.xcassets */,
 				4BC9A4F227ACF16D00BA3CBB /* LaunchScreen.storyboard */,
 				4BC9A4F527ACF16D00BA3CBB /* Info.plist */,
+				4BC9A4FD27ACF2F300BA3CBB /* MeetingViewController.swift */,
 			);
 			path = PagecallSDKSample;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			files = (
 				4BC9A4EC27ACF16C00BA3CBB /* ViewController.swift in Sources */,
 				4BC9A4E827ACF16C00BA3CBB /* AppDelegate.swift in Sources */,
+				4BC9A4FE27ACF2F300BA3CBB /* MeetingViewController.swift in Sources */,
 				4BC9A4EA27ACF16C00BA3CBB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
