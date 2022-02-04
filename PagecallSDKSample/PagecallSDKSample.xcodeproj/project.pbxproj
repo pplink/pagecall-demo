@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BB9030E27ACF66F00DC5D30 /* PagecallSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4BB9030D27ACF66F00DC5D30 /* PagecallSDK */; };
+		4B3BF0D327AD2D9E00568F64 /* PagecallSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4B3BF0D227AD2D9E00568F64 /* PagecallSDK */; };
 		4BC9A4E827ACF16C00BA3CBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9A4E727ACF16C00BA3CBB /* AppDelegate.swift */; };
 		4BC9A4EA27ACF16C00BA3CBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9A4E927ACF16C00BA3CBB /* SceneDelegate.swift */; };
 		4BC9A4EC27ACF16C00BA3CBB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9A4EB27ACF16C00BA3CBB /* ViewController.swift */; };
@@ -26,7 +26,6 @@
 		4BC9A4F027ACF16D00BA3CBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BC9A4F327ACF16D00BA3CBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BC9A4F527ACF16D00BA3CBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BC9A4FC27ACF18C00BA3CBB /* PagecallSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PagecallSDK; path = "../../pagecall-ios-new/PagecallSDK"; sourceTree = "<group>"; };
 		4BC9A4FD27ACF2F300BA3CBB /* MeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -35,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BB9030E27ACF66F00DC5D30 /* PagecallSDK in Frameworks */,
+				4B3BF0D327AD2D9E00568F64 /* PagecallSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +51,6 @@
 		4BC9A4DB27ACF16C00BA3CBB = {
 			isa = PBXGroup;
 			children = (
-				4BC9A4FB27ACF18C00BA3CBB /* Packages */,
 				4BC9A4E627ACF16C00BA3CBB /* PagecallSDKSample */,
 				4BC9A4E527ACF16C00BA3CBB /* Products */,
 				4BB9030C27ACF66F00DC5D30 /* Frameworks */,
@@ -82,14 +80,6 @@
 			path = PagecallSDKSample;
 			sourceTree = "<group>";
 		};
-		4BC9A4FB27ACF18C00BA3CBB /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				4BC9A4FC27ACF18C00BA3CBB /* PagecallSDK */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,7 +97,7 @@
 			);
 			name = PagecallSDKSample;
 			packageProductDependencies = (
-				4BB9030D27ACF66F00DC5D30 /* PagecallSDK */,
+				4B3BF0D227AD2D9E00568F64 /* PagecallSDK */,
 			);
 			productName = PagecallSDKSample;
 			productReference = 4BC9A4E427ACF16C00BA3CBB /* PagecallSDKSample.app */;
@@ -137,6 +127,9 @@
 				Base,
 			);
 			mainGroup = 4BC9A4DB27ACF16C00BA3CBB;
+			packageReferences = (
+				4B3BF0CF27AD282300568F64 /* XCRemoteSwiftPackageReference "PagecallSDK" */,
+			);
 			productRefGroup = 4BC9A4E527ACF16C00BA3CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -398,9 +391,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		4B3BF0CF27AD282300568F64 /* XCRemoteSwiftPackageReference "PagecallSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pplink/PagecallSDK";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		4BB9030D27ACF66F00DC5D30 /* PagecallSDK */ = {
+		4B3BF0D227AD2D9E00568F64 /* PagecallSDK */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 4B3BF0CF27AD282300568F64 /* XCRemoteSwiftPackageReference "PagecallSDK" */;
 			productName = PagecallSDK;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "PagecallSDK",
+        "repositoryURL": "https://github.com/pplink/PagecallSDK",
+        "state": {
+          "branch": "main",
+          "revision": "9eeac59cf33aa90c6a9f4485a14ad082b39b615c",
+          "version": null
+        }
+      },
+      {
         "package": "WebRTC",
         "repositoryURL": "https://github.com/alexpiezo/WebRTC.git",
         "state": {
