@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BB9030E27ACF66F00DC5D30 /* PagecallSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4BB9030D27ACF66F00DC5D30 /* PagecallSDK */; };
 		4BC9A4E827ACF16C00BA3CBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9A4E727ACF16C00BA3CBB /* AppDelegate.swift */; };
 		4BC9A4EA27ACF16C00BA3CBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9A4E927ACF16C00BA3CBB /* SceneDelegate.swift */; };
 		4BC9A4EC27ACF16C00BA3CBB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9A4EB27ACF16C00BA3CBB /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 		4BC9A4F027ACF16D00BA3CBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BC9A4F327ACF16D00BA3CBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BC9A4F527ACF16D00BA3CBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BC9A4FC27ACF18C00BA3CBB /* PagecallSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PagecallSDK; path = "../../pagecall-ios-new/PagecallSDK"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +33,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BB9030E27ACF66F00DC5D30 /* PagecallSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BB9030C27ACF66F00DC5D30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4BC9A4DB27ACF16C00BA3CBB = {
 			isa = PBXGroup;
 			children = (
+				4BC9A4FB27ACF18C00BA3CBB /* Packages */,
 				4BC9A4E627ACF16C00BA3CBB /* PagecallSDKSample */,
 				4BC9A4E527ACF16C00BA3CBB /* Products */,
+				4BB9030C27ACF66F00DC5D30 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +79,14 @@
 			path = PagecallSDKSample;
 			sourceTree = "<group>";
 		};
+		4BC9A4FB27ACF18C00BA3CBB /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				4BC9A4FC27ACF18C00BA3CBB /* PagecallSDK */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +103,9 @@
 			dependencies = (
 			);
 			name = PagecallSDKSample;
+			packageProductDependencies = (
+				4BB9030D27ACF66F00DC5D30 /* PagecallSDK */,
+			);
 			productName = PagecallSDKSample;
 			productReference = 4BC9A4E427ACF16C00BA3CBB /* PagecallSDKSample.app */;
 			productType = "com.apple.product-type.application";
@@ -360,6 +383,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4BB9030D27ACF66F00DC5D30 /* PagecallSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PagecallSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4BC9A4DC27ACF16C00BA3CBB /* Project object */;
 }
